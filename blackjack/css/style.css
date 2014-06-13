@@ -1,7 +1,7 @@
 ﻿*{margin:0;padding:0}/*取消默认显示方式*/
 img{border:0;}
 body{background-image:url(../picture/desk/bg.jpg);}
-#main{border:3px double #cccccc;margin:10px auto;;width:1270px;height:600px;}
+#main{border:3px double #cccccc;margin:10px 10px;;width:1270px;height:600px;}
 #left{float:left;width:150px;height:600px;}
 #left_top{height:200px;}
 #left_middle{display:table-cell;vertical-align:middle;text-align:center;margin:auto;height:200px;width:150px;}
