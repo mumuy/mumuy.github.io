@@ -1,9 +1,9 @@
 ﻿/*定义全局变量*/
-var card=new Array(53);
-var bet_sore,ins_sore;
-var y_sore=5000,c_sore=5000;
+var card=new Array(53);//定义一副纸牌
+var bet_sore,ins_sore;//定义变量储存游戏中的赌注和保险
+var y_sore=5000,c_sore=5000;//初始化玩家和电脑的分值
 var y_A,c_A,y_sum,c_sum,y_mark,c_mark,y_num,c_num,num;
-var y_x=565,y_y=450,c_x=565,c_y=65;//定义全局变量设置纸牌的位置
+var y_x,y_y,c_x,c_y;//定义全局变量设置纸牌的位置
 /*定义纸牌对象构造函数*/
 function Card(number)
 {//value取1-13分别表示A、1-10、J、Q、K
@@ -19,6 +19,9 @@ function start()
 $("#cards").fadeIn(1200,function(){
 cards_top=this.offsetTop;//保存牌堆的位置
 cards_left=this.offsetLeft;
+y_x=c_x=cards_left+510;//设置纸牌相对于牌堆的位置
+c_y=cards_top-200;
+y_y=cards_top+200;
 bet();});	
 }
 /*押注--初始化*/
@@ -62,18 +65,21 @@ $("#message").text("当前所剩赌金小于"+$(this).text());
 }
 $("#bet").html("赌注："+bet_sore);
 if(bet_sore)
-options="<a href='#' onclick='game()'>确定</a>";
+options="<a href='#' id='game'>确定</a>";
 else
 options="确定";
 if(y_sore-bet_sore>5)//不接受5元零头的押注
-options+="<br/><a href='#' onclick='all_in()'>全押</a>";
+options+="<br/><a href='#' id='all_in'>全押</a>";
 else
 options+="<br/>全押";
 if(bet_sore)
-options+="<br/><a href='#' onclick='bet()'>重置</a>";//重置将回到开局的初始化状态
+options+="<br/><a href='#' id='reset'>重置</a>";//重置将回到开局的初始化状态
 else
 options+="<br/>重置";
 $("#choose").html(options);
+$("#game").click(game);
+$("#all_in").click(all_in);
+$("#reset").click(bet);
 }
 /*全押*/
 function all_in(){
@@ -111,17 +117,21 @@ choosemenu(card[1].value);
 function choosemenu()
 {
 $("#message").text("请选择以下操作");
-var options="<a href='#' onclick='hit()'>要牌</a>";
+var options="<a href='#' id='hit'>要牌</a>";
 if(y_sore>2*bet_sore)
-options+="<br/><a href='#' onclick='double()'>加倍</a>";
+options+="<br/><a href='#' id='double'>加倍</a>";
 else
 options+="<br/>加倍";
-options+="<br/><a href='#' onclick='stand()'>停牌</a>";
+options+="<br/><a href='#' id='stand'>停牌</a>";
 if(card[1].value!=1&&y_num==2)
-options+="<br/><a href='#' onclick='surrender()'>投降</a>"
+options+="<br/><a href='#' id='surrender'>投降</a>"
 else
 options+="<br/>投降"
 $("#choose").html(options).show();
+$("#hit").click(hit);
+$("#double").click(double);
+$("#stand").click(stand);
+$("#surrender").click(surrender);
 }
 /*要牌*/
 function hit()
@@ -202,7 +212,8 @@ window.setTimeout(function(){$('.show,#center_message,#right_top,#choose,#cards'
 else//单局结束
 {
 $("#message").text("本局结束，点击\"再来一局\"开始新一轮游戏");
-$("#choose").html("<a href='#' onclick='bet()'>再来一局</a>").hide().fadeIn(500);
+$("#choose").html("<a href='#' id='reset'>再来一局</a>").hide().fadeIn(500);
+$("#reset").click(bet);
 }
 });
 }
@@ -282,7 +293,8 @@ window.setTimeout(function(){$('.show,#center_message,#right_top,#choose,#cards'
 else//单局结束
 {
 $("#message").text("本局结束，点击\"再来一局\"开始新一轮游戏");
-$("#choose").html("<a href='#' onclick='bet()'>再来一局</a>").hide().fadeIn(500);
+$("#choose").html("<a href='#' id='reset'>再来一局</a>").hide().fadeIn(500);
+$("#reset").click(bet);
 }
 });//慢慢浮现结果信息
 }
@@ -333,15 +345,17 @@ var options;
 if(y_sore>1.5*bet_sore)//检查玩家是否有足够的赌注买保险
 {
 $("#message").text("1 / 11? 是否加保险？");
-options="<a href='#' onclick='insurance()'>买保险</a>";
+options="<a href='#' id='insurance'>买保险</a>";
 }
 else
 {
 $("#message").text("对不起，您当前的赌金不够买保险");
 options="买保险";
 }
-options+="<br/><a href='#' onclick='choosemenu()'>继续</a>";
+options+="<br/><a href='#' id='continue'>继续</a>";
 $("#choose").html(options);
+$("#insurance").click(insurance);
+$("#continue").click(choosemenu);
 }
 else//判断电脑的明牌不是A，则进行基本选择操作
 choosemenu();

@@ -1,14 +1,15 @@
 ﻿/*当文档加载完必后，加载下列特效*/
 $(document).ready(function(){
 $("#logo").hover(function(){flag=setTimeout(function(){
-$("#logo img").fadeOut(600);					  
+$("#logo img").animate({top:'+120px',opacity:0},600);//logo掉落效果					  
 $("#me").show(1200);
 },750);//设置延时，避免鼠标偶然经过而触发事件
 },
 function(){
 clearTimeout(flag);//避免鼠标偶然经过又离开后，延时事件执行
 $("#me").hide(1200,function(){
-$("#logo img").fadeIn(600);});
+$("#logo img").animate({top:'0px'},0).animate({opacity:1},600);
+});
 })
 $("#cards").hide()//一开始让牌堆隐藏
 });
