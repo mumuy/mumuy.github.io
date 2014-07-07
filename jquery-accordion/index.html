@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>accordion</title>
+		<link rel="stylesheet" type="text/css" href="cssreset-min.css">
+		<style type="text/css">
+			body{
+				font-family: "Microsoft Yahei",Arial,Helvetica;
+			}
+			.main{
+				width:960px;
+				margin: 50px auto 0;
+			}
+			.accordion{
+				width:400px;
+				margin: 0 auto 10px;
+			}
+			.code {
+				border: 1px dashed #e2e2e2;
+				padding: 10px 5px;
+				margin-bottom: 25px;
+			}
+			.panel,.trigger{
+				margin-bottom:1px;
+			}
+			.panel{
+				height:100px;
+				background:#ccc;
+			}
+			.trigger{
+				height:30px;
+				background:#999;
+			}
+			.active{
+				background:#ff0;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.accordion.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="accordion">
+				<div class="panel">panel1</div>
+				<div class="trigger">trigger1</div>
+				<div class="panel">panel2</div>
+				<div class="trigger">trigger2</div>
+				<div class="panel">panel3</div>
+				<div class="trigger">trigger3</div>
+				<div class="panel">panel4</div>
+				<div class="trigger">trigger4</div>
+				<div class="panel">panel5</div>
+				<div class="trigger">trigger5</div>				
+			</div>
+			<div class="code">
+				$('.accordion').accordion({triggerType:'click',animate:true});
+			</div>
+			<script type="text/javascript">
+				$('.accordion').accordion({triggerType:'click',animate:true,duration:300});
+			</script>			
+		</div>
+	</body>
+<html>
