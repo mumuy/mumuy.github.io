@@ -21,7 +21,7 @@
             activeTriggerCls: "active", //导航选中时的class
             disableBtnCls: "disable",   //按键不可用时的class
             hoverCls: "hover",          //当鼠标移至相应区域时获得的class
-            steps: 1,                   //移动帧数
+            step: 1,                    //移动帧数
             view: 0,                    //可见区域帧数
             direction: "x",             //轮播的方向
             inEndEffect: "switch",      //"switch"表示来回切换,"cycle"表示循环,"none"表示无效果
@@ -69,7 +69,6 @@
             var _startTime = 0;
             var _hander = null; //自动播放的函数句柄
             var _param = options.direction=='x'?'left':'top';   //移动控制参数,方向为x控制left,方向为y控制top
-            var _t = 0; //全局的时间戳
             //样式初始化
             var $outer = $list1.css('position','absolute').parent();
             if($outer.css('position')!='absolute'){
@@ -123,7 +122,7 @@
                     switch (options.inEndEffect) {
                         case "switch":
                             if (_index) {
-                                _index -= _index > options.steps ? options.steps : _index;
+                                _index -= _index > options.step ? options.step : _index;
                             } else {
                                 _index = _size - _view;
                             }
@@ -132,17 +131,17 @@
                             if ($list1.is(':animated') || $list2.is(':animated')) { //如正在动画中则不进行下一步
                                 return false;
                             }
-                            if (_index - options.steps < 0) {
+                            if (_index - options.step < 0) {
                                 $list2.css(_param,- (_size+_index) * _distance + 'px');
                                 $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-                                _index += _size - options.steps;
+                                _index += _size - options.step;
                             } else {
-                                _index -= options.steps;
+                                _index -= options.step;
                             }
                             break;
                         default:
                             if (_index) {
-                                _index -= _index > options.steps ? options.steps : _index;
+                                _index -= _index > options.step ? options.step : _index;
                             }
                     }
                     slide(options.animate);
@@ -161,7 +160,7 @@
                         case "switch":
                             var lastindex = _size - _index - _view;
                             if (lastindex) {
-                                _index += lastindex > options.steps ? options.steps : lastindex;
+                                _index += lastindex > options.step ? options.step : lastindex;
                             } else {
                                 _index = 0;
                             }
@@ -170,12 +169,12 @@
                             if ($lists.is(':animated')) { //如正在动画中则不进行下一步
                                 return false;
                             }
-                            _index += options.steps; //索引值计算
+                            _index += options.step; //索引值计算
                             break;
                         default:
                             var lastindex = _size - _index - _view;
                             if (lastindex) {
-                                _index += lastindex > options.steps ? options.steps : lastindex;
+                                _index += lastindex > options.step ? options.step : lastindex;
                             }
                     }
                     slide(options.animate);    
@@ -198,8 +197,8 @@
                 slide(isAnimate);
             };  
             //设置移动帧数
-            _api.setSteps = function(steps){
-                options.steps = steps;
+            _api.setStep = function(step){
+                options.step = step;
             };
             //设置可视帧数
             _api.setView = function(view){
@@ -287,9 +286,7 @@
                  e = e||window.event;
                 stopBubble(e);
                 stopDefault(e);
-                var t = +new Date();
-                if(t-_t>options.duration){ //防止滚动太快动画没完成
-                    _t = t;
+                if(!$list1.is(':animated')){ //防止滚动太快动画没完成
                     var delta = -e.wheelDelta/120||e.detail/3;
                     delta>0?_api.next(e):_api.prev(e);                      
                 }               
@@ -316,12 +313,12 @@
                     pageY: e.changedTouches[0].pageY
                 };
                 var move = options.direction=="x"?current.pageX - _start.pageX:current.pageY - _start.pageY;//移动距离触发点的距离
-                var steps = Math.ceil(Math.abs(move / _distance));  //移动中跳过的帧数
+                var step = Math.ceil(Math.abs(move / _distance));  //移动中跳过的帧数
                 if (options.direction=="x"&&Math.abs(current.pageY - _start.pageY) < Math.abs(move)||options.direction=="y") {  //chrome移动版下，默认事件与自定义事件的冲突
                     stopDefault(e);
                     if (options.inEndEffect == "cycle") {
                         if (move > 0) {  //手指向右滑
-                            if (_index - steps < 0) {   //是否置换
+                            if (_index - step < 0) {   //是否置换
                                 _position.change2 = -(_index + _size) * _distance;
                                 $list2.css(_param, _position.change2 + 'px');
                                 $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
@@ -329,7 +326,7 @@
                                 _index += _size;
                             }
                         } else {    //手指向左滑
-                            if (_index + steps > _size) {
+                            if (_index + step > _size) {
                                 _position.change1 = (2*_size - _index) * _distance;
                                 $list1.css(_param, _position.change1 + 'px');
                                 $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
@@ -359,23 +356,23 @@
                 };
                 var move = options.direction=="x"?current.pageX - _start.pageX:current.pageY - _start.pageY;
                 var times = Math.abs(move / _distance);
-                var steps = times - Math.floor(times) > options.sensitivity ? Math.ceil(times) : Math.floor(times);
-                if (steps) {                                        //如果判定移动了一定距离
+                var step = times - Math.floor(times) > options.sensitivity ? Math.ceil(times) : Math.floor(times);
+                if (step) {                                        //如果判定移动了一定距离
                     if (options.inEndEffect == "cycle") {
                         if (move > 0) {
-                            _index -= steps;
+                            _index -= step;
                         } else {
-                            _index += steps;
+                            _index += step;
                         }
                     } else {
                         if (move > 0) {
                             if (_index) {
-                                _index -= _index > steps ? steps : _index;
+                                _index -= _index > step ? step : _index;
                             }
                         } else {
                             var lastindex = _size - _index - _view;
                             if (lastindex) {
-                                _index += lastindex > steps ? steps : lastindex;
+                                _index += lastindex > step ? step : lastindex;
                             }
                         }
                     }
@@ -425,7 +422,6 @@
                     $(this).toggleClass(options.hoverCls);
                 });         
             }else{
-                var _h = null;
                 $prev.on({
                     'mouseenter':function(){
                         _index = 0;
@@ -466,8 +462,7 @@
         });
     };
     //jquery 动画扩展
-    $.extend( $.easing,
-    {
+    $.extend( $.easing,{
         def: 'easeIn',
         swing: function (x, t, b, c, d) {
             return $.easing[$.easing.def](x, t, b, c, d);
