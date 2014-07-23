@@ -15,7 +15,7 @@
 			contentCls: "content",		//内容区的class
 			trackCls: "track",			//滑块的class
 			direction: "y",				//滚动条的方向
-			steps:50,					//滚动鼠标中轴的单位
+			step:50,					//滚动鼠标中轴的单位
 			touchable:true, 			//是否允许触摸操作
 			autoReset:true,				//窗体变化是否重置
 			inEndEffect:false,			//滚轴到底时事件是否冒泡给页面
@@ -113,7 +113,7 @@
 				if($track.css('display')!='none'){
 					e = e||window.event;
 					var delta = -e.wheelDelta/120||e.detail/3;
-					var move = options.direction=="y"?-$content.position().top+delta*options.steps:-$content.position().left+delta*options.steps;
+					var move = options.direction=="y"?-$content.position().top+delta*options.step:-$content.position().left+delta*options.step;
 					if(move>_room){
 						move = _room;
 						if(!options.inEndEffect){
@@ -181,20 +181,22 @@
 					setSelectable($body,false);
 				},
 				mouseup:function(e){
-					var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
-					if(_cursor_position>0&&_cursor_position<_thumb_length){
-						move-=_cursor_position;
-					}
-					_api.slide(move/_api.ratio);		
+					if(isMouseDown){
+						var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
+						if(_cursor_position>0&&_cursor_position<_thumb_length){
+							move-=_cursor_position;
+						}
+						_api.slide(move/_api.ratio);
+					}	
 				}
 			});
-			$body.on({
+			$window.on({
 				mousemove:function(e){
-					var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
-					if(_cursor_position>0&&_cursor_position<_thumb_length){
-						move-=_cursor_position;
-					}
 					if(isMouseDown){
+						var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
+						if(_cursor_position>0&&_cursor_position<_thumb_length){
+							move-=_cursor_position;
+						}						
 						_api.slide(move/_api.ratio);
 					}
 				},
@@ -202,14 +204,8 @@
 					isMouseDown = false;
 					_cursor_position=0;
 					setSelectable($body,true);						
-				}
-			});
-			$window.on({
-				'mouseup':function(){
-					isMouseDown = false;
-					_cursor_position=0;
 				},
-				'resize':_api.resize
+				resize:_api.resize
 			});
 			if(document.addEventListener){
 				_self.addEventListener('DOMMouseScroll',scroll,false);

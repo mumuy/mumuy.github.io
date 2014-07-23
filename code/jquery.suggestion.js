@@ -6,15 +6,18 @@
     $.fn.suggestion = function(parameter) {
         parameter = parameter || {};
         var defaults = {
-        	url:'',						//请求的接口地址
-        	suggestionCls:'suggestion',	//提示框的内容class
-        	activeCls:'active',			//列表项选中class
-        	FieldName:'word',				//当前input表单项在请求接口时的字段名
-        	parameter:{},					//其他与接口有关参数
-        	get:function(){},				//获得搜索建议:传入一个对象，target表示被建议列表对象,data表示请求到的数据
-        	select:function(){}			//选中搜索建议列表项：传入一个对象，target表示当前选中列表项,input表示当前input表单项
+        	url:'',						     //请求的接口地址
+        	suggestionCls:'suggestion',	     //提示框的内容class
+        	activeCls:'active',			     //列表项选中class
+        	FieldName:'word',				 //当前input表单项在请求接口时的字段名
+        	parameter:{},					 //其他与接口有关参数
+        	get:function(){},				 //获得搜索建议:传入一个对象，target表示被建议列表对象,data表示请求到的数据
+        	select: function(item) {         //选中搜索建议列表项：传入一个对象，target表示当前选中列表项,input表示当前input表单项
+                item.input.val(item.target.text());
+            }			     
         }
         var options = $.extend({}, defaults, parameter);
+        var $window = $(window);
         var $document = $(document);
         return this.each(function() {
         	//对象定义
@@ -25,6 +28,7 @@
         		$suggestion = $("<div class='"+options.suggestionCls+"'><ul></ul></div>").appendTo($form);
         	}
         	var $list = $suggestion.find('ul');
+            var $item = $list.find('li');
         	var _height = $this.outerHeight(true);
         	var _width = $this.outerWidth(true);
         	var _text = '';
@@ -66,27 +70,27 @@
         	//按键按下
         	var down = function(e){
         		e.isPropagationStopped();
-        		var $items = $suggestion.find('li');
-        		var len = $items.length;
         		switch(e.keyCode){
         			case 13:
-        				select();
-        				if(isShow){
-							hide();
-							e.preventDefault();
-        				}
+						hide();
         			break;
         			case 38:
-        				if(_index){
+        				if(_index>0){
         					_index--;
         					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
-        				}
+                            select();
+        				}else{
+                            _index = -1;
+                            $items.removeClass(options.activeCls);
+                            $this.val(_text);
+                        }
         				e.preventDefault();
         			break;
         			case 40:
-        				if(_index<len){
+        				if(_index<$items.length-1){
         					_index++;
         					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+                            select();
         				}
         				e.preventDefault();
         			break;
@@ -103,7 +107,7 @@
         	};
         	//选中表单项
         	var select = function(){
-        		var $target = $list.find('li.active');
+        		var $target = $list.find('li.'+options.activeCls);
         		var status = {
         			'target':$target,
         			'input':$this
@@ -124,7 +128,9 @@
 									'target':$list,
 									'data':data
 								};
-                                hasData = options.get(status)!=false; //如果返回false则判断不含建议数据
+                                options.get(status);
+                                $items = $suggestion.find('li');
+                                hasData = $items.length>0;        //根据列表长度判断有没有值
 								if(hasData){
                                     $suggestion.show();
                                 }
@@ -148,10 +154,24 @@
         		'keyup':up,
         		'keydown':down
         	});
-        	$list.on('click','li',select).on('mouseenter','li',hover);
+        	$list.on('click','li',function(){
+                select();
+                $form.submit();
+            }).on('mouseenter','li',hover);
         	$document.on({
         		'click':hide
         	});
+            $window.resize(function(){
+                _height = $this.outerHeight(true);
+                _width = $this.outerWidth(true); 
+                _top = $this.position().top;
+                _left = $this.position().left;
+                $suggestion.css({
+                    'top':_top+_height+'px',
+                    'left':_left+'px',
+                    'width':_width+'px'
+                });
+            });
         });
     };
 })(jQuery);

@@ -1,16 +1,16 @@
 /*
-    Õº∆¨Àı∑≈æ”÷– v1.2
+    ÂõæÁâáÁº©ÊîæÂ±Ö‰∏≠ v1.2
     BY:le
 */
 (function($) {
     $.fn.imagezoom = function(parameter) {
         parameter = parameter || {};
         var defaults = {
-            width: null, //Õº∆¨Õ‚≤„øÌ∂»
-            height: null, //Õº∆¨Õ‚≤„øÌ∂»
-            resizeable: true, //¥∞ø⁄¥Û–°∏ƒ±‰ ± «∑Ò÷ÿ–¬µ˜’˚Õº∆¨Œª÷√
-            effect:'scale', //Õº∆¨¥¶¿Ì
-            condition: "img" //ƒ¨»œ…∏—°Ãıº˛
+            width: null, //ÂõæÁâáÂ§ñÂ±ÇÂÆΩÂ∫¶
+            height: null, //ÂõæÁâáÂ§ñÂ±ÇÂÆΩÂ∫¶
+            resizeable: true, //Á™óÂè£Â§ßÂ∞èÊîπÂèòÊó∂ÊòØÂê¶ÈáçÊñ∞Ë∞ÉÊï¥ÂõæÁâá‰ΩçÁΩÆ
+            effect:'scale', //ÂõæÁâáÂ§ÑÁêÜ
+            condition: "img" //ÈªòËÆ§Á≠õÈÄâÊù°‰ª∂
         };
         var options = $.extend({}, defaults, parameter);
         var $window = $(window);
@@ -18,10 +18,10 @@
             var $this = $(this);
             $this.css("overflow", "hidden");
             $this.find(options.condition).each(function() {
-                var $img = $(this).css('display','block'); //∑¿÷πÕ‚øÚtext-align:center,Õº∆¨æ”÷–¥ÌŒª
+                var $img = $(this).css('display','block'); //Èò≤Ê≠¢Â§ñÊ°Ütext-align:center,ÂõæÁâáÂ±Ö‰∏≠Èîô‰Ωç
                 var _width = this.width;
                 var _height = this.height;
-                if(this.complete&&_width){ //∑¿÷πÕº∆¨Œ¥º”‘ÿ ±æÕø™ ºº∆À„
+                if(this.complete&&_width){ //Èò≤Ê≠¢ÂõæÁâáÊú™Âä†ËΩΩÊó∂Â∞±ÂºÄÂßãËÆ°ÁÆó
                     zoom();
                 }else{     
                     this.onload = function(){
@@ -30,14 +30,14 @@
                         zoom();
                     }  
                 }
-                //ÀΩ”–∑Ω∑®
+                //ÁßÅÊúâÊñπÊ≥ï
                 function zoom(){
                     var obj = {};
                     var ratio = 1;
                     options.width = parameter.width||$this.width();
                     options.height = parameter.height||$this.height();
                     if(options.effect=='scale'){
-                        // ˝÷µº∆À„
+                        //Êï∞ÂÄºËÆ°ÁÆó
                         if(_width>_height){
                             if(_height>options.height){
                                 ratio = Math.max(options.width/_width,options.height/_height);
@@ -47,7 +47,7 @@
                                 ratio = Math.max(options.width/_width,options.height/_height);
                             }
                         }
-                        //—˘ Ω–ﬁ∏ƒ
+                        //Ê†∑Âºè‰øÆÊîπ
                         obj = {
                             'width':Math.ceil(_width*ratio),
                             'height':Math.ceil(_height*ratio),
@@ -57,7 +57,7 @@
                     }
                     $img.css(obj);
                 }
-                // ¬º˛∞Û∂®
+                //‰∫ã‰ª∂ÁªëÂÆö
                 if(options.resizeable){
                     $window.resize(zoom);
                 }
