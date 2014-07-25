@@ -126,7 +126,7 @@
 				};
 				$find.onclick = function(){
 					path = finder({'map':map,'start':start,'end':end}).join('');
-					draw();
+					draw();			
 				}
 				draw();
 				function draw(){
@@ -135,7 +135,7 @@
 					for(var x=0; x<width; x++){
 						for(var y=0; y<height; y++){
 							if(x==start[0]&&y==start[1]||x==end[0]&&y==end[1]){
-								context.fillStyle="#00f";
+								context.fillStyle=map[x][y]?"#ccc":"#00f";
 								context.fillRect(x*unit,y*unit,unit,unit);
 							}else if(map[x][y]){
 								context.fillStyle="#000";
@@ -161,6 +161,9 @@
 				   return target;
 				})(defaults,param);
 				var result = [];
+				if(options.map[options.start[0]][options.start[1]]||options.map[options.end[0]][options.end[1]]){ //当起点或终点设置在墙上
+					return [];
+				}
 				var length_x  = options.map.length;
 				var steps = new Array(length_x); //步骤的映射
 				for(var x =0;x<length_x;x++){
