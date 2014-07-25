@@ -25,7 +25,7 @@
 				position:relative;
 				padding:10px 20px;
 			}
-			.container .panel label{
+			.container .panel .right{
 				position:absolute;
 				top:10px;
 				right:20px;
@@ -54,12 +54,13 @@
 				<canvas id="canvas" width="1200" height="800"></canvas>
 			</div>
 			<div class="panel">
-				<button id="start">起点</button>
-				<button id="end">终点</button>
-				<button id="pen">画笔</button>
-				<button id="eraser">橡皮</button>
-				<button id="find">寻找</button>
-				<label>当前操作:<input id="type" type="text" value="终点" readonly/></label>
+				<div class="left">
+					<button id="start">起点</button>
+					<button id="end">终点</button>
+					<button id="pen">画笔</button>
+					<button id="eraser">橡皮</button>
+				</div>
+				<div class="right">当前操作:<input id="type" type="text" value="终点" readonly/><button id="find">寻找</button></div>
 			</div>
 		</div>
 		<div class="copy">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
