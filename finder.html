@@ -15,7 +15,16 @@
 				vertical-align: bottom;
 			}
 			.container .panel{
+				position:relative;
 				padding:10px 20px;
+			}
+			.container .panel label{
+				position:absolute;
+				top:10px;
+				right:20px;
+			}
+			.container .panel input{
+				text-align:center;
 			}
 		</style>
 	</head>
@@ -30,6 +39,7 @@
 				<button id="pen">画笔</button>
 				<button id="eraser">橡皮</button>
 				<button id="find">寻找</button>
+				<label>当前操作:<input id="type" type="text" value="终点" readonly/></label>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -40,6 +50,7 @@
 				var $find = document.getElementById("find");
 				var $start = document.getElementById("start");
 				var $end = document.getElementById("end");
+				var $type = document.getElementById("type");
 				var context = $canvas.getContext("2d");
 				var unit = 20;
 				var width = $canvas.width/unit;
@@ -50,6 +61,7 @@
 				var path = "";
 				var isMouseDown = false;
 				var type = "end";
+				var type_text = {"end":"终点","start":"起点","pen":"画笔","eraser":"橡皮"}
 				for(var x=0;x<width;x++){
 					map[x] = new Array(height);
 					for(var y =0;y<height;y++){
@@ -98,15 +110,19 @@
 				};
 				$pen.onclick = function(){
 					type = "pen";
+					$type.value = type_text[type];
 				};
 				$eraser.onclick = function(){
 					type = "eraser";
+					$type.value = type_text[type];
 				};
 				$start.onclick = function(){
 					type = "start";
+					$type.value = type_text[type];
 				};
 				$end.onclick = function(){
 					type = "end";
+					$type.value = type_text[type];
 				};
 				$find.onclick = function(){
 					path = finder({'map':map,'start':start,'end':end}).join('');
