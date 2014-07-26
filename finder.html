@@ -83,7 +83,8 @@
 				var path = "";
 				var isMouseDown = false;
 				var type = "end";
-				var type_text = {"end":"终点","start":"起点","pen":"画笔","eraser":"橡皮"}
+				var type_text = {"end":"终点","start":"起点","pen":"画笔","eraser":"橡皮"};
+				var scroll_top = getScrollTop();
 				for(var x=0;x<width;x++){
 					map[x] = new Array(height);
 					for(var y =0;y<height;y++){
@@ -93,7 +94,7 @@
 				$canvas.onmousedown = function(e){
 					isMouseDown = true;
 					var x = Math.floor((e.clientX - this.offsetLeft)/unit);
-					var y = Math.floor((e.clientY - this.offsetTop)/unit);
+					var y = Math.floor((e.clientY - this.offsetTop+scroll_top)/unit);
 					if(type == "start"){
 						start = [x,y];
 						draw();
@@ -111,7 +112,7 @@
 				$canvas.onmousemove = function(e){
 					if(isMouseDown){
 						var x = Math.floor((e.clientX - this.offsetLeft)/unit);
-						var y = Math.floor((e.clientY - this.offsetTop)/unit);
+						var y = Math.floor((e.clientY - this.offsetTop+scroll_top)/unit);
 						if(type == "start"){
 							start = [x,y];
 							draw();
@@ -150,6 +151,19 @@
 					path = finder({'map':map,'start':start,'end':end}).join('');
 					draw();	
 				}
+				if(window.addEventListener){
+					window.addEventListener('scroll', function(){
+						scroll_top = getScrollTop();
+					}, false);				
+				}else if(window.attachEvent){
+					window.attachEvent('onscroll', function(){
+						scroll_top = getScrollTop();
+					});
+				}else{
+					window['onscroll'] = function(){
+						scroll_top = getScrollTop();
+					};
+				}
 				draw();
 				function draw(){
 					context.fillStyle = "#fff";
@@ -170,6 +184,17 @@
 					}
 				}
 			})();
+			function getScrollTop() {  
+				var scrollPos;  
+				if (window.pageYOffset) {  
+					scrollPos = window.pageYOffset;
+				}else if (document.compatMode && document.compatMode != 'BackCompat'){
+					scrollPos = document.documentElement.scrollTop;
+				}else if(document.body){
+					scrollPos = document.body.scrollTop;
+				}   
+				return scrollPos;   
+			} 
 			function finder(param){ //获取最短路径
 				var defaults = {
 					map :[],
