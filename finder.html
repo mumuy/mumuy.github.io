@@ -74,7 +74,7 @@
 				var $end = document.getElementById("end");
 				var $type = document.getElementById("type");
 				var context = $canvas.getContext("2d");
-				var unit = 20;
+				var unit = 10;
 				var width = $canvas.width/unit;
 				var height = $canvas.height/unit;
 				var map = [];
@@ -147,8 +147,10 @@
 					$type.value = type_text[type];
 				};
 				$find.onclick = function(){
+					console.time('get');
 					path = finder({'map':map,'start':start,'end':end}).join('');
-					draw();			
+					console.timeEnd('get');
+					draw();	
 				}
 				draw();
 				function draw(){
@@ -206,9 +208,9 @@
 								steps[x][y] = new_count.length;
 								fun([x,y],new_count);
 							}
-						}		
+						}						
 					};
-					if(!result.length||count.length<result.length){
+					if(!result.length||Math.abs(options.end[0]-x)+Math.abs(options.end[1]-y)<result.length-count.length){  //当前步骤加上距离终点最短的距离已超过当前最少步骤时
 						if(x==options.end[0]&&y==options.end[1]){	//是否到达终点
 							if(!result.length||count.length<result.length){	//选中最短路径
 								result = count;
