@@ -151,19 +151,9 @@
 					path = finder({'map':map,'start':start,'end':end}).join('');
 					draw();	
 				}
-				if(window.addEventListener){
-					window.addEventListener('scroll', function(){
-						scroll_top = getScrollTop();
-					}, false);				
-				}else if(window.attachEvent){
-					window.attachEvent('onscroll', function(){
-						scroll_top = getScrollTop();
-					});
-				}else{
-					window['onscroll'] = function(){
-						scroll_top = getScrollTop();
-					};
-				}
+				window.onscroll = function(){
+					scroll_top = getScrollTop();
+				};
 				draw();
 				function draw(){
 					context.fillStyle = "#fff";
