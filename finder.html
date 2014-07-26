@@ -147,9 +147,7 @@
 					$type.value = type_text[type];
 				};
 				$find.onclick = function(){
-					console.time('get');
 					path = finder({'map':map,'start':start,'end':end}).join('');
-					console.timeEnd('get');
 					draw();	
 				}
 				draw();
