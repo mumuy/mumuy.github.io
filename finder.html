@@ -232,8 +232,7 @@
 						}						
 					};					
 					for(var i=0,len=current.length;i<len;i++){
-						var position = current[i];
-						var x = position[0],y=position[1];
+						var x = current[i][0],y=current[i][1];
 						next(x+1,y);
 						next(x-1,y);
 						next(x,y+1);
