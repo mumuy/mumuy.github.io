@@ -219,7 +219,6 @@
 				}
 				(function(current,path){
 					index++;
-					var hash = {};
 					var new_current = [];
 					var fun = arguments.callee;
 					var next = function(x,y){
@@ -245,15 +244,14 @@
 					}
 				})([options.start],{});
 				if(finded){
-					result = ['['+options.end[0]+','+options.end[1]+']'];
 					(function(x,y){
-						index--;
 						var fun = arguments.callee;
 						var hold = false;
+						index--;
+						result.unshift('['+x+','+y+']');
 						var prev = function(x,y){
 							if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!hold){	//当前点是否可以走
 								if(steps[x][y]==index){
-									result.unshift('['+x+','+y+']');
 									hold = true;
 									fun(x,y);
 								}
