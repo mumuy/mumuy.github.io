@@ -149,7 +149,7 @@
 				};
 				$find.onclick = function(){
 					console.time('t');
-					path = finder({'map':map,'start':start,'end':end}).join('');
+					path = '|'+finder({'map':map,'start':start,'end':end}).join('|')+'|';
 					console.timeEnd('t');
 					draw();	
 				}
@@ -168,7 +168,7 @@
 							}else if(map[x][y]){
 								context.fillStyle="#000";
 								context.fillRect(x*unit,y*unit,unit,unit);
-							}else if(path.indexOf('['+x+','+y+']')>-1){	
+							}else if(path.indexOf('|'+x+','+y+'|')>-1){	
 								context.fillStyle="#f00";
 								context.fillRect(x*unit,y*unit,unit,unit);
 							}
@@ -206,7 +206,6 @@
 				if(options.map[options.start[0]][options.start[1]]||options.map[options.end[0]][options.end[1]]){ //当起点或终点设置在墙上
 					return [];
 				}
-				var index = 0;
 				var finded = false;
 				var length_x  = options.map.length;
 				var steps = new Array(length_x); //步骤的映射
@@ -217,50 +216,38 @@
 						steps[x][y] = 0;
 					}
 				}
-				(function(current,path){
-					index++;
-					var new_current = [];
-					var fun = arguments.callee;
-					var next = function(x,y){
-						if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]){	//当前点是否可以走
+				(function(list){
+					var new_list = [];
+					var next = function(from,to){
+						var x = to[0],y = to[1];
+						if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!finded){	//当前点是否可以走
 							if(x==options.end[0]&&y==options.end[1]){
+								steps[x][y] = from;
 								finded = true;
-							}else if(!steps[x][y]||steps[x][y]>index){
-								steps[x][y] = index;
-								new_current.push([x,y]);
+							}else if(!steps[x][y]){
+								steps[x][y] = from;
+								new_list.push(to);
 							}
-						}						
-					};					
-					for(var i=0,len=current.length;i<len;i++){
-						var x = current[i][0],y=current[i][1];
-						next(x+1,y);
-						next(x-1,y);
-						next(x,y+1);
-						next(x,y-1);
+						}
+					};				
+					for(var i=0,len=list.length;i<len;i++){
+						var current = list[i];
+						var x = current[0],y=current[1];
+						next(current,[x+1,y]);
+						next(current,[x,y+1]);
+						next(current,[x-1,y]);
+						next(current,[x,y-1]);
 					}
-					if(!finded&&new_current.length>0){
-						fun(new_current);
+					if(!finded&&new_list.length>0){
+						arguments.callee(new_list);
 					}
-				})([options.start],{});
+				})([options.start]);
 				if(finded){
-					(function(x,y){
-						var fun = arguments.callee;
-						var hold = false;
-						index--;
-						result.unshift('['+x+','+y+']');
-						var prev = function(x,y){
-							if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!hold){	//当前点是否可以走
-								if(steps[x][y]==index){
-									hold = true;
-									fun(x,y);
-								}
-							}						
-						};					
-						prev(x+1,y);
-						prev(x-1,y);
-						prev(x,y+1);
-						prev(x,y-1);
-					})(options.end[0],options.end[1]);
+					var current=options.end;
+					while(current[0]!=options.start[0]||current[1]!=options.start[1]){
+						result.unshift(current);
+						current=steps[current[0]][current[1]];
+					}
 				}
 				return result;
 			}
