@@ -74,7 +74,7 @@
 				var $end = document.getElementById("end");
 				var $type = document.getElementById("type");
 				var context = $canvas.getContext("2d");
-				var unit = 20;
+				var unit = 10;
 				var width = $canvas.width/unit;
 				var height = $canvas.height/unit;
 				var map = [];
@@ -148,7 +148,9 @@
 					$type.value = type_text[type];
 				};
 				$find.onclick = function(){
+					console.time('t');
 					path = finder({'map':map,'start':start,'end':end}).join('');
+					console.timeEnd('t');
 					draw();	
 				}
 				window.onscroll = function(){
@@ -184,7 +186,7 @@
 					scrollPos = document.body.scrollTop;
 				}   
 				return scrollPos;   
-			} 
+			}
 			function finder(param){ //获取最短路径
 				var defaults = {
 					map :[],
@@ -201,6 +203,8 @@
 				if(options.map[options.start[0]][options.start[1]]||options.map[options.end[0]][options.end[1]]){ //当起点或终点设置在墙上
 					return [];
 				}
+				var index = 0;
+				var finded = false;
 				var length_x  = options.map.length;
 				var steps = new Array(length_x); //步骤的映射
 				for(var x =0;x<length_x;x++){
@@ -210,53 +214,54 @@
 						steps[x][y] = 0;
 					}
 				}
-				(function(position,count){
-					var x = position[0],y = position[1];
+				(function(current,path){
+					index++;
+					var hash = {};
+					var new_current = [];
 					var fun = arguments.callee;
 					var next = function(x,y){
 						if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]){	//当前点是否可以走
-							if(!steps[x][y]||steps[x][y]>count.length+1){ //当前点未走过或之前走的步数大于当前
-								var new_count = count.slice(0);
-								new_count.push('['+x+','+y+']');
-								steps[x][y] = new_count.length;
-								fun([x,y],new_count);
+							if(x==options.end[0]&&y==options.end[1]){
+								finded = true;
+							}else if(!steps[x][y]||steps[x][y]>index){
+								steps[x][y] = index;
+								new_current.push([x,y]);
 							}
 						}						
-					};
-					if(!result.length||result.length>count.length&&Math.abs(options.end[0]-x)+Math.abs(options.end[1]-y)<result.length-count.length){  //当前步骤加上距离终点最短的距离已超过当前最少步骤时
-						if(x==options.end[0]&&y==options.end[1]){	//是否到达终点
-							if(!result.length||count.length<result.length){	//选中最短路径
-								result = count;
-							}
-						}else{
-							if(options.end[0]-x>0){		//根据终点相对于当前点的位置选中下一步的方向
-								if(options.end[1]-y>0){
-									next(x+1,y);
-									next(x,y+1);
-									next(x-1,y);
-									next(x,y-1);					
-								}else{
-									next(x+1,y);
-									next(x,y-1);
-									next(x,y+1);
-									next(x-1,y);
-								}
-							}else{
-								if(options.end[1]-y>0){
-									next(x,y+1);
-									next(x-1,y);
-									next(x+1,y);
-									next(x,y-1);
-								}else{
-									next(x-1,y);
-									next(x,y-1);
-									next(x,y+1);
-									next(x+1,y);
-								}
-							}
-						}		
+					};					
+					for(var i=0,len=current.length;i<len;i++){
+						var position = current[i];
+						var x = position[0],y=position[1];
+						next(x+1,y);
+						next(x-1,y);
+						next(x,y+1);
+						next(x,y-1);
 					}
-				})(options.start,[]);
+					if(!finded&&new_current.length>0){
+						fun(new_current);
+					}
+				})([options.start],{});
+				if(finded){
+					result = ['['+options.end[0]+','+options.end[1]+']'];
+					(function(x,y){
+						index--;
+						var fun = arguments.callee;
+						var hold = false;
+						var prev = function(x,y){
+							if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!hold){	//当前点是否可以走
+								if(steps[x][y]==index){
+									result.unshift('['+x+','+y+']');
+									hold = true;
+									fun(x,y);
+								}
+							}						
+						};					
+						prev(x+1,y);
+						prev(x-1,y);
+						prev(x,y+1);
+						prev(x,y-1);
+					})(options.end[0],options.end[1]);
+				}
 				return result;
 			}
 		</script>
