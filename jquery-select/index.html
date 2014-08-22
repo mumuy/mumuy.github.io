@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>select</title>
+		<link rel="stylesheet" type="text/css" href="cssreset-min.css">
+		<style type="text/css">
+			body{
+				font-family: "Microsoft Yahei",Arial,Helvetica;
+			}
+			.main{
+				width:960px;
+				margin: 50px auto 0;
+			}
+			.code {
+				border: 1px dashed #e2e2e2;
+				padding: 10px 5px;
+				margin-bottom: 25px;
+			}
+			
+			.select{
+				width:180px;
+				text-indent:1em;
+			}
+			.select .box{
+				height:28px;
+				border:1px solid #e2e2e2;
+				line-height:28px;
+			}
+			.select .list{
+				background:#fff;
+				border:1px solid #e2e2e2;
+			}
+			.select .list li{
+				height:28px;
+				line-height:28px;
+			}
+			.select .list li.active{
+				background:#999;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.select.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<select>
+				<option value="op1">选项一</option>
+				<option value="op2" selected>选项二</option>
+				<option value="op3">选项三</option>
+			</select>
+			<a id="change" href="javascript:void(0);">选中选项三</a>
+		</div>
+		<script type="text/javascript">
+			var $select = $("select").select(function(api){
+				$("#change").click(function(){
+					api.select('op3');
+				});				
+			});
+		</script>
+	</body>
+<html>

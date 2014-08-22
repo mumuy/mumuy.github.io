@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>range</title>
+		<link rel="stylesheet" type="text/css" href="cssreset-min.css">
+		<style type="text/css">
+			body{
+				font-family: "Microsoft Yahei",Arial,Helvetica;
+			}
+			.main{
+				width:960px;
+				margin: 50px auto 0;
+			}
+			.code {
+				border: 1px dashed #e2e2e2;
+				padding: 10px 5px;
+				margin-bottom: 25px;
+			}
+			
+			.panel{
+				width:240px;
+				height:4px;
+				margin-bottom:15px;
+				border:1px solid #e2e2e2;
+			}
+			.panel .value{
+				background:#0064cd;
+			}
+			.panel .handle{
+				display:block;
+				top:-3px;
+				width:8px;
+				height:8px;
+				margin-left:-5px;
+				border:1px solid #e2e2e2;
+				background:#fff;
+				cursor:default;
+				outline:0;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="jquery.range.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="">
+				<div class="panel panel1"></div>
+				<div class="panel panel2"></div>
+			</div>
+			<div class="code">
+			</div>
+			<script type="text/javascript">
+				$('.panel1').range({
+					min:0,
+					max:50,
+					value:40,
+					step:5,
+					change:function(status){
+						console.log('change',status.value);
+					},
+					slide:function(status){
+						console.log(status.value);
+					}
+				});
+				$('.panel2').range({
+					min:10,
+					max:62,
+					value:40,
+					step:5,
+					change:function(status){
+						console.log('change',status.value);
+					},
+					slide:function(status){
+						console.log(status.value);
+					}
+				});
+			</script>			
+		</div>
+	</body>
+<html>
