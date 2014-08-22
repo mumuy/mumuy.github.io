@@ -5,49 +5,40 @@
 (function($) {
     $.fn.range = function(parameter,getApi) {
         if(typeof parameter == 'function'){ //重载
-            parameter = {};
-            getApi = parameter;   
+			getApi = parameter;
+            parameter = {}; 
         }else{
             parameter = parameter || {};
             getApi = getApi||function(){};
         }
         var defaults = {
-			panelCls: 'panel',		//滑动条组件class
 			valueCls: 'value',		//当前有效值范围显示class
 			handleCls: 'handle',	//拖动滑块class
 			min: 0,					//变化范围的最小值
 			max: 100,				//变化范围的最大值
 			value: 1,				//默认显示的值
 			step: 1,				//每次移动的步长
-			change: function(){}    //当前值变化时触发的事件，传入一个参数为当前的值
+			slide: function(){},	//当前值变化时触发的事件，传入对象:event为事件,value为当前值
+			change: function(){}    //当前值变化后触发的事件，传入对象:event为事件,value为当前值
         };
-		var options = $.extend({}, defaults,parameter);
+		var options = $.extend({},defaults,options,parameter);
 		var $window = $(window);
 		var $body = $("body");
         return this.each(function() {
             //对象定义
+			var _self = this;
             var $this = $(this);
-			var $panel = $this.find('.'+options.panelCls);
-        	if(!$panel.length){
-        		$panel = $("<div class='"+options.panelCls+"'><div class='"+options.valueCls+"'></div><div class='"+options.handleCls+"'></div></div>").insertBefore($this);
-        	}
-			var $value = $panel.find('.'+options.valueCls);
-			var $handle = $panel.find('.'+options.handleCls);
+			var $value = $("<div class='"+options.valueCls+"'></div>").appendTo($this);
+			var $handle = $("<div class='"+options.handleCls+"'></div>").appendTo($this);
 			//全局变量
-			$.extend(options,parameter,{
-				min: +$this.attr('min'),
-				max: +$this.attr('max'),
-				value: +$this.val(),
-				step: +$this.attr('step'),	
-			});
 			var _api = {};
 			var _value = options.value;
-			var _length = $panel.width()/(options.max - options.min);
+			var _length = $this.width()/(options.max - options.min);
 			var _handle_width = $handle.width();
 			var _cursor_position = $value.offset().left;
 			var isMouseDown = false;
 			//样式初始化
-			$panel.css({
+			$this.css({
 				'position':'relative'
 			});
 			$value.css({
@@ -70,8 +61,32 @@
 					'left':(_value-options.min)*_length
 				});
 			};
+			/*私有方法*/
+			var touchStart = function(e) {
+                isMouseDown = true;
+				
+            };
+			var touchMove = function(e){
+				if(isMouseDown){
+					_value = Math.floor((e.changedTouches[0].pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
+					_api.setValue();
+					options.slide({event:e,value:_value});
+				}  
+			};
+			var touchEnd = function(e){
+				if(isMouseDown){
+					isMouseDown = false;
+					setSelectable($body,true);						
+					options.change({event:e,value:_value});
+				}
+			}
 			//事件绑定
-			$panel.on({
+			if(_self.addEventListener){
+                _self.addEventListener("touchstart", touchStart);
+                _self.addEventListener("touchmove", touchMove);
+                _self.addEventListener("touchend", touchEnd);
+            }
+			$this.on({
 				mousedown:function(e){
 					isMouseDown = true;
 					setSelectable($body,false);
@@ -80,24 +95,25 @@
 					if(isMouseDown){
 						isMouseDown = false;
 						setSelectable($body,true);
-						_value = Math.floor((e.pageX - _cursor_position)/_length)+options.min;
+						_value = Math.floor((e.pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
 						_api.setValue();
-						options.change(_value);					
+						options.change({event:e,value:_value});					
 					}
 				}
 			});
 			$window.on({
 				mousemove:function(e){
 					if(isMouseDown){
-						_value = Math.floor((e.pageX - _cursor_position)/_length)+options.min;
+						_value = Math.floor((e.pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
 						_api.setValue();
+						options.slide({event:e,value:_value});
 					}  
 				},
 				mouseup:function(e){
 					if(isMouseDown){
 						isMouseDown = false;
 						setSelectable($body,true);						
-						options.change(_value);
+						options.change({event:e,value:_value});
 					}
 				}
 			});
