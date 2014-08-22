@@ -50,13 +50,40 @@
 				'width':'100%'
 			});
 			//私有方法
+        	//按键按下
+        	var down = function(e){
+        		e.isPropagationStopped();
+        		switch(e.keyCode){
+        			case 13:
+						$this.val($options.eq(_index).val());
+						_api.select();
+						$inner.hide();
+        			break;
+        			case 38:
+        				if(_index>0){
+        					_index--;
+        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+                            _api.select();
+        				}
+        				e.preventDefault();
+        			break;
+        			case 40:
+        				if(_index<$items.length-1){
+        					_index++;
+        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+                           _api.select();
+        				}
+        				e.preventDefault();
+        			break;
+        		}
+        	};
+			//公有方法
 			_api.select = function(value){
 				if(value){
 					$this.val(value);
+					_index = $options.filter(':selected').index();
 				}
-				var $option = $options.filter(':selected');
-				_index = $option.index();
-				$box.text($option.text());
+				$box.text($options.eq(_index).text());
 				$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
 			}; 
 			//事件绑定
@@ -80,9 +107,11 @@
 			$document.click(function(){
 				$inner.hide();
 			});
-			$this.change(_api.select);
+			$window.on({
+				'keydown':down
+			});
 			//初始化
-			_api.select();
+			_api.select($this.val());
 			getApi(_api);
 		});
     };
