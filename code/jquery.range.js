@@ -5,8 +5,8 @@
 (function($) {
     $.fn.range = function(parameter,getApi) {
         if(typeof parameter == 'function'){ //重载
-			getApi = parameter;
-            parameter = {}; 
+        	getApi = parameter; 
+            parameter = {};
         }else{
             parameter = parameter || {};
             getApi = getApi||function(){};
@@ -18,11 +18,12 @@
 			max: 100,				//变化范围的最大值
 			value: 1,				//默认显示的值
 			step: 1,				//每次移动的步长
+			type:'outer',           //outer进度计算以进度条宽为准，inner进度计算需扣除条滑块宽
 			slide: function(){},	//当前值变化时触发的事件，传入对象:event为事件,value为当前值
 			change: function(){}    //当前值变化后触发的事件，传入对象:event为事件,value为当前值
         };
 		var options = $.extend({},defaults,options,parameter);
-		var $window = $(window);
+		var $document = $(document);
 		var $body = $("body");
         return this.each(function() {
             //对象定义
@@ -33,9 +34,13 @@
 			//全局变量
 			var _api = {};
 			var _value = options.value;
-			var _length = $this.width()/(options.max - options.min);
 			var _handle_width = $handle.width();
-			var _cursor_position = $value.offset().left;
+			if(options.type=='outer'){
+				var _length = $this.width()/(options.max - options.min);
+			}else{
+				var _length = ($this.width()-_handle_width)/(options.max - options.min);
+			}
+			var _cursor_position = $this.offset().left;
 			var isMouseDown = false;
 			//样式初始化
 			$this.css({
@@ -60,13 +65,16 @@
 				$handle.css({
 					'left':(_value-options.min)*_length
 				});
+				options.slide({event:{},value:value});
 			};
 			/*私有方法*/
 			var touchStart = function(e) {
                 isMouseDown = true;
-				
+                _cursor_position = $this.offset().left;
             };
 			var touchMove = function(e){
+				stopBubble(e);
+				stopDefault(e);
 				if(isMouseDown){
 					_value = Math.floor((e.changedTouches[0].pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
 					_api.setValue();
@@ -89,6 +97,7 @@
 			$this.on({
 				mousedown:function(e){
 					isMouseDown = true;
+					_cursor_position = $this.offset().left;
 					setSelectable($body,false);
 				},
 				mouseup:function(e){
@@ -101,7 +110,7 @@
 					}
 				}
 			});
-			$window.on({
+			$document.on({
 				mousemove:function(e){
 					if(isMouseDown){
 						_value = Math.floor((e.pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
@@ -121,6 +130,22 @@
 			_api.setValue(_value);
 			getApi(_api);
         });
+		//工具函数
+		function stopBubble(e){
+			if (e && e.stopPropagation) {
+				e.stopPropagation();
+			}else if (window.event) {
+				window.event.cancelBubble = true;
+			}
+		}
+		function stopDefault(e) { 
+			if ( e && e.preventDefault ){
+				e.preventDefault();
+			}else{
+				 window.event.returnValue = false; 
+			}
+			return false; 
+		}
 		function setSelectable(obj, enabled) { 
 			if(enabled) { 
 				obj.removeAttr("unselectable").removeAttr("onselectstart").css("user-select", ""); 

@@ -16,15 +16,24 @@
 			boxCls:'box',
 			innerCls:'inner',
 			listCls:'list',
-			activeCls:'active'
+			activeCls:'active',
+			html:function(status){
+				status.list.append("<li>"+status.item.text()+"</li>");
+			},
+			selected:function(){}
         };
 		var options = $.extend({},defaults,options,parameter);
 		var $window = $(window);
 		var $document = $(document);
-        return this.each(function() {
+        return this.each(function(i) {
             //对象定义
 			var _self = this;
             var $this = $(this);
+            if($this.data('widget-type')=='select'){ //如果已调用过，则不进行初始化
+            	return false;
+            }else{
+            	$this.data('widget-type','select')
+            }
 			var $inner = $("<div class='"+options.innerCls+"'></div>");
 			var $list = $("<ul class='"+options.listCls+"'></ul>");
 			var $box = $("<div class='"+options.boxCls+"'></div>");
@@ -35,11 +44,17 @@
 			var $options = $this.find('option');
 			$options.each(function(){
 				var $this = $(this);
-				$list.append("<li>"+$this.text()+"</li>");
+				var status = {
+					'list':$list,
+					'item':$this
+				}
+				options.html(status);
 			});
 			var $items = $list.find('li');
 			var _api = {};
 			var _index = 0;
+			var isShow = false;
+			var _target = false; //触发标记，不论有多少个select实例，只展开一个
 			//样式修改
 			$select.css({
 				'position':'relative'
@@ -52,44 +67,50 @@
 			//私有方法
         	//按键按下
         	var down = function(e){
-        		e.isPropagationStopped();
-        		switch(e.keyCode){
-        			case 13:
-						$this.val($options.eq(_index).val());
-						_api.select();
-						$inner.hide();
-        			break;
-        			case 38:
-        				if(_index>0){
-        					_index--;
-        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
-                            _api.select();
-        				}
-        				e.preventDefault();
-        			break;
-        			case 40:
-        				if(_index<$items.length-1){
-        					_index++;
-        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
-                           _api.select();
-        				}
-        				e.preventDefault();
-        			break;
+        		if(isShow){
+	        		e.isPropagationStopped();
+	        		switch(e.keyCode){
+	        			case 13:
+							_api.value($options.eq(_index).val());
+							isShow = false;
+	        			break;
+	        			case 38:
+	        				if(_index>0){
+	        					_index--;
+	        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+	        				}
+	        				e.preventDefault();
+	        			break;
+	        			case 40:
+	        				if(_index<$items.length-1){
+	        					_index++;
+	        					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+	        				}
+	        				e.preventDefault();
+	        			break;
+	        		}
         		}
         	};
 			//公有方法
-			_api.select = function(value){
-				if(value){
-					$this.val(value);
-					_index = $options.filter(':selected').index();
-				}
-				$box.text($options.eq(_index).text());
-				$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+			_api.value = function(value){
+				$this.val(value);
+				_index = $options.filter(':selected').index();
+				var $item = $items.eq(_index);
+				$box.html($item.html());
+				$item.addClass(options.activeCls).siblings().removeClass(options.activeCls);
+				$inner.hide();
+				options.selected(value);
 			}; 
 			//事件绑定
 			$box.click(function(){
-				$inner.toggle();
-				return false;
+				if(isShow){
+					$inner.hide();
+				}else{
+					$inner.show();
+					$items.eq(_index).addClass(options.activeCls).siblings().removeClass(options.activeCls);
+				}
+				isShow = !isShow;
+				_target = true;
 			});
 			$items.on({
 				'mouseenter':function(){
@@ -98,20 +119,21 @@
 				'click':function(){
 					_index = $(this).index();
 					var $option = $options.eq(_index);
-					var value = $option.val();
-					var text = $option.text();
-					$this.val(value);
-					$box.text(text);
+					_api.value($option.val());
 				}
 			});
 			$document.click(function(){
-				$inner.hide();
+				if(isShow&&!_target){
+					$inner.hide();
+					isShow = false;
+				}
+				_target = false;
 			});
 			$window.on({
 				'keydown':down
 			});
 			//初始化
-			_api.select($this.val());
+			_api.value($this.val());
 			getApi(_api);
 		});
     };
