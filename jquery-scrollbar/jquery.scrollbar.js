@@ -15,7 +15,7 @@
 			contentCls: "content",		//内容区的class
 			trackCls: "track",			//滑块的class
 			direction: "y",				//滚动条的方向
-			steps:50,					//滚动鼠标中轴的单位
+			step:50,					//滚动鼠标中轴的单位
 			touchable:true, 			//是否允许触摸操作
 			autoReset:true,				//窗体变化是否重置
 			inEndEffect:false,			//滚轴到底时事件是否冒泡给页面
@@ -23,7 +23,7 @@
 		}
 		var options = $.extend({},defaults,parameter);
 		var $body = $("body");
-		var $window = $(window);
+		var $document = $(document);
 		return this.each(function(){
 			/*对象定义*/
 			var $this = $(this);
@@ -63,6 +63,8 @@
 			}else{
 				$track.hide();
 			}
+			//获得滚轴和内容区的转换比
+			_api.ratio = _distance/_room;
 			/****** 共有方法 ******/
 			//滚动到指定位置
 			_api.slide = function(move){
@@ -93,18 +95,17 @@
 				_box_length = options.direction=="y"?$this.height():$this.width();
 				_thumb_length = _box_length/_content_length*_track_length;
 				_distance = _track_length-_thumb_length;						
-				_content_length - _box_length;
-				if(_content_length>_box_length){
+				_room = _content_length - _box_length;	
+				if(_content_length>_box_length){						
 					$thumb.css(options.direction=="y"?'height':'width',_thumb_length+'px');
 				}else{
 					$track.hide();
 				}
+				_api.ratio = _distance/_room;
 				if(options.autoReset){
 					_api.slide(0);
 				}
 			};
-			//获得滚轴和内容区的转换比
-			_api.ratio = _distance/_room;
 			_api.getRatio = function(){
 				return _api.ratio = _distance/_room;
 			};
@@ -113,7 +114,7 @@
 				if($track.css('display')!='none'){
 					e = e||window.event;
 					var delta = -e.wheelDelta/120||e.detail/3;
-					var move = options.direction=="y"?-$content.position().top+delta*options.steps:-$content.position().left+delta*options.steps;
+					var move = options.direction=="y"?-$content.position().top+delta*options.step:-$content.position().left+delta*options.step;
 					if(move>_room){
 						move = _room;
 						if(!options.inEndEffect){
@@ -177,24 +178,26 @@
 				mousedown:function(e){
 					isMouseDown = true;
 					_track_offset = options.direction=="y"?$track.offset().top:$track.offset().left;
-					_cursor_position = options.direction=="y"?e.pageY-$track.offset().top-$thumb.position().top:e.pageX-$track.offset().left-$thumb.position().left;
+					_cursor_position = options.direction=="y"?e.pageY-_track_offset-$thumb.position().top:e.pageX-_track_offset-$thumb.position().left;
 					setSelectable($body,false);
 				},
 				mouseup:function(e){
-					var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
-					if(_cursor_position>0&&_cursor_position<_thumb_length){
-						move-=_cursor_position;
-					}
-					_api.slide(move/_api.ratio);		
+					if(isMouseDown){
+						var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
+						if(_cursor_position>0&&_cursor_position<_thumb_length){
+							move-=_cursor_position;
+						}
+						_api.slide(move/_api.ratio);
+					}	
 				}
 			});
-			$body.on({
+			$document.on({
 				mousemove:function(e){
-					var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
-					if(_cursor_position>0&&_cursor_position<_thumb_length){
-						move-=_cursor_position;
-					}
 					if(isMouseDown){
+						var move = options.direction=="y"?e.pageY - _track_offset:e.pageX - _track_offset;
+						if(_cursor_position>0&&_cursor_position<_thumb_length){
+							move-=_cursor_position;
+						}						
 						_api.slide(move/_api.ratio);
 					}
 				},
@@ -202,14 +205,8 @@
 					isMouseDown = false;
 					_cursor_position=0;
 					setSelectable($body,true);						
-				}
-			});
-			$window.on({
-				'mouseup':function(){
-					isMouseDown = false;
-					_cursor_position=0;
 				},
-				'resize':_api.resize
+				resize:_api.resize
 			});
 			if(document.addEventListener){
 				_self.addEventListener('DOMMouseScroll',scroll,false);
