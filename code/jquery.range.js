@@ -35,6 +35,7 @@
 			var _api = {};
 			var _value = options.value;
 			var _handle_width = $handle.width();
+			var _offset = 0;
 			if(options.type=='outer'){
 				var _length = $this.width()/(options.max - options.min);
 			}else{
@@ -70,13 +71,18 @@
 			/*私有方法*/
 			var touchStart = function(e) {
                 isMouseDown = true;
-                _cursor_position = $this.offset().left;
+                _offset = $this.offset().left;
+				_cursor_position =e.changedTouches[0].pageX-_offset-$handle.position().left;
             };
 			var touchMove = function(e){
 				stopBubble(e);
 				stopDefault(e);
 				if(isMouseDown){
-					_value = Math.floor((e.changedTouches[0].pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
+					var move = e.changedTouches[0].pageX - _offset;
+					_value = Math.floor(move/(_length*options.step))*options.step+options.min;
+					if(_cursor_position>0&&_cursor_position<_handle_width){
+						_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
+					}
 					_api.setValue();
 					options.slide({event:e,value:_value});
 				}  
@@ -97,15 +103,21 @@
 			$this.on({
 				mousedown:function(e){
 					isMouseDown = true;
-					_cursor_position = $this.offset().left;
+					_offset = $this.offset().left;
+					_cursor_position = e.pageX-_offset-$handle.position().left;
 					setSelectable($body,false);
 				},
 				mouseup:function(e){
 					if(isMouseDown){
 						isMouseDown = false;
 						setSelectable($body,true);
-						_value = Math.floor((e.pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
+						var move = e.pageX - _offset;
+						_value = Math.floor(move/(_length*options.step))*options.step+options.min;
+						if(_cursor_position>0&&_cursor_position<_handle_width){
+							_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
+						}
 						_api.setValue();
+						options.slide({event:e,value:_value});
 						options.change({event:e,value:_value});					
 					}
 				}
@@ -113,10 +125,14 @@
 			$document.on({
 				mousemove:function(e){
 					if(isMouseDown){
-						_value = Math.floor((e.pageX - _cursor_position)/(_length*options.step))*options.step+options.min;
+						var move = e.pageX - _offset;
+						_value = Math.floor(move/(_length*options.step))*options.step+options.min;
+						if(_cursor_position>0&&_cursor_position<_handle_width){
+							_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
+						}
 						_api.setValue();
 						options.slide({event:e,value:_value});
-					}  
+					}
 				},
 				mouseup:function(e){
 					if(isMouseDown){

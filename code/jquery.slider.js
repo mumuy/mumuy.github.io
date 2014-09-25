@@ -216,6 +216,17 @@
             _api.getIndex = function(index){
                 return _index;
             };
+            //窗口变化
+            _api.resize = function(){
+                _distance = options.direction=="x"?$item.outerWidth(true):$item.outerHeight(true);
+                _inner = _size * _distance;
+                _outer = options.direction=='x'?$this.width():$this.height();
+                _view = options.view || parseInt(_outer / _distance)||1;   //可视的帧数
+                if(_param=="left"){
+                    $lists.css('width',_inner);
+                }
+                slide(false);
+            };
             /****** 私有方法 ******/
             //移动
             function slide(isAnimate,s_duration) {
@@ -271,16 +282,6 @@
                     }
                 }
             };
-            //窗口变化
-            function window_resize(){
-                _distance = options.direction=="x"?$item.outerWidth(true):$item.outerHeight(true);
-                _inner = _size * _distance;
-                _outer = options.direction=='x'?$this.width():$this.height();
-                if(_param=="left"){
-                    $lists.css('width',_inner);
-                }
-                slide(false);
-            }
             //滚动轴
             function scroll(e){
                  e = e||window.event;
@@ -448,7 +449,7 @@
                 _self.addEventListener("touchmove", touchMove);
                 _self.addEventListener("touchend", touchEnd);
             }
-            $window.resize(window_resize); //当窗体大小改变时，重新计算相关参数
+            $window.resize(_api.resize); //当窗体大小改变时，重新计算相关参数
             if(options.keyboardAble){
                 $window.keydown(keyboard);
             }
