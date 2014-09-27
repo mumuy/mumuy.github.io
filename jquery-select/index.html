@@ -52,14 +52,7 @@
 			<a id="change" href="javascript:void(0);">选中选项三</a>
 		</div>
 		<script type="text/javascript">
-			var $select = $("select").select(function(api){
-				$("#change").click(function(){
-					api.select('op3');
-				});				
-			});
-			$select.change(function(){
-				console.log("改变了");
-			});
+			var $select = $("select").select(function(api){});
 		</script>
 	</body>
 <html>
