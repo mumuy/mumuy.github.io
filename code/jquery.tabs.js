@@ -5,8 +5,8 @@
 (function($) {
     $.fn.tabs = function(parameter,getApi) {
         if(typeof parameter == 'function'){ //重载
+            getApi = parameter;
             parameter = {};
-            getApi = parameter;   
         }else{
             parameter = parameter || {};
             getApi = getApi||function(){};
