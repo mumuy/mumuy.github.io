@@ -23,6 +23,7 @@
 			change: function(){}    //当前值变化后触发的事件，传入对象:event为事件,value为当前值
         };
 		var options = $.extend({},defaults,options,parameter);
+		var $window = $(window);
 		var $document = $(document);
 		var $body = $("body");
         return this.each(function() {
@@ -36,12 +37,9 @@
 			var _value = options.value;
 			var _handle_width = $handle.width();
 			var _offset = 0;
-			if(options.type=='outer'){
-				var _length = $this.width()/(options.max - options.min);
-			}else{
-				var _length = ($this.width()-_handle_width)/(options.max - options.min);
-			}
-			var _cursor_position = $this.offset().left;
+			var _width = options.type=='outer'?$this.width():$this.width()-_handle_width;
+			var _length = _width/(options.max - options.min); 	//单元宽度
+			var _cursor_position = $this.offset().left;			//鼠标位置
 			var isMouseDown = false;
 			//样式初始化
 			$this.css({
@@ -59,15 +57,20 @@
 				_value = value||_value;
 				_value = Math.min(_value,options.max);
 				_value = Math.max(_value,options.min);
-				$this.val(_value);
 				$value.css({
 					'width':(_value-options.min)*_length
 				});
 				$handle.css({
 					'left':(_value-options.min)*_length
 				});
-				options.slide({event:{},value:value});
+				options.slide({event:{},value:_value});
 			};
+			//重置插件尺寸
+			_api.resize = function(){
+				_width = options.type=='outer'?$this.width():$this.width()-_handle_width;
+				_length = _width/(options.max - options.min);
+				_api.setValue();
+			}
 			/*私有方法*/
 			var touchStart = function(e) {
                 isMouseDown = true;
@@ -79,18 +82,26 @@
 				stopDefault(e);
 				if(isMouseDown){
 					var move = e.changedTouches[0].pageX - _offset;
-					_value = Math.floor(move/(_length*options.step))*options.step+options.min;
-					if(_cursor_position>0&&_cursor_position<_handle_width){
-						_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
-					}
-					_api.setValue();
+					if(_cursor_position>0&&_cursor_position<_handle_width){   //鼠标在手柄中位置，对值的修正
+						move -=_cursor_position;
+					}							
+					move = Math.max(0,move);
+					move = Math.min(move,_width);
+					$value.css({
+						'width':move
+					});
+					$handle.css({
+						'left':move
+					});
+					_value = Math.round(move/(_length*options.step))*options.step+options.min;
 					options.slide({event:e,value:_value});
 				}  
 			};
 			var touchEnd = function(e){
 				if(isMouseDown){
 					isMouseDown = false;
-					setSelectable($body,true);						
+					setSelectable($body,true);
+					_api.setValue();			
 					options.change({event:e,value:_value});
 				}
 			}
@@ -112,10 +123,10 @@
 						isMouseDown = false;
 						setSelectable($body,true);
 						var move = e.pageX - _offset;
-						_value = Math.floor(move/(_length*options.step))*options.step+options.min;
-						if(_cursor_position>0&&_cursor_position<_handle_width){
-							_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
-						}
+						if(_cursor_position>0&&_cursor_position<_handle_width){   //鼠标在手柄中位置，对值的修正
+							move -=_cursor_position;
+						}	
+						_value = Math.round(move/(_length*options.step))*options.step+options.min;
 						_api.setValue();
 						options.slide({event:e,value:_value});
 						options.change({event:e,value:_value});					
@@ -126,22 +137,31 @@
 				mousemove:function(e){
 					if(isMouseDown){
 						var move = e.pageX - _offset;
-						_value = Math.floor(move/(_length*options.step))*options.step+options.min;
-						if(_cursor_position>0&&_cursor_position<_handle_width){
-							_value -=Math.floor(_cursor_position/(_length*options.step))*options.step
-						}
-						_api.setValue();
+						if(_cursor_position>0&&_cursor_position<_handle_width){   //鼠标在手柄中位置，对值的修正
+							move -=_cursor_position;
+						}							
+						move = Math.max(0,move);
+						move = Math.min(move,_width);
+						$value.css({
+							'width':move
+						});
+						$handle.css({
+							'left':move
+						});
+						_value = Math.round(move/(_length*options.step))*options.step+options.min;
 						options.slide({event:e,value:_value});
 					}
 				},
 				mouseup:function(e){
 					if(isMouseDown){
 						isMouseDown = false;
-						setSelectable($body,true);						
+						setSelectable($body,true);
+						_api.setValue();		
 						options.change({event:e,value:_value});
 					}
 				}
 			});
+			$window.on('resize',_api.resize);
 			//初始化
 			_api.setValue(_value);
 			getApi(_api);
