@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>浏览器测试</title>
+	</head>
+	<body>
+	<script type="text/javascript">
+		
+		 var browser = (function(){
+			var u = navigator.userAgent;
+			var obj = {
+				//内核
+				isTrident: u.indexOf('Trident')>0,
+				isPresto: u.indexOf('Presto')>0,
+                isWebKit: u.indexOf('AppleWebKit')>0,
+                isGecko: u.indexOf('Gecko')>0,
+				//浏览器
+				isUC: u.indexOf('UC')>0||u.indexOf('UBrowser')>0,
+				isQQ: u.indexOf('QQBrowser')>0,
+				isBaiDu: u.indexOf('Baidu')>0||u.indexOf('BIDUBrowser')>0,
+				isMaxthon: u.indexOf('Maxthon')>0,
+				isSouGou: u.indexOf('MetaSr')>0||u.indexOf('Sogou')>0,
+				isIE: u.indexOf('MSIE')>0,
+				isFirefox: u.indexOf('Firefox')>0,
+				isOpera: u.indexOf('Opera')>0||u.indexOf('OPR')>0,
+				isSafari: u.indexOf('Safari')>0,
+				isChrome:u.indexOf('Chrome')>0||u.indexOf('CriOS')>0,
+				//系统或平台
+				isWindows:u.indexOf('Windows')>0,
+				isMac:u.indexOf('Macintosh')>0,
+				isAndroid:u.indexOf('Android')>0||u.indexOf('Adr')>0,
+				isWP:u.indexOf('IEMobile')>0,
+				isBlackBerry:u.indexOf('BlackBerry')>0||u.indexOf('RIM')>0||u.indexOf('BB')>0,
+				isMeeGo:u.indexOf('MeeGo')>0,
+				isSymbian:u.indexOf('Symbian')>0,
+				isIOS:u.indexOf('like Mac OS X')>0,
+				isIPhone: u.indexOf('iPh')>0,
+				isIPad:u.indexOf('iPad')>0,
+				//设备
+				isMobile:u.indexOf('Mobi')>0||u.indexOf('iPh')>0||u.indexOf('480')>0,
+				isTablet:u.indexOf('Tablet')>0||u.indexOf('iPad')>0||u.indexOf('Nexus 7')>0,
+				//语言
+				language: (function(){
+					var g = (navigator.browserLanguage || navigator.language).toLowerCase();
+					return g=="c"?"zh-cn":g;
+				})()
+			}
+			//修正
+			if(!obj.isTrident){
+				isTrident = obj.isIE;
+			}
+			if(obj.isGecko){
+				obj.isGecko = !obj.isWebKit;
+			}
+			if(obj.isChrome){
+				obj.isChrome = !(obj.isOpera + obj.isBaiDu + obj.isMaxthon + obj.isSouGou + obj.isUC + obj.isQQ);
+			}
+			if(obj.isSafari){
+				obj.isSafari = !(obj.isChrome + obj.isOpera + obj.isBaiDu + obj.isMaxthon + obj.isSouGou + obj.isUC + obj.isQQ);
+			}
+			if(obj.isMobile){
+				obj.isMobile = !obj.isIPad;
+			}
+			return obj;
+		 })();
+		
+			document.writeln("appVersion："+navigator.appVersion+"<br/>");
+			document.writeln("userAgent："+navigator.userAgent+"<br/>");
+			
+			document.writeln("语言："+browser.language+"<br/>");
+			
+			document.writeln("<h2>内核</h2>");
+			document.writeln("是否为IE内核："+browser.isTrident+"<br/>");
+			document.writeln("是否为opera内核："+browser.isPresto+"<br/>");
+			document.writeln("是否为Webkit内核："+browser.isWebKit+"<br/>");
+			document.writeln("是否为火狐内核："+browser.isGecko+"<br/>");
+			document.writeln("<h2>浏览器</h2>");
+			document.writeln("是否为IE浏览器："+browser.isIE+"<br/>");
+			document.writeln("是否为Chrome浏览器："+browser.isChrome+"<br/>");
+			document.writeln("是否为Firefox浏览器："+browser.isFirefox+"<br/>");
+			document.writeln("是否为Opera浏览器："+browser.isOpera+"<br/>");
+			document.writeln("是否为UC浏览器："+browser.isUC+"<br/>");
+			document.writeln("是否为QQ浏览器："+browser.isQQ+"<br/>");
+			document.writeln("是否为百度浏览器："+browser.isBaiDu+"<br/>");
+			document.writeln("是否为搜狗浏览器："+browser.isSouGou+"<br/>");
+			document.writeln("是否为Safari："+browser.isSafari+"<br/>");
+			document.writeln("<h2>操作系统</h2>");
+			document.writeln("是否为android："+browser.isAndroid+"<br/>");
+			document.writeln("是否为wp："+browser.isWP+"<br/>");
+			document.writeln("是否为BlackBerry："+browser.isBlackBerry+"<br/>");
+			document.writeln("是否为MeeGo："+browser.isMeeGo+"<br/>");
+			document.writeln("是否为Symbian："+browser.isSymbian+"<br/>");
+			document.writeln("是否为Windows："+browser.isWindows+"<br/>");
+			document.writeln("是否为Mac："+browser.isMac+"<br/>");
+			document.writeln("是否为iOS："+browser.isIOS+"<br/>");
+			document.writeln("是否为iphone："+browser.isIPhone+"<br/>");
+			document.writeln("是否为ipad："+browser.isIPad+"<br/>");
+			document.writeln("<h2>设备</h2>");
+			document.writeln("是否为手机："+browser.isMobile+"<br/>");
+			document.writeln("是否为平板："+browser.isTablet+"<br/>");
+
+			
+	</script>
+	</body>
+</html>
