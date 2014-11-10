@@ -412,7 +412,9 @@
                 $this.hover(_api.stop, _api.start);
             }
             $this.hover(function(){
-                 $this.toggleClass(options.hoverCls);
+                $this.addClass(options.hoverCls);
+            },function(){
+                $this.removeClass(options.hoverCls);
             });
             //事件绑定
             if(options.pointerType === "click"){
