@@ -79,8 +79,7 @@
             }
             //节点添加
             if (options.hasTriggers) {  //是否存在导航
-                var $nav = $this.find("."+options.navCls);
-                if (!$nav.length) {   //使用children找不到
+                if (!$this.find("."+options.navCls).length) {   //使用children找不到
                     var list_str = "";
                     for (var i = 1; i <= _size ; i++) {
                         list_str += "<li>" + i + "</li>";
@@ -88,7 +87,7 @@
                     $this.append("<ul class='" + options.navCls + "'>" + list_str + "</ul>")
                 }
                 options.triggerType += options.triggerType === "mouse" ? "enter" : "";  //使用mouseenter防止事件冒泡
-                $nav_list = $nav.find(options.triggerCondition).bind(options.triggerType, function(e) {
+                $nav_list =$this.find("."+options.navCls + " > " + options.triggerCondition).bind(options.triggerType, function(e) {
                     var index = $nav_list.index(this);
                     var status = {
                         index: _index,
