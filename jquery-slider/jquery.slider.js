@@ -71,7 +71,7 @@
             var _param = options.direction=='x'?'left':'top';   //移动控制参数,方向为x控制left,方向为y控制top
             //样式初始化
             var $outer = $list1.css('position','absolute').parent();
-            if($outer.css('position')!='absolute'){
+            if($outer.css('position')=='static'){
                 $outer.css('position','relative');
             }
             if(_param=="left"){
@@ -283,13 +283,13 @@
             };
             //滚动轴
             function scroll(e){
+                e = e||window.event;
+                stopBubble(e);
+                stopDefault(e);                
                 if(!$list1.is(':animated')){ //防止滚动太快动画没完成
-                    e = e||window.event;
-                    stopBubble(e);
-                    stopDefault(e);
                     var delta = -e.wheelDelta/120||e.detail/3;
                     delta>0?_api.next(e):_api.prev(e);                      
-                }               
+                }            
             }           
             //触摸开始
             function touchStart(e) {
