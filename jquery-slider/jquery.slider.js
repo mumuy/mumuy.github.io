@@ -218,7 +218,7 @@
                 _distance = [];
                 _inner = 0;
                 if(options.direction=='x'){
-                    $item.css('width','auto');
+                    $item.css('width','');
                     _outer = $outer.width();
                     $item.each(function(i){
                         var $li = $(this);
@@ -230,7 +230,7 @@
                     });
                     $lists.css('width',_inner);
                 }else{
-                    $item.css('height','auto');
+                    $item.css('height','');
                     _outer = $outer.height();
                     $item.each(function(i){
                         var $li = $(this);
