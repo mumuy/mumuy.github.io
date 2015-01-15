@@ -217,16 +217,29 @@
             _api.resize = function(){
                 _distance = [];
                 _inner = 0;
-                _outer = options.direction=='x'?$outer.width():$outer.height();
-                $item.each(function(i){
-                    var dist = options.direction=="x"?$(this).outerWidth(true):$(this).outerHeight(true);
-                    _distance.push(_inner);
-                    _inner += Math.ceil(dist);
-                }).each(function(i){
-                    _distance.push(_inner+_distance[i]);
-                });
-                if(_param=="left"){
+                if(options.direction=='x'){
+                    $item.css('width','auto');
+                    _outer = $outer.width();
+                    $item.each(function(i){
+                        var $li = $(this);
+                        _distance.push(_inner);
+                        $li.width($li.width());
+                        _inner += Math.ceil($li.outerWidth(true));
+                    }).each(function(i){
+                        _distance.push(_inner+_distance[i]);
+                    });
                     $lists.css('width',_inner);
+                }else{
+                    $item.css('height','auto');
+                    _outer = $outer.height();
+                    $item.each(function(i){
+                        var $li = $(this);
+                        _distance.push(_inner);
+                        $li.height($li.height());
+                        _inner += Math.ceil($li.outerHeight(true));
+                    }).each(function(i){
+                        _distance.push(_inner+_distance[i]);
+                    });
                 }
                 slide(false);
             };
