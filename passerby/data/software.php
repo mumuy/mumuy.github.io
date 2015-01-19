@@ -1,0 +1,24 @@
+<?php
+	$data = array(
+		array(
+			'name'=>'威锋网',
+			'url'=>'http://www.feng.com/',
+			'desc'=>''
+		),
+		array(
+			'name'=>'手机世界',
+			'url'=>'http://www.3533.com/',
+			'desc'=>''
+		),
+		array(
+			'name'=>'小众软件',
+			'url'=>'http://www.appinn.com/',
+			'desc'=>''
+		),
+		array(
+			'name'=>'软件盒子',
+			'url'=>'http://www.itopdog.cn/',
+			'desc'=>''
+		)
+	);
+?>
