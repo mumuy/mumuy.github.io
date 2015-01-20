@@ -20,12 +20,25 @@
 			
 			.select{
 				width:180px;
+				margin-bottom:25px;
 				text-indent:1em;
 			}
 			.select .box{
+				position:relative;
 				height:28px;
 				border:1px solid #e2e2e2;
 				line-height:28px;
+			}
+			.select .box:after{
+				position:absolute;
+				top:50%;
+				right:12px;
+				display:block;
+				margin-top:-2px;
+				content:"";
+				width:0;
+				border:4px solid transparent;
+				border-top:4px solid #000;
 			}
 			.select .list{
 				background:#fff;
@@ -38,20 +51,142 @@
 			.select .list li.active{
 				background:#999;
 			}
+			
+			.example{
+				padding-top:40px;
+				margin-bottom:90px;
+			}
+			.example .call{
+				padding:18px 5px;
+				background:#f0f5f8;
+			}
+			.example h2{
+				padding-top:20px;
+				margin-bottom:7px;
+			}
+			table {
+				width:100%;
+				table-layout:fixed;
+				border-collapse: collapse;
+				border-spacing: 0;
+				border: 1px solid #cee1ee;
+				border-left: 0;
+			}
+			thead {
+				border-bottom: 1px solid #cee1ee;
+				background-color: #e3eef8;
+			}
+			tr {
+				line-height: 24px;
+				font-size: 13px;
+			}
+			tr:nth-child(2n) {
+				background-color: #f0f5f8;
+			}
+			tr th, tr td {
+				border-left: 1px solid #cee1ee;
+				word-break: break-all;
+				word-wrap: break-word;
+				padding-left: 10px;
+				font-weight: normal;
+			}
+			tr th {
+				color: #555;
+				padding-top: 2px;
+				padding-bottom: 2px;
+				text-align: left;
+			}
 		</style>
 		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="jquery.select.js"></script>
 	</head>
 	<body>
 		<div class="main">
-			<select>
+			<select class="select1">
 				<option value="op1">选项一</option>
 				<option value="op2" selected>选项二</option>
 				<option value="op3">选项三</option>
 			</select>
+			<div class="code">
+				<p>$(".select1").select();</p>
+			</div>
+			<script type="text/javascript">
+				$(".select1").select();
+			</script>
+			<div class="example">
+				<div class="call">
+					<h1>调用方法：</h1>
+					<p>$(selector).select(options,callback(api));</p>
+				</div>
+				<h2> options参数</h2>
+				<table>
+					<thead>
+						<tr>
+							<th  style="width:150">参数</th>
+							<th  style="width:80">默认值</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>selectCls</td>
+							<td>select</td>
+							<td>选择框外层class</td>
+						</tr>
+						<tr>
+							<td>boxCls</td>
+							<td>box</td>
+							<td>选择框class</td>
+						</tr>
+						<tr>
+							<td>innerCls</td>
+							<td>inner</td>
+							<td>下拉菜单外层class</td>
+						</tr>
+						<tr>
+							<td>listCls</td>
+							<td>list</td>
+							<td>下拉菜单class</td>
+						</tr>
+						<tr>
+							<td>activeCls</td>
+							<td>active</td>
+							<td>下拉菜单选中class</td>
+						</tr>
+						<tr>
+							<td>html</td>
+							<td>
+								function(status){
+									status.list.append("&lt;li&gt;"+status.item.text()+"&lt;/li&gt;");
+								}
+							</td>
+							<td>下拉菜单自定义结构</td>
+						</tr>
+						<tr>
+							<td>selected</td>
+							<td>
+								function(){}
+							</td>
+							<td>选择事件处理</td>
+						</tr>
+					</tbody>
+				</table>
+				<h2> callback(api)参数</h2>
+				<table>
+					<thead>
+						<tr>
+							<th  style="width:200">方法</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>value()</td>
+							<td>修改当前值</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<script type="text/javascript">
-			var $select = $("select").select(function(api){});
-		</script>
 	</body>
 <html>

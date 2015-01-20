@@ -28,8 +28,11 @@
 				position: absolute;
 				width: 20px;
 				height: 118px;
-				background: #ccc;
+				background: #999;
 				border:1px solid #ccc;
+				text-align:center;
+				line-height:110px;
+				cursor:pointer;
 			}
 			.slider4 .disable{
 				background:#fff;
@@ -136,8 +139,8 @@
 	<body>
 		<div class="main">
 			<div class="slider style1 slider1">
-				<span class="prev"></span>
-				<span class="next"></span>
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
 				<div class="container">
 					<ul class="content">
 						<li>1</li>
@@ -158,8 +161,8 @@
 				$(".slider1").slider({inEndEffect:"cycle",step:2,auto:true,duration:300,delay:5000});
 			</script>
 			<div class="slider style2 slider2">
-				<span class="prev"></span>
-				<span class="next"></span>
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
 				<div class="container">
 					<ul class="content">
 						<li>1</li>
@@ -199,8 +202,8 @@
 				$(".slider3").slider({animate:false,triggerType:"click"});
 			</script>
 			<div class="slider style2 slider4">
-				<span class="prev"></span>
-				<span class="next"></span>
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
 				<div class="container">
 					<ul class="content">
 						<li>1</li>
@@ -219,8 +222,8 @@
 				$(".slider4").slider({easing:"backin",keyboardAble:true,hasTriggers:false,inEndEffect:"none"});
 			</script>
 			<div class="slider style1 slider5">
-				<span class="prev"></span>
-				<span class="next"></span>
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
 				<div class="container">
 					<ul class="content">
 						<li>1</li>
@@ -246,8 +249,8 @@
 				$(".slider5").slider({inEndEffect:"none",pointerType:"mouse",scrollable:true,hasTriggers:false,duration:1000});
 			</script>
 			<div class="slider style1 slider6">
-				<span class="prev"></span>
-				<span class="next"></span>
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
 				<div class="container">
 					<ul class="content">
 						<li class="w24">1</li>
