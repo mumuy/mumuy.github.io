@@ -163,11 +163,11 @@
                     }else{
                         switch (options.inEndEffect) {
                             case "switch":
-                                var lastindex = _size - _index - 1;
-                                if (lastindex) {
-                                    _index += Math.min(step,lastindex);
-                                } else {
+                                var lastindex = _size - 1 - _index ;
+                                if (_distance[_size]-_distance[_index]<_outer) {
                                     _index = 0;
+                                } else {
+                                    _index += Math.min(step,lastindex);
                                 }
                                 break;
                             case "cycle":
@@ -180,8 +180,9 @@
                                 }
                         }
                     }
-                    slide(options.animate);    
+                    slide(options.animate);
                 }
+				console.log('next',_index);
             };
             //开始播放
             _api.start = function(){
