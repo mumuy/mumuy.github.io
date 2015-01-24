@@ -182,7 +182,6 @@
                     }
                     slide(options.animate);
                 }
-				console.log('next',_index);
             };
             //开始播放
             _api.start = function(){
