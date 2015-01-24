@@ -164,10 +164,10 @@
                         switch (options.inEndEffect) {
                             case "switch":
                                 var lastindex = _size - 1 - _index ;
-                                if (_distance[_size]-_distance[_index]<_outer) {
-                                    _index = 0;
-                                } else {
+                                if (_distance[_size]-_distance[_index]>_outer) {
                                     _index += Math.min(step,lastindex);
+                                } else {
+                                    _index = 0;
                                 }
                                 break;
                             case "cycle":
