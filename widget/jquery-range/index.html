@@ -19,15 +19,18 @@
 			}
 			
 			.panel{
+				margin-bottom:20px;
+			}
+			.range{
 				width:240px;
 				height:4px;
 				margin-bottom:15px;
 				border:1px solid #e2e2e2;
 			}
-			.panel .value{
+			.range .value{
 				background:#0064cd;
 			}
-			.panel .handle{
+			.range .handle{
 				display:block;
 				top:-3px;
 				width:8px;
@@ -44,35 +47,59 @@
 	</head>
 	<body>
 		<div class="main">
-			<div class="">
-				<div class="panel panel1"></div>
-				<div class="panel panel2"></div>
+			<div class="panel">
+				<div class="range" id="range1"></div>
+				<p><input id="input1" type="text" readonly value="移动结束显示"/></p>
 			</div>
 			<div class="code">
+				<p>
+				$('#range1').range({<br/>
+					min:0,<br/>
+					max:50,<br/>
+					value:40,<br/>
+					step:5,<br/>
+					change:function(status){<br/>
+						$('#input1').val(status.value);<br/>
+					}<br/>
+				});
+				</p>
 			</div>
 			<script type="text/javascript">
-				$('.panel1').range({
+				$('#range1').range({
 					min:0,
 					max:50,
 					value:40,
 					step:5,
 					change:function(status){
-						console.log('change',status.value);
-					},
-					slide:function(status){
-						console.log(status.value);
+						$('#input1').val(status.value);
 					}
+				});			
+			</script>
+			<div class="panel">
+				<div class="range" id="range2"></div>
+				<p><input id="input2" type="text" readonly/></p>
+			</div>
+			<div class="code">
+				<p>
+				$('#range2').range({<br/>
+					min:10,<br/>
+					max:62,<br/>
+					value:40,<br/>
+					step:5,<br/>
+					slide:function(status){<br/>
+						$('#input2').val(status.value);<br/>
+					}<br/>
 				});
-				$('.panel2').range({
+				</p>
+			</div>
+			<script type="text/javascript">
+				$('#range2').range({
 					min:10,
 					max:62,
 					value:40,
 					step:5,
-					change:function(status){
-						console.log('change',status.value);
-					},
 					slide:function(status){
-						console.log(status.value);
+						$('#input2').val(status.value);
 					}
 				});
 			</script>			

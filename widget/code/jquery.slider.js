@@ -231,6 +231,9 @@
                     }).each(function(i){
                         _distance.push(_inner+_distance[i]);
                     });
+                    if(options.inEndEffect=='cycle'){
+                        _inner /=2
+                    }
                     $lists.css('width',_inner);
                 }else{
                     $item.css('height','');
