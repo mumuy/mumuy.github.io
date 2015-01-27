@@ -1,1 +1,0 @@
-Hello jquery.slider
