@@ -346,7 +346,7 @@
 					_touch_direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
 				}
 				var direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
-				if(direction==_touch_direction){	//过滤非移动方向上的量,防止抖动
+				if(direction==_touch_direction&&_inner>=_outer){	//过滤非移动方向上的量,防止抖动
 					if (options.direction=='x'&&_touch_direction=='x'||options.direction=='y') {  //chrome移动版下，默认事件与自定义事件的冲突
 						stopDefault(e);
 						//计算
