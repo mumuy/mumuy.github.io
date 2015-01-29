@@ -15,7 +15,7 @@
             contentCls: "content",      //内容列表的class
             navCls: "nav",              //导航列表的class
             activeCls: "active",        //导航选中时的class
-            triggerType: 'mouse',       //切换时的触发事件
+            triggerType: "mouse",       //切换时的触发事件
             triggerCondition: "*",      //导航项的条件
             activeIndex: 0,             //默认选中导航项的索引
             beforeEvent: function() {   //切换前执行,返回flase时不移动;传入一个对象,包含：target当前导航项对象,tabs导航列表对象,panels内容列表对象,index当前导航项索引,event事件对象;
