@@ -327,9 +327,9 @@
             //触摸开始
             function touchStart(e) {
                 _startTime = new Date();
-                stopBubble(e);
+                e.stopPropagation();
                 _api.stop();
-                _start = e.changedTouches[0];
+                _start = e.originalEvent.changedTouches[0];
                 _position[0] = $list1.position()[_param];
                 if (options.inEndEffect == "cycle") {   
                     _position[1] = $list2.position()[_param];
@@ -337,8 +337,8 @@
             }
             //触碰移动
             function touchMove(e) {
-                stopBubble(e);
-                var current = e.changedTouches[0];
+                e.stopPropagation();
+                var current = e.originalEvent.changedTouches[0];
                 var d_x = current.pageX - _start.pageX;
                 var d_y = current.pageY - _start.pageY;
                 _move = options.direction=="x"?d_x:d_y;//移动距离触发点的距离
@@ -346,9 +346,9 @@
 					_touch_direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
 				}
 				var direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
-				if(direction==_touch_direction&&_inner>=_outer){	//过滤非移动方向上的量,防止抖动
+				if(direction==_touch_direction&&_inner>=_outer){	//过滤非移动方向上的量,防止抖动;内容小于外框时不移动
 					if (options.direction=='x'&&_touch_direction=='x'||options.direction=='y') {  //chrome移动版下，默认事件与自定义事件的冲突
-						stopDefault(e);
+						e.preventDefault();
 						//计算
 						if (_move > 0) {  //手指向右滑
 							if (_position[0]>0) {   //是否置换
@@ -389,7 +389,7 @@
 							_position[1] = _position[1] + _move;
 							$list2.css(_param, _position[1]);
 						}
-						_start = current;       //实时更新坐标，解决list衔接处来回切换bug
+						_start = current;       //实时更新坐标，解决list衔接处来回切换的问题
 					}				
 				}
             }
@@ -414,6 +414,9 @@
                         _index++;
                     }                    
                 }
+				if(options.inEndEffect != "cycle"){
+					_index = Math.min(_size-1,_index);
+				}
                 slide(true,300);
             }
             //键盘处理
@@ -441,10 +444,10 @@
             });
             //事件绑定
             if(options.pointerType === "click"){
-                $prev.bind("click",_api.prev).hover(function() {
+                $prev.on("click",_api.prev).hover(function() {
                     $prev.toggleClass(options.hoverCls);
                 });
-                $next.bind("click",_api.next).hover(function() {
+                $next.on("click",_api.next).hover(function() {
                     $next.toggleClass(options.hoverCls);
                 });         
             }else{
@@ -471,10 +474,12 @@
                     }
                 });
             }
-            if(_self.addEventListener&&options.touchable){
-                _self.addEventListener("touchstart", touchStart);
-                _self.addEventListener("touchmove", touchMove);
-                _self.addEventListener("touchend", touchEnd);
+            if(options.touchable){
+                $this.on({
+					"touchstart":touchStart,
+					"touchmove":touchMove,
+					"touchend":touchEnd
+				});
             }
             $window.resize(_api.resize); //当窗体大小改变时，重新计算相关参数
             if(options.keyboardAble){
