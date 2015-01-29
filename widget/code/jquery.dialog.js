@@ -24,7 +24,7 @@
 		return this.each(function() {
 			//全局变量
 			var $this = $(this);
-			var $children = options.content?$(options.content):$this.children(); //内容区域
+			var $children = options.content?$(options.content):$this.html(); //内容区域
 			var $overlay = $(".md-overlay");
 			var $close = $("<div class='md-close'>x</div>");
 			var $title = $("<div class='md-title'>"+options.title+"</div>");
@@ -52,7 +52,7 @@
 				'display':'none',
 				'position':_position,
 				'z-index': '999'
-			}).append($close).append($title).append($content).append($buttons);
+			}).empty().append($close).append($title).append($content).append($buttons);
 			for(name in options.buttons){
 				(function(name){
 					$("<button type='button'>"+name+"</button>").appendTo($buttons).click(function(){
@@ -90,7 +90,7 @@
 					"top": ($window.height()-$this.outerHeight())/2 + "px"
 				});    
 			};
-			//设置文本内容
+			//设置对话框内容
 			_api.setContent = function(html){
 				$content.html(html);
 			};
