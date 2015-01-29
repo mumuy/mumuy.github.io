@@ -4,8 +4,14 @@
  *
  */
 (function($) {
-    $.fn.slider = function(parameter) {
-        parameter = parameter || {};
+    $.fn.slider = function(parameter,getApi) {
+        if(typeof parameter == 'function'){ //重载
+            getApi = parameter;
+            parameter = {};
+        }else{
+            parameter = parameter || {};
+            getApi = getApi||function(){};
+        }
         var defaults = {
 			/* 节点绑定 */
             contentCls: "content",		//轮播内容列表的class
@@ -30,8 +36,10 @@
             duration: 500,				//轮播的动画时长
             touchable: true,            //是否允许触碰
             sensitivity: 0.25,			//触摸屏的敏感度,滑动当前帧的百分比移动该帧，该值越小越敏感
+            easing:'linear',            //动画函数
             /* 针对手机特别添加 */
             fullScreen:true,            //是否全屏
+            isStopDefault:false,        //是否取消默认行为
 			/* 对外接口 */
             beforeMove: function() {    //移动前执行,返回flase时不移动
             },
@@ -58,17 +66,23 @@
 			}else{
 				_distance = $item.height() + parseInt($item.css('margin-top')) + parseInt($item.css('margin-bottom')) + parseInt($item.css('padding-top')) + parseInt($item.css('padding-bottom'))+parseInt($item.css('border-top-width'))+parseInt($item.css('border-bottom-width'));
 			}
+            var _api = {};
             var _size = $item.length;	//帧数
             var _index = parameter.activeLastIndex?_size + options.activeLastIndex:options.activeIndex;	//当前选中帧
             var _outer = options.direction=='x'?$this.width():$this.height(); //组件的外尺寸
             var _view = options.view || parseInt(_outer / _distance);	//可视的帧数
             var _start = {};	//触碰的起点坐标
             var _position = {};	//当前触碰点坐标
+            var _startTime = 0; //移动起始时间
+            var _touch_direction = null;//手势移动方向
             var _hander = null;	//自动播放的函数句柄
 			var _param = options.direction=='x'?'left':'top';	//移动控制参数,方向为x控制left,方向为y控制top
 			var _isAnimated = [];
             //样式初始化
-           	$list1.css('position','relative').parent().css('position','relative');
+           	var $outer = $list1.css('position','relative').parent();
+            if($outer.css('position')=='static'){
+                $outer.css('position','relative');
+            }
 			if(_param=="left"){
 				$list1.css('width',_size * _distance);
 			}
@@ -101,148 +115,17 @@
                 });
             }
             var $lists = $this.find("." + options.contentCls);
-            //执行默认行为
-			slide(false);	//默认选中状态
-            if (options.auto) {
-                start();
-				$this.bind({
-					'mouseover':stop,
-					'mouseout':start
-				});
-            }
-			$this.bind({
-				'mouseover':function(){
-					$(this).addClass("hover");
-				},
-				'mouseout':function(){
-					$(this).removeClass("hover");
-				}
-			});			
-            //事件绑定
-			$prev.bind({
-				'click':prev,
-				'mouseover':function(){
-					$(this).addClass("hover");
-				},
-				'mouseout':function(){
-					$(this).removeClass("hover");
-				}
-			});
-			$next.bind({
-				'click':next,
-				'mouseover':function(){
-					$(this).addClass("hover");
-				},
-				'mouseout':function(){
-					$(this).removeClass("hover");
-				}
-			});
-			if($this[0].addEventListener&&options.touchable){
-				$this[0].addEventListener("touchstart", touchStart);
-				$this[0].addEventListener("touchmove", touchMove);
-				$this[0].addEventListener("touchend", touchEnd);
-			}
-            $window.resize(window_resize); //当窗体大小改变时，重新计算相关参数
-            //触摸开始
-            function touchStart(e) {
-                e = e || window.event;
-                stopBubble(e);
-                stop();
-                _start = {
-                    pageX: e.changedTouches[0].pageX,
-                    pageY: e.changedTouches[0].pageY
-                };
-                _position.change1 = _param=="left"?$list1.position().left:$list1.position().top;
-				if (options.inEndEffect == "cycle") {	
-                    _position.change2 = _param=="left"?$list2.position().left:$list2.position().top;
-                }
-            }
-            //触碰移动
-            function touchMove(e) {
-                e = e || window.event;
-                stopBubble(e);
-                var current = {
-                    pageX: e.changedTouches[0].pageX,
-                    pageY: e.changedTouches[0].pageY
-                };
-                var move = options.direction=="x"?current.pageX - _start.pageX:current.pageY - _start.pageY;//移动距离触发点的距离
-                var steps = Math.ceil(Math.abs(move / _distance));	//移动中跳过的帧数
-                if (options.direction=="x"&&Math.abs(current.pageY - _start.pageY) < Math.abs(move)||options.direction=="y") {	//chrome移动版下，默认事件与自定义事件的冲突
-                    stopDefault(e);
-                    if (options.inEndEffect == "cycle") {
-                        if (move > 0) {  //手指向右滑
-                            if (_index - steps < 0) {	//是否置换
-                                _position.change2 = -(_index + _size) * _distance;
-								$list2.css(_param, _position.change2 + 'px');
-                                $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-                                _position.change1 = [_position.change2, _position.change2 = _position.change1][0];
-                                _index += _size;
-                            }
-                        } else {	//手指向左滑
-                            if (_index + steps > _size) {
-                                _position.change1 = (2*_size - _index) * _distance;
-								$list1.css(_param, _position.change1 + 'px');
-                                $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-                                _position.change1 = [_position.change2, _position.change2 = _position.change1][0];
-                                _index -= _size;
-                            }
-                        }
-						$list1.css(_param, _position.change1 + move);
-						$list2.css(_param, _position.change2 + move);
-                    } else {
-                        if (_index === 0 && move > 0 || _index === _size - _view && move < 0) {  //到达尽头时移动受阻
-                            move *= 0.25;
-                        }
-						$list1.css(_param, _position.change1 + move);
-                    }
-                }
-            }
-            //触碰结束
-            function touchEnd(e) {
-                e = e || window.event;
-                stopBubble(e);
-                if (options.auto) {
-                    start();
-                }
-                var current = {
-                    pageX: e.changedTouches[0].pageX,
-                    pageY: e.changedTouches[0].pageY
-                };
-                var move = options.direction=="x"?current.pageX - _start.pageX:current.pageY - _start.pageY;
-                var times = Math.abs(move / _distance);
-                var steps = times - Math.floor(times) > options.sensitivity ? Math.ceil(times) : Math.floor(times);
-                if (steps) {										//如果判定移动了一定距离
-                    if (options.inEndEffect == "cycle") {
-                        if (move > 0) {
-                            _index -= steps;
-                        } else {
-                            _index += steps;
-                        }
-                    } else {
-                        if (move > 0) {
-                            if (_index) {
-                                _index -= _index > steps ? steps : _index;
-                            }
-                        } else {
-                            var lastindex = _size - _index - _view;
-                            if (lastindex) {
-                                _index += lastindex > steps ? steps : lastindex;
-                            }
-                        }
-                    }
-                }
-                slide();
-            }
+            /****** 共有方法 ******/
             //返回上一帧
-            function prev() {
+            _api.prev = function() {
                 var status = {
                     index: _index,
                     count: _size,
                     destination: "prev"
                 };
-				if(_isAnimated[0]||_isAnimated[1]){
-					return false;
-				}
+                if(_isAnimated[0]||_isAnimated[1]){
+                    return false;
+                }
                 if (options.beforeMove(status) !== false) {
                     switch (options.inEndEffect) {
                         case "switch":
@@ -254,7 +137,7 @@
                             break;
                         case "cycle":
                             if (_index - options.steps < 0) {
-								$list2.css(_param,- (_size+_index) * _distance + 'px');
+                                $list2.css(_param,- (_size+_index) * _distance + 'px');
                                 $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
                                 _index += _size - options.steps;
                             } else {
@@ -270,15 +153,15 @@
                 }
             }
             //返回下一帧
-            function next() {
+            _api.next = function() {
                 var status = {
                     index: _index,
                     count: _size,
                     destination: "next"
                 };
-				if(_isAnimated[0]||_isAnimated[1]){
-					return false;
-				}
+                if(_isAnimated[0]||_isAnimated[1]){
+                    return false;
+                }
                 if (options.beforeMove(status) !== false) {
                     switch (options.inEndEffect) {
                         case "switch":
@@ -302,40 +185,195 @@
                 }
             }
             //开始播放
-            function start() {
-                stop();
-                _hander = setInterval(next, options.delay);
+            _api.start = function() {
+                _api.stop();
+                _hander = setInterval(_api.next, options.delay);
             }
             //停止播放
-            function stop() {
+            _api.stop = function() {
                 if (_hander) {
                     clearInterval(_hander);
                 }
-            }
-            //重置参数
-            function window_resize(){
+            } 
+            //设置当前帧
+            _api.setIndex = function(index,isAnimate){
+                _index = index%_size;
+                slide(isAnimate);
+            };
+            //窗口变化
+            _api.resize = function(){
                 if(options.fullScreen){
                     $item.width(Math.floor($this.width()));
-                }                 
+                }
                 if(options.direction=="x"){
-					_distance = $item.width() + parseInt($item.css('margin-left')) + parseInt($item.css('margin-right')) + parseInt($item.css('padding-left')) + parseInt($item.css('padding-right'))+parseInt($item.css('border-right'))+parseInt($item.css('border-right'));
-				}else{
-					_distance = $item.height() + parseInt($item.css('margin-top')) + parseInt($item.css('margin-bottom')) + parseInt($item.css('padding-top')) + parseInt($item.css('padding-bottom'))+parseInt($item.css('border-top'))+parseInt($item.css('border-bottom'));
-				}
+                    _distance = $item.width() + parseInt($item.css('margin-left')) + parseInt($item.css('margin-right')) + parseInt($item.css('padding-left')) + parseInt($item.css('padding-right'))+parseInt($item.css('border-left-width'))+parseInt($item.css('border-right-width'));
+                }else{
+                    _distance = $item.height() + parseInt($item.css('margin-top')) + parseInt($item.css('margin-bottom')) + parseInt($item.css('padding-top')) + parseInt($item.css('padding-bottom'))+parseInt($item.css('border-top-width'))+parseInt($item.css('border-bottom-width'));
+                }
+                _inner = _size * _distance;
+                _outer = options.direction=='x'?$this.width():$this.height();
+                _view = options.view || parseInt(_outer / _distance)||1;   //可视的帧数
                 if(_param=="left"){
                     $lists.css('width',_size * _distance);
                 }
                 slide(false);
+            };
+            //执行默认行为
+			slide(false);	//默认选中状态
+            if (options.auto) {
+                _api.start();
+				$this.bind({
+					'mouseover':_api.stop,
+					'mouseout':_api.start
+				});
+            }
+			$this.bind({
+				'mouseover':function(){
+					$(this).addClass("hover");
+				},
+				'mouseout':function(){
+					$(this).removeClass("hover");
+				}
+			});			
+            //事件绑定
+			$prev.bind({
+				'click':_api.prev,
+				'mouseover':function(){
+					$(this).addClass("hover");
+				},
+				'mouseout':function(){
+					$(this).removeClass("hover");
+				}
+			});
+			$next.bind({
+				'click':_api.next,
+				'mouseover':function(){
+					$(this).addClass("hover");
+				},
+				'mouseout':function(){
+					$(this).removeClass("hover");
+				}
+			});
+			if($this[0].addEventListener&&options.touchable){
+				$this[0].addEventListener("touchstart", touchStart,false);
+				$this[0].addEventListener("touchmove", touchMove,false);
+				$this[0].addEventListener("touchend", touchEnd,false);
+			}
+            window.onresize = _api.resize;
+            getApi(_api);
+            //触摸开始
+            function touchStart(e) {
+                _startTime = new Date();
+                stopBubble(e);
+                _api.stop();
+                _start = {
+                    pageX:e.touches[0].pageX,
+                    pageY:e.touches[0].pageY
+                };
+                _position.change1 = _param=="left"?$list1.position().left:$list1.position().top;
+				if (options.inEndEffect == "cycle") {	
+                    _position.change2 = _param=="left"?$list2.position().left:$list2.position().top;
+                }
+            }
+            //触碰移动
+            function touchMove(e) {
+                stopBubble(e);
+                if(options.isStopDefault){
+                    stopDefault(e);
+                }
+                var current = {
+                    pageX:e.touches[0].pageX,
+                    pageY:e.touches[0].pageY
+                };
+                var delta = {
+                    'x': current.pageX - _start.pageX,
+                    'y':current.pageY - _start.pageY
+                }
+                var move = delta[options.direction];  //移动距离触发点的距离
+                if(!_touch_direction){                //根据第一次移动向量判断方向
+                    _touch_direction = Math.abs(delta.y) < Math.abs(delta.x)?'x':'y';
+                }
+                var direction = Math.abs(delta.y) < Math.abs(delta.x)?'x':'y';
+                var steps = Math.ceil(Math.abs(move / _distance));	//移动中跳过的帧数
+                if(direction==_touch_direction){    //过滤非移动方向上的量,防止抖动
+                    if (options.direction=='x'&&_touch_direction=='x'||options.direction=='y') {  //chrome移动版下，默认事件与自定义事件的冲突
+                        stopDefault(e);
+                        if (options.inEndEffect == "cycle") {
+                            if (move > 0) {  //手指向右滑
+                                if (_index - steps < 0) {	//是否置换
+                                    _position.change2 = -(_index + _size) * _distance;
+    								$list2.css(_param, _position.change2 + 'px');
+                                    $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
+                                    _position.change1 = [_position.change2, _position.change2 = _position.change1][0];
+                                    _index += _size;
+                                }
+                            } else {	//手指向左滑
+                                if (_index + steps > _size) {
+                                    _position.change1 = (2*_size - _index) * _distance;
+    								$list1.css(_param, _position.change1 + 'px');
+                                    $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
+                                    _position.change1 = [_position.change2, _position.change2 = _position.change1][0];
+                                    _index -= _size;
+                                }
+                            }
+    						$list1.css(_param, _position.change1 + move);
+    						$list2.css(_param, _position.change2 + move);
+                        } else {
+                            if (_index === 0 && move > 0 || _index === _size - _view && move < 0) {  //到达尽头时移动受阻
+                                move *= 0.25;
+                            }
+    						$list1.css(_param, _position.change1 + move);
+                        }
+                    }
+                }
+            }
+            //触碰结束
+            function touchEnd(e) {
+                var endTime = new Date();
+                _touch_direction = null;
+                stopBubble(e);
+                if (options.auto) {
+                    _api.start();
+                }
+                var current = {
+                    pageX: e.changedTouches[0].pageX,
+                    pageY: e.changedTouches[0].pageY
+                };
+                var move = options.direction=="x"?current.pageX - _start.pageX:current.pageY - _start.pageY;
+                var times = Math.abs(move / _distance);
+                var steps = (times - Math.floor(times) > options.sensitivity)||endTime-_startTime<250&&Math.abs(move)>10? Math.ceil(times) : Math.floor(times);
+                if (steps) {										//如果判定移动了一定距离
+                    if (options.inEndEffect == "cycle") {
+                        if (move > 0) {
+                            _index -= steps;
+                        } else {
+                            _index += steps;
+                        }
+                    } else {
+                        if (move > 0) {
+                            if (_index) {
+                                _index -= _index > steps ? steps : _index;
+                            }
+                        } else {
+                            var lastindex = _size - _index - _view;
+                            if (lastindex) {
+                                _index += lastindex > steps ? steps : lastindex;
+                            }
+                        }
+                    }
+                }
+                slide(true,200);
             }
             //移动
-            function slide(animate) {
-				var duration = animate !=false ? options.duration :0; //判断滑块是否需要移动动画
+            function slide(animate,s_duration) {
+				var duration = animate !=false ? (s_duration||options.duration) :0; //判断滑块是否需要移动动画
 				var params = {};
                 $nav_list.eq(_index % _size).addClass(options.activeTriggerCls).siblings().removeClass(options.activeTriggerCls);	//导航选中
 				params = _param=="left"?{'left': -_index * _distance}:{'top': -_index * _distance};
 				_isAnimated [0] = true;
 				$list1.animate(params,{
 					'duration':duration,
+                    'easing':options.easing,
 					'complete':function() {
 						_isAnimated [0] = false;
 						var status = {
@@ -353,6 +391,7 @@
 					_isAnimated [1] = true;
 					$list2.animate(params,{
 						'duration':duration,
+                        'easing':options.easing,
 						'complete':function() {
 							_isAnimated [1] = false;
 							if (_index >= _size) {
@@ -364,6 +403,7 @@
                     });
                 }
             }
+
         });
     };
     //工具函数
@@ -382,4 +422,4 @@
         }
         return false; 
     }
-})(Zepto||jQuery);
+})(Zepto);

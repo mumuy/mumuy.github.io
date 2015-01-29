@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>silder</title>
+		<link rel="stylesheet" type="text/css" href="../public/cssreset-min.css">
+		<link rel="stylesheet" type="text/css" href="../public/common.css">
+		<style type="text/css">
+			.slider{
+				position: relative;
+				overflow: hidden;
+				height: 150px;
+				margin:0 auto 10px;
+			}
+			.slider .prev,.slider .next{
+				display: block;
+				position: absolute;
+				width: 20px;
+				height: 118px;
+				background: #ccc;
+				border:1px solid #ccc;
+			}
+			.slider4 .disable{
+				background:#fff;
+			}
+			.slider .prev{
+				left:0;
+			}
+			.slider .next{
+				right:0;
+			}
+			.slider .content li{
+				float: left;
+				width: 160px;
+				height: 120px;
+				background: #ccc;
+			}
+			.slider .nav{
+				margin: 3px 0;
+				text-align:center;
+			}
+			.slider .nav li{
+				display:inline-block;
+				width:24px;
+				height:24px;
+				background: #ccc;
+				margin-right:5px;
+			}
+			.slider .nav li.active{background:#ff0;}
+
+			.style1{
+				width:960px;
+			}
+			.style1 .container{
+				width: 900px;
+				height: 120px;
+				margin: 0 30px;
+				overflow: hidden;
+			}
+			.slider1 .content li{
+				margin-right:10px;
+			}
+		</style>
+		<script type="text/javascript" src="../public/zepto.js"></script>
+		<script type="text/javascript" src="../code/zepto.slider.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="slider style1 slider1">
+				<span class="prev"></span>
+				<span class="next"></span>
+				<div class="container">
+					<ul class="content">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+					</ul>
+				</div>
+			</div>
+			<div class="code">
+				<p>$(".slider1").slider({inEndEffect:'cycle',fullScreen:false});</p>
+			</div>
+			<script type="text/javascript">
+				$(".slider1").slider({inEndEffect:'cycle',fullScreen:false});
+			</script>
+		</div>
+	</body>
+<html>
