@@ -35,16 +35,17 @@
 			var _api = {};
 			options.triggerType += options.triggerType === "mouse" ? "enter" : "";  //使用mouseenter防止事件冒泡
 			//函数
-			_api.select = function(i){
+			_api.select = function(i,animate){
+				var animate = animate==false?animate:options.animate;
 				if(options.multiple){
-					if(options.animate){
+					if(animate){
 						$panels.eq(i).slideToggle(options.duration);
 					}else{
 						$panels.eq(i).toggle(options.duration);
 					}
 					$triggers.eq(i).toggleClass(options.activeCls);
 				}else{
-					if(options.animate){
+					if(animate){
 						$panels.not(':eq('+i+')').slideUp(options.duration);
 						$panels.eq(i).slideDown(options.duration);						
 					}else{
@@ -55,8 +56,7 @@
 				}
 			}
             //初始化
-			$panels.hide().eq(options.activeIndex).show(); //默认选中状态
-			$triggers.eq(options.activeIndex).addClass(options.activeCls);
+			_api.select(options.activeIndex,false);
 			$triggers.bind(options.triggerType, function(e) { //事件绑定
                 var i = $triggers.index($(this));
                 var status = {
