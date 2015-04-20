@@ -401,23 +401,28 @@
                 }
                 var endTime = new Date();
                 var distance = _distance[_index+1]-_distance[_index]; //帧长
-                var move = 0;                                         //当前帧移动距离
+                var move = 0;                                        //当前帧移动距离
+                var isMove = false;                                   //点击或移动判断
                 if(_move>0){
                     move = _distance[_index+1]+_position[0];
-                    if(move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10){
+                    isMove = Math.abs(move)>10;
+                    if(move/distance>options.sensitivity||endTime-_startTime<250&&isMove){
                     }else{
                         _index++;
                     }
                 }else{
                     move = -_distance[_index]-_position[0];
-                    if(move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10){
+                    isMove = Math.abs(move)>10;
+                    if(move/distance>options.sensitivity||endTime-_startTime<250&&isMove){
                         _index++;
                     }                    
                 }
 				if(options.inEndEffect != "cycle"){
 					_index = Math.min(_size-1,_index);
 				}
-                slide(true,300);
+                if(isMove){
+                    slide(true,300);
+                }
             }
             //键盘处理
             function keyboard(e){

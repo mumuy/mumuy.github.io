@@ -19,8 +19,6 @@
             prevBtnCls: "prev",			//向前一步的class
             nextBtnCls: "next",			//向后一步的class
 			/* 动画相关 */
-			activeTriggerCls: "active",	//导航选中时的class
-			disableBtnCls: "disable",	//按键不可用时的class
             steps: 1,					//一步跳的帧数
             view: 0,					//可见区域的帧数
 			direction: "x",				//轮播的方向
@@ -28,7 +26,10 @@
             hasTriggers: true,			//是否含有导航触发点
 			triggerCondition:"*",		//触发点的条件(有时需排除一些节点)
             triggerType: "mouse",		//导航触发事件:"mouse"表鼠标移入时触发,"click"表示鼠标点击时触发
+            activeTriggerCls: "active",	//导航选中时的class
             activeIndex: 0, 			//默认选中帧的索引
+            activeLastIndex:0,          //默认选中的逆索引
+			disableBtnCls: "disable",	//按键不可用时的class
 			auto: false,				//是否自动播放
 			animate: true,				//是否使用动画滑动
 			delay: 3000,				//自动播放时停顿的时间间隔
@@ -67,7 +68,7 @@
 			}
             var _api = {};
             var _size = $item.length;	//帧数
-            var _index = options.activeIndex<0?_size + options.activeIndex:options.activeIndex;	//当前选中帧
+            var _index = parameter.activeLastIndex?_size + options.activeLastIndex:options.activeIndex;	//当前选中帧
             var _outer = options.direction=='x'?$this.width():$this.height(); //组件的外尺寸
             var _view = options.view || parseInt(_outer / _distance);	//可视的帧数
             var _start = {};	//触碰的起点坐标
@@ -266,8 +267,8 @@
                 stopBubble(e);
                 _api.stop();
                 _start = {
-                    pageX:e.touches[0].pageX,
-                    pageY:e.touches[0].pageY
+                    pageX:e.changedTouches[0].pageX,
+                    pageY:e.changedTouches[0].pageY
                 };
                 _position.change1 = _param=="left"?$list1.position().left:$list1.position().top;
 				if (options.inEndEffect == "cycle") {	
@@ -281,8 +282,8 @@
                     stopDefault(e);
                 }
                 var current = {
-                    pageX:e.touches[0].pageX,
-                    pageY:e.touches[0].pageY
+                    pageX:e.changedTouches[0].pageX,
+                    pageY:e.changedTouches[0].pageY
                 };
                 var delta = {
                     'x': current.pageX - _start.pageX,
