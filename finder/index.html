@@ -210,10 +210,10 @@
 				var finded = false;
 				var length_x  = options.map.length;
 				var steps = new Array(length_x); //步骤的映射
-				for(var x =0;x<length_x;x++){
+				for(var x=length_x;x--;){
 					var length_y = options.map[x].length;
 					steps[x] = new Array(length_y);
-					for(var y=0;y<length_y;y++){
+					for(var y=length_y;y--;){
 						steps[x][y] = 0;
 					}
 				}
@@ -239,7 +239,7 @@
 						next(current,[x-1,y]);
 						next(current,[x,y-1]);
 					}
-					if(!finded&&new_list.length>0){
+					if(!finded&&new_list.length){
 						arguments.callee(new_list);
 					}
 				})([options.start]);
