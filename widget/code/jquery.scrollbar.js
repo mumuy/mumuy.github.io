@@ -38,33 +38,11 @@
 			var _cursor_position = 0;															//鼠标的位置
 			var _start = {};																		//鼠标的起始位置
 			var isMouseDown = false;
+			var _track_length,_content_length,_box_length,_thumb_length,_distance,_room;
 			/*样式初始化*/
 			$this.css({'position':'relative','overflow':'hidden'});
 			$content.css({'position':'absolute'});
-			if(options.direction=="x"){
-				var width = 0;
-				$content.children().each(function(){
-					var $this = $(this);
-					$this.css({'width':$this.width()+'px'});
-					width +=  $this.outerWidth(true);
-				});
-				$content.css({'width':width+'px'});
-			}
 			$thumb.css({'position':'absolute'});
-			$track.show();
-			var _track_length = options.direction=="y"?$track.height():$track.width();			//滚动条的长度
-			var _content_length = options.direction=="y"?$content.height():$content.width();	//内容区的长度
-			var _box_length = options.direction=="y"?$this.height():$this.width(); 				//组件的外长度
-			var _thumb_length =_thumb_length = _box_length/_content_length*_track_length;		//滑块的长度
-			var _distance = _track_length-_thumb_length;										//滚动条剩余活动空间
-			var _room = _content_length - _box_length;											//内容区剩余滑动空间
-			if(_content_length>_box_length){						
-				$thumb.css(options.direction=="y"?'height':'width',_thumb_length+'px');
-			}else{
-				$track.hide();
-			}
-			//获得滚轴和内容区的转换比
-			_api.ratio = _distance/_room;
 			/****** 共有方法 ******/
 			//滚动到指定位置
 			_api.slide = function(move){
@@ -73,7 +51,7 @@
 				}else if(move<0){
 					move = 0;
 				}
-				if(_room>0){
+				if(_room>=0){
 					$thumb.css(options.direction=="y"?'top':'left', move*_api.ratio + "px");
 					$content.css(options.direction=="y"?'top':'left', -move + "px");
 				}
@@ -94,14 +72,14 @@
 				_content_length = options.direction=="y"?$content.height():$content.width();
 				_box_length = options.direction=="y"?$this.height():$this.width();
 				_thumb_length = _box_length/_content_length*_track_length;
-				_distance = _track_length-_thumb_length;						
-				_room = _content_length - _box_length;	
+				_distance = Math.max(_track_length-_thumb_length,0);						
+				_room = Math.max(_content_length-_box_length,0);	
 				if(_content_length>_box_length){						
 					$thumb.css(options.direction=="y"?'height':'width',_thumb_length+'px');
 				}else{
 					$track.hide();
 				}
-				_api.ratio = _distance/_room;
+				_api.ratio = _distance+_room?_distance/_room:0;
 				if(options.autoReset){
 					_api.slide(0);
 				}
@@ -172,6 +150,7 @@
 				isTouch = false;
 			}
 			//初始化
+			_api.resize();
 			_api.slide(options.slide);
 			//事件绑定
 			$track.on({
