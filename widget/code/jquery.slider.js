@@ -50,7 +50,7 @@
             //对象定义
             var $this = $(this);
             var $list1 = $this.find("." + options.contentCls);
-            var $item = $list1.children();
+			var $lists = $list1;
             var $prev = $this.find("." + options.prevBtnCls);
             var $next = $this.find("." + options.nextBtnCls);
             var $nav_list = $();
@@ -58,7 +58,7 @@
             var _self = this;
             var _api = {};              //对外的函数接口
             var _distance = [];         //单帧距离起始帧位置
-            var _size = $item.length;   //帧数
+            var _size = $list1.children().length;   //帧数
             var _index = options.activeIndex<0?_size + options.activeIndex:options.activeIndex; //当前选中帧
             var _outer = 0;             //组件的尺寸
             var _inner = 0;
@@ -75,9 +75,9 @@
             }
             if (options.inEndEffect === "cycle") {
                 var $list2 = $list1.clone().insertAfter($list1);
+				$lists = $list1.add($list2);
             }
-            var $lists = $this.find("." + options.contentCls);
-            $item = $lists.children();
+            var $items = $lists.children();
             //节点添加
             if (options.hasTriggers) {  //是否存在导航
                 if (!$this.find("."+options.navCls).length) {   //使用children找不到
@@ -88,7 +88,7 @@
                     $this.append("<ul class='" + options.navCls + "'>" + list_str + "</ul>")
                 }
                 options.triggerType += options.triggerType === "mouse" ? "enter" : "";  //使用mouseenter防止事件冒泡
-                $nav_list =$this.find("."+options.navCls + " > " + options.triggerCondition).bind(options.triggerType, function(e) {
+                $nav_list = $this.find("."+options.navCls + " > " + options.triggerCondition).bind(options.triggerType, function(e) {
                     var index = $nav_list.index(this);
                     var status = {
                         index: _index,
@@ -220,9 +220,9 @@
                 _distance = [];
                 _inner = 0;
                 if(options.direction=='x'){
-                    $item.css('width','');
+                    $items.css('width','');
                     _outer = $outer.width();
-                    $item.each(function(i){
+                    $items.each(function(i){
                         var $li = $(this);
                         var width = Math.min($li.width(),_outer);
                         _distance.push(_inner);
@@ -236,9 +236,9 @@
                     }
                     $lists.css('width',_inner);
                 }else{
-                    $item.css('height','');
+                    $items.css('height','');
                     _outer = $outer.height();
-                    $item.each(function(i){
+                    $items.each(function(i){
                         var $li = $(this);
                         var height = Math.min($li.height(),_outer);
                         _distance.push(_inner);
