@@ -1,0 +1,26 @@
+var _data = [
+	{
+		'name':'infoQ',
+		'url':'http://www.infoq.com/cn/'
+	},
+	{
+		'name':'w3school',
+		'url':'http://www.w3school.com.cn/'
+	},
+	{
+		'name':'蓝色理想',
+		'url':'http://bbs.blueidea.com/'
+	},
+	{
+		'name':'博客园',
+		'url':'http://www.cnblogs.com/'
+	},
+	{
+		'name':'CSDN',
+		'url':'http://www.csdn.net/'
+	},
+	{
+		'name':'51cto.com',
+		'url':'http://www.51cto.com/'
+	}
+];
