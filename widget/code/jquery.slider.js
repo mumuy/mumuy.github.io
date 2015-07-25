@@ -50,7 +50,7 @@
             //对象定义
             var $this = $(this);
             var $list1 = $this.find("." + options.contentCls);
-			var $lists = $list1;
+            var $lists = $list1;
             var $prev = $this.find("." + options.prevBtnCls);
             var $next = $this.find("." + options.nextBtnCls);
             var $nav_list = $();
@@ -65,7 +65,7 @@
             var _start = {};            //触碰的起点坐标
             var _position = [];         //当前触碰点坐标
             var _startTime = 0;         //移动起始时间
-			var _touch_direction = null;//手势移动方向
+            var _touch_direction = null;//手势移动方向
             var _move = 0;              //移动向量(正负方向)
             var _hander = null;         //自动播放的函数句柄
             var _param = options.direction=='x'?'left':'top';   //移动控制参数,方向为x控制left,方向为y控制top 
@@ -75,7 +75,7 @@
             }
             if (options.inEndEffect === "cycle") {
                 var $list2 = $list1.clone().insertAfter($list1);
-				$lists = $list1.add($list2);
+                $lists = $list1.add($list2);
             }
             var $items = $lists.children();
             //节点添加
@@ -342,60 +342,60 @@
                 var d_x = current.pageX - _start.pageX;
                 var d_y = current.pageY - _start.pageY;
                 _move = options.direction=="x"?d_x:d_y;//移动距离触发点的距离
-				if(!_touch_direction){				  //根据第一次移动向量判断方向
-					_touch_direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
-				}
-				var direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
-				if(direction==_touch_direction&&_inner>=_outer){	//过滤非移动方向上的量,防止抖动;内容小于外框时不移动
-					if (options.direction=='x'&&_touch_direction=='x'||options.direction=='y') {  //chrome移动版下，默认事件与自定义事件的冲突
-						e.preventDefault();
-						//计算
-						if (_move > 0) {  //手指向右滑
-							if (_position[0]>0) {   //是否置换
-								if(options.inEndEffect=="cycle"){
-									_index = _size-1;
-									_position[1] = _position[1]-2*_distance[_size];
-									$list2.css(_param,_position[1] + 'px');
-									$list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-									_position[0] = [_position[1], _position[1] = _position[0]][0];
-								}else{
-									_move *= 0.25;
-								}
-							}else if(Math.abs(_position[0])<_distance[_index]){
-								_index--;
-							}
-						} else {    //手指向左滑
-							if (_index == _size) {   //是否置换
-								if(options.inEndEffect=="cycle"){
-									_index = 0;
-									_position[0] = _position[0]+2*_distance[_size];
-									$list1.css(_param, _position[0] + 'px');
-									$list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-									_position[0] = [_position[1], _position[1] = _position[0]][0];                                        
-								}else{
-									_move *= 0.25;
-								}
-							}else if(Math.abs(_position[0])>=_distance[_index+1]){
-								_index++;
-							}
-							if(options.inEndEffect!="cycle"&&_distance[_size]-_distance[_index]<=_outer){
-								_move *= 0.25;
-							}                         
-						}
-						//移动
-						_position[0] = _position[0] + _move;
-						$list1.css(_param, _position[0]);
-						if (options.inEndEffect == "cycle") {
-							_position[1] = _position[1] + _move;
-							$list2.css(_param, _position[1]);
-						}
-						_start = current;       //实时更新坐标，解决list衔接处来回切换的问题
-					}				
-				}
+                if(!_touch_direction){                //根据第一次移动向量判断方向
+                    _touch_direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
+                }
+                var direction = Math.abs(d_y) < Math.abs(d_x)?'x':'y';
+                if(direction==_touch_direction&&_inner>=_outer){    //过滤非移动方向上的量,防止抖动;内容小于外框时不移动
+                    if (options.direction=='x'&&_touch_direction=='x'||options.direction=='y') {  //chrome移动版下，默认事件与自定义事件的冲突
+                        e.preventDefault();
+                        //计算
+                        if (_move > 0) {  //手指向右滑
+                            if (_position[0]>0) {   //是否置换
+                                if(options.inEndEffect=="cycle"){
+                                    _index = _size-1;
+                                    _position[1] = _position[1]-2*_distance[_size];
+                                    $list2.css(_param,_position[1] + 'px');
+                                    $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
+                                    _position[0] = [_position[1], _position[1] = _position[0]][0];
+                                }else{
+                                    _move *= 0.25;
+                                }
+                            }else if(Math.abs(_position[0])<_distance[_index]){
+                                _index--;
+                            }
+                        } else {    //手指向左滑
+                            if (_index == _size) {   //是否置换
+                                if(options.inEndEffect=="cycle"){
+                                    _index = 0;
+                                    _position[0] = _position[0]+2*_distance[_size];
+                                    $list1.css(_param, _position[0] + 'px');
+                                    $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
+                                    _position[0] = [_position[1], _position[1] = _position[0]][0];                                        
+                                }else{
+                                    _move *= 0.25;
+                                }
+                            }else if(Math.abs(_position[0])>=_distance[_index+1]){
+                                _index++;
+                            }
+                            if(options.inEndEffect!="cycle"&&_distance[_size]-_distance[_index]<=_outer){
+                                _move *= 0.25;
+                            }                         
+                        }
+                        //移动
+                        _position[0] = _position[0] + _move;
+                        $list1.css(_param, _position[0]);
+                        if (options.inEndEffect == "cycle") {
+                            _position[1] = _position[1] + _move;
+                            $list2.css(_param, _position[1]);
+                        }
+                        _start = current;       //实时更新坐标，解决list衔接处来回切换的问题
+                    }               
+                }
             }
             //触碰结束
             function touchEnd(e) {
-				_touch_direction = null;
+                _touch_direction = null;
                 if (options.auto) {
                     _api.start();
                 }
@@ -417,9 +417,9 @@
                         _index++;
                     }                    
                 }
-				if(options.inEndEffect != "cycle"){
-					_index = Math.min(_size-1,_index);
-				}
+                if(options.inEndEffect != "cycle"){
+                    _index = Math.min(_size-1,_index);
+                }
                 if(isMove){
                     slide(true,300);
                 }
@@ -435,19 +435,18 @@
                         break;
                 }
             }
-            //初始化  
-            _api.resize();  //样式初始化  
-            slide(false);   //默认选中状态
+            //是否自动播放
             if (options.auto) {
                 _api.start();
                 $this.hover(_api.stop, _api.start);
             }
+            //鼠标悬停
             $this.hover(function(){
                 $this.addClass(options.hoverCls);
             },function(){
                 $this.removeClass(options.hoverCls);
             });
-            //事件绑定
+            //事件绑定-向前向后导航
             if(options.pointerType === "click"){
                 $prev.on("click",_api.prev).hover(function() {
                     $prev.toggleClass(options.hoverCls);
@@ -479,23 +478,28 @@
                     }
                 });
             }
+            //手势操作
             if(options.touchable){
                 $this.on({
-					"touchstart":touchStart,
-					"touchmove":touchMove,
-					"touchend":touchEnd
-				});
+                    "touchstart":touchStart,
+                    "touchmove":touchMove,
+                    "touchend":touchEnd
+                });
             }
             $window.resize(_api.resize); //当窗体大小改变时，重新计算相关参数
+            //键盘控制
             if(options.keyboardAble){
                 $window.keydown(keyboard);
             }
+            //鼠标中轴控制
             if(options.scrollable){
                 if(document.addEventListener){
                     _self.addEventListener('DOMMouseScroll',scroll,false);
                 }
                 _self.onmousewheel = scroll;                
             }
+            //初始化  
+            _api.resize();
             getApi(_api);
         });
     };
