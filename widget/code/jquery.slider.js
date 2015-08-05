@@ -372,14 +372,12 @@
                                     $list1.css(_param, _position[0] + 'px');
                                     $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
                                     _position[0] = [_position[1], _position[1] = _position[0]][0];                                        
-                                }else{
-                                    _move *= 0.25;
                                 }
                             }else if(Math.abs(_position[0])>=_distance[_index+1]){
                                 _index++;
                             }
                             if(options.inEndEffect!="cycle"&&_distance[_size]-_distance[_index]<=_outer){
-                                _move *= 0.25;
+								_move *= 0.25;
                             }                         
                         }
                         //移动
