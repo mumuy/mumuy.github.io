@@ -259,13 +259,13 @@
                     switch(options.inEndEffect){
                         case "switch":
                             _index %= _size;    //索引范围检测
-                            $nav_list.removeClass(options.activeTriggerCls).eq(_index).addClass(options.activeTriggerCls);   //导航选中
                             if(_distance[_size]-_distance[_index]<_outer){
                                 params = _param=="left"?{'left': _outer-_inner}:{'top': _outer-_inner};
                                 for(_index=_size;_index&&_distance[_size]-_distance[_index-1]<=_outer;_index--);
                             }else{
                                 params = _param=="left"?{'left': - _distance[_index]}:{'top': - _distance[_index]};
                             }
+                            $nav_list.removeClass(options.activeTriggerCls).eq(_index).addClass(options.activeTriggerCls);   //导航选中
                             $list1.stop().animate(params,{easing:options.easing, duration: duration, complete:function() {
                                 var status = {
                                     index: _index,
@@ -405,24 +405,21 @@
                 var isMove = false;                                   //点击或移动判断
                 if(_move>0){
                     move = _distance[_index+1]+_position[0];
-                    isMove = Math.abs(move)>10;
-                    if(move/distance>options.sensitivity||endTime-_startTime<250&&isMove){
-                    }else{
+                    isMove = move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10;
+                    if(!isMove){
                         _index++;
                     }
                 }else{
                     move = -_distance[_index]-_position[0];
-                    isMove = Math.abs(move)>10;
-                    if(move/distance>options.sensitivity||endTime-_startTime<250&&isMove){
+                    isMove = move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10;
+                    if(isMove){
                         _index++;
                     }                    
                 }
                 if(options.inEndEffect != "cycle"){
                     _index = Math.min(_size-1,_index);
                 }
-                if(isMove){
-                    slide(true,300);
-                }
+                slide(true,300);
             }
             //键盘处理
             function keyboard(e){
