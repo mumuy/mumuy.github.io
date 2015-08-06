@@ -98,7 +98,7 @@
                     };
                     if(options.beforeEvent(status) !== false){
                         _index = index;
-                        slide(options.animate);                        
+                        slide(options.animate);
                     }
                 });
             }
@@ -210,9 +210,9 @@
             //设置动画时长
             _api.setDuration = function(duration){
                 options.duration = duration;
-            };          
+            };
             //获取当前帧
-            _api.getIndex = function(index){
+            _api.getIndex = function(){
                 return _index;
             };
             //窗口变化
@@ -318,12 +318,12 @@
             function scroll(e){
                 e = e||window.event;
                 stopBubble(e);
-                stopDefault(e);                
+                stopDefault(e);
                 if(!$list1.is(':animated')){ //防止滚动太快动画没完成
                     var delta = -e.wheelDelta/120||e.detail/3;
-                    delta>0?_api.next(e):_api.prev(e);                      
-                }               
-            }       
+                    delta>0?_api.next(e):_api.prev(e);
+                }
+            }
             //触摸开始
             function touchStart(e) {
                 _startTime = new Date();
@@ -371,14 +371,14 @@
                                     _position[0] = _position[0]+2*_distance[_size];
                                     $list1.css(_param, _position[0] + 'px');
                                     $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-                                    _position[0] = [_position[1], _position[1] = _position[0]][0];                                        
+                                    _position[0] = [_position[1], _position[1] = _position[0]][0];
                                 }
                             }else if(Math.abs(_position[0])>=_distance[_index+1]){
                                 _index++;
                             }
                             if(options.inEndEffect!="cycle"&&_distance[_size]-_distance[_index]<=_outer){
-								_move *= 0.25;
-                            }                         
+                                _move *= 0.25;
+                            }
                         }
                         //移动
                         _position[0] = _position[0] + _move;
@@ -388,7 +388,7 @@
                             $list2.css(_param, _position[1]);
                         }
                         _start = current;       //实时更新坐标，解决list衔接处来回切换的问题
-                    }               
+                    }
                 }
             }
             //触碰结束
@@ -412,7 +412,7 @@
                     isMove = move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10;
                     if(isMove){
                         _index++;
-                    }                    
+                    }
                 }
                 if(options.inEndEffect != "cycle"){
                     _index = Math.min(_size-1,_index);
@@ -491,9 +491,9 @@
                 if(document.addEventListener){
                     _self.addEventListener('DOMMouseScroll',scroll,false);
                 }
-                _self.onmousewheel = scroll;                
+                _self.onmousewheel = scroll;
             }
-            //初始化  
+            //初始化
             _api.resize();
             getApi(_api);
         });
