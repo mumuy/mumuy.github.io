@@ -98,7 +98,7 @@
                     };
                     if(options.beforeEvent(status) !== false){
                         _index = index;
-                        slide(options.animate);
+                        slide(options.animate);                        
                     }
                 });
             }
@@ -161,9 +161,9 @@
                         for(var i=_index;i<2*_size&&_distance[i+1]-_distance[_index]<=_outer;i++);
                         _index = i;
                     }else{
+                        var lastindex = _size - _index - 1;
                         switch (options.inEndEffect) {
                             case "switch":
-                                var lastindex = _size - 1 - _index ;
                                 if (_distance[_size]-_distance[_index]>_outer) {
                                     _index += Math.min(step,lastindex);
                                 } else {
@@ -174,8 +174,7 @@
                                 _index += step; //索引值计算
                                 break;
                             default:
-                                var lastindex = _size - _index - 1;
-                                if (lastindex) {
+                                if (_distance[_size]-_distance[_index]>_outer) {
                                     _index += Math.min(step,lastindex);
                                 }
                         }
@@ -318,16 +317,15 @@
             function scroll(e){
                 e = e||window.event;
                 stopBubble(e);
-                stopDefault(e);
+                stopDefault(e);                
                 if(!$list1.is(':animated')){ //防止滚动太快动画没完成
                     var delta = -e.wheelDelta/120||e.detail/3;
-                    delta>0?_api.next(e):_api.prev(e);
-                }
-            }
+                    delta>0?_api.next(e):_api.prev(e);                      
+                }               
+            }       
             //触摸开始
             function touchStart(e) {
                 _startTime = new Date();
-                e.stopPropagation();
                 _api.stop();
                 _start = e.originalEvent.changedTouches[0];
                 _position[0] = $list1.position()[_param];
@@ -354,7 +352,7 @@
                             if (_position[0]>0) {   //是否置换
                                 if(options.inEndEffect=="cycle"){
                                     _index = _size-1;
-                                    _position[1] = _position[1]-2*_distance[_size];
+                                    _position[1] -= 2*_distance[_size];
                                     $list2.css(_param,_position[1] + 'px');
                                     $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
                                     _position[0] = [_position[1], _position[1] = _position[0]][0];
@@ -368,27 +366,27 @@
                             if (_index == _size) {   //是否置换
                                 if(options.inEndEffect=="cycle"){
                                     _index = 0;
-                                    _position[0] = _position[0]+2*_distance[_size];
+                                    _position[0] += 2*_distance[_size];
                                     $list1.css(_param, _position[0] + 'px');
                                     $list1 = [$list2, $list2 = $list1][0]; //两列表身份互换
-                                    _position[0] = [_position[1], _position[1] = _position[0]][0];
+                                    _position[0] = [_position[1], _position[1] = _position[0]][0];                                        
                                 }
                             }else if(Math.abs(_position[0])>=_distance[_index+1]){
                                 _index++;
                             }
                             if(options.inEndEffect!="cycle"&&_distance[_size]-_distance[_index]<=_outer){
                                 _move *= 0.25;
-                            }
+                            }                         
                         }
                         //移动
-                        _position[0] = _position[0] + _move;
+                        _position[0] += _move;
                         $list1.css(_param, _position[0]);
                         if (options.inEndEffect == "cycle") {
-                            _position[1] = _position[1] + _move;
+                            _position[1] += _move;
                             $list2.css(_param, _position[1]);
                         }
                         _start = current;       //实时更新坐标，解决list衔接处来回切换的问题
-                    }
+                    }               
                 }
             }
             //触碰结束
@@ -412,7 +410,7 @@
                     isMove = move/distance>options.sensitivity||endTime-_startTime<250&&Math.abs(move)>10;
                     if(isMove){
                         _index++;
-                    }
+                    }                    
                 }
                 if(options.inEndEffect != "cycle"){
                     _index = Math.min(_size-1,_index);
@@ -491,9 +489,9 @@
                 if(document.addEventListener){
                     _self.addEventListener('DOMMouseScroll',scroll,false);
                 }
-                _self.onmousewheel = scroll;
+                _self.onmousewheel = scroll;                
             }
-            //初始化
+            //初始化  
             _api.resize();
             getApi(_api);
         });
