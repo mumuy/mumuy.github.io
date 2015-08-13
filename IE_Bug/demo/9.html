@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>浮动元素3px间隔Bug</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.box{width:100px; height:50px;}
+			.box1{float:left;}
+			/* fixed */
+			#p1 .box2{float:left;}
+			#p2 .box1{margin-right:-3px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>浮动元素3px间隔Bug</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>发生在一个元素浮动，然后一个不浮动的元素自然上浮与之靠近会出现的3px的bug（在其他浏览器中重叠）</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="box box1"></div>
+						<div class="box box2"></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="box box1"></div>
+						<div class="box box2"></div>
+					</div>
+					<p><span>解决方案：</span>为右边的元素添加float:left;</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<div class="box box1"></div>
+						<div class="box box2"></div>
+					</div>
+					<p><span>解决方案：</span>使用hack暴力破解margin-left:-3px;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

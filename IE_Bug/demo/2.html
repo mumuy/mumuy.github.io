@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>双外边距浮动bug</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.box{width:100px; height:50px; float:left; margin:25px;}
+			/* fixed */
+			#p1 .box{display:inline;}
+			#p2 .box{position:absolute;}
+		</style>
+	</head>
+	<body>
+		<div class="container">			
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>双外边距浮动bug</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>使用float浮动容器，如果浮动容器具有margin值，则呈现margin-left值双倍情况。</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="box">margin:25px;</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="box">margin:25px;</div>
+					</div>
+					<p><span>解决方案：</span>在浮动元素上加上position: absolute;</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<div class="box">margin:25px;</div>
+					</div>
+					<p><span>解决方案：</span>在浮动元素上加上display:inline;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>图片与文本垂直对齐居中</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.box{width:400px; height:50px; line-height:50px; }
+			img{vertical-align:middle;}
+			/* fixed */
+			#p1 img{margin:14px 0;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>图片与文本垂直对齐居中</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>当图片与文本在一起，且图片由链接包含，设置行高无法水平居中</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="box">这是一段文字<a href="#"><img src="../images/b.gif" /></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="box">这是一段文字<a href="#"><img src="../images/b.gif" /></a></div>
+					</div>
+					<p><span>解决方案：</span>设置img的margin值，margin-top为(外容器高度-图片高度)/2</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

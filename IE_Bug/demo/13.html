@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>文本溢出BUG</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.test{zoom:1; overflow:hidden; width:504px;}
+			.box{height:20px;}
+			.box1{float:left; width:100px;}
+			.box2{float:right; width:400px;}
+			/* fixed */
+			#p2 .test{width:494px;}
+			#p2 .box1{width:90px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>文本溢出BUG（“谍影重重”、“一只猪的故事”）</h3>
+				<p><span>浏览器：</span>IE</p>
+				<p><span>描述：</span>造成此BUG的原因可能是多重混合的，如浮动，注释，宽高定义等等。并且注释条数越多，溢出的文本也会随之增多。</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="test">
+							<div class="box box1"></div>
+							<!-- 注释 -->
+							<div class="box box2">↓这就是多出来的那只猪</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="test">
+							<div class="box box1"></div>
+							<div class="box box2">↓这就是多出来的那只猪</div>
+						</div>
+					</div>
+					<p><span>解决方案：</span>删除两浮动元素间所有的注释</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<div class="test">
+							<div class="box box1"></div>
+							<div class="box box2">↓这就是多出来的那只猪</div>
+						</div>
+					</div>
+					<p><span>解决方案：</span>调整box1的宽度</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
