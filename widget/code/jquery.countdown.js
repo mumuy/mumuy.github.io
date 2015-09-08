@@ -23,7 +23,7 @@
 			options.starttime = parameter.starttime||$this.text();
 			if(isNaN(options.starttime)){
 				var start = getTimestamp(options.starttime);
-				var end = getTimestamp(options.endtime);							
+				var end = getTimestamp(options.endtime);
 			}else{
 				options.format = parameter.format||'s';
 				var start = options.starttime*1e3;
@@ -41,7 +41,7 @@
 			},options.time);
 		});
 		function getTimestamp(str){
-			return +new Date(str)||+new Date('1970 '+str);
+			return +new Date(str)||+new Date('1970/1/1 '+str);
 		}
 		function timeFormat(fmt,timestamp){
 			var date = new Date(timestamp);
@@ -54,11 +54,14 @@
 				"q+" : Math.floor((date.getMonth()+3)/3), //季度   
 				"S"  : date.getMilliseconds()             //毫秒   
 			};   
-			if(/(y+)/.test(fmt))   
-				fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));   
-			for(var k in o)   
-				if(new RegExp("("+ k +")").test(fmt))   
-					fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+			if(/(y+)/.test(fmt)){
+				fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));
+			}
+			for(var k in o){
+				if(new RegExp("("+ k +")").test(fmt)){
+					fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));  
+				}
+			}
 			return fmt;
 		}
 	}
