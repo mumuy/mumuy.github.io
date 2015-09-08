@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>countdown</title>
+		<link rel="stylesheet" type="text/css" href="../public/cssreset-min.css">
+		<link rel="stylesheet" type="text/css" href="../public/common.css">
+		<style type="text/css">
+			.count{
+				margin-bottom:15px;
+			}
+		</style>
+		<script type="text/javascript" src="../public/jquery.min.js"></script>
+		<script type="text/javascript" src="../code/jquery.countdown.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="count">
+				<p>#例子1# 12:30:50到12:30:30</p>
+				<p id="time1">12:30:50</p>
+			</div>
+			<div class="code">
+				<p>$('#time1').countdown({'endtime':'12:30:30'});</p>
+			</div>
+			<div class="count">
+				<p>#例子2# 60到5</p>
+				<p id="time2">60</p>
+			</div>
+			<div class="code">
+				<p>$('#time2').countdown({'endtime':5});</p>
+			</div>
+			<script>
+				$('#time1').countdown({'endtime':'12:30:30'});
+				$('#time2').countdown({'endtime':5});
+			</script>
+		</div>
+	</body>
+</html>
