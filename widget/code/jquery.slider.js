@@ -419,6 +419,9 @@
             }
             //键盘处理
             function keyboard(e){
+				if(options.direction=='y'){
+					e.which -= 1;
+				}
                 switch (e.which) {
                     case 37:
                         _api.prev(e);
