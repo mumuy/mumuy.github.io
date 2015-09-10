@@ -476,6 +476,28 @@
             }
             //手势操作
             if(options.touchable){
+				(function(){  //导航在内容内部的触碰纠正
+					var _s = 0;
+					function touchS(e){
+						_s = e.originalEvent.changedTouches[0];
+					}
+					function touchE(e){
+						var current = e.originalEvent.changedTouches[0];
+						var d_x = Math.abs(current.pageX - _s.pageX);
+						var d_y = Math.abs(current.pageY - _s.pageY);
+						if(d_x<5&d_y<5){
+							e.stopPropagation();
+						}
+					}
+					$prev.on({
+						'touchstart':touchS,
+						'touchend':touchE
+					});
+					$next.on({
+						'touchstart':touchS,
+						'touchend':touchE
+					});                        
+				})();
                 $this.on({
                     "touchstart":touchStart,
                     "touchmove":touchMove,
