@@ -60,10 +60,6 @@ var _data = [
 		'url':'http://www.aiyou.me/'		
 	},
 	{
-		'name':'凤凰旅游',
-		'url':'http://fashion.ifeng.com/travel/'		
-	},
-	{
 		'name':'中国国家地理',
 		'url':'http://www.dili360.com/'		
 	},
