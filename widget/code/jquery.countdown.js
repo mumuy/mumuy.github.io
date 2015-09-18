@@ -30,7 +30,7 @@
 				var end = options.endtime*1e3;
 			}
 			var hander = setInterval(function(){
-				start -= options.time;
+				start -= options.duration;
 				if(start<end){
 					clearInterval(hander);
 					options.countEnd(end);
