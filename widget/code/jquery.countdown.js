@@ -11,7 +11,7 @@
 			'format': 'hh:mm:ss',					//格式
 			'starttime': '',						//开始时间
 			'endtime': '',							//结束时间
-			'time': '1000',							//多久倒计时一次 单位：ms
+			'duration': '1000',						//多久倒计时一次 单位：ms
 			'countEach': function (timestamp) {		//每单位时间出发事件
 			},
 			'countEnd':function (timestamp) {		//倒计时结束回调事件
@@ -38,7 +38,7 @@
 					$this.text(timeFormat(options.format,start));
 					options.countEach(start);
 				}
-			},options.time);
+			},options.duration);
 		});
 		function getTimestamp(str){
 			return +new Date(str)||+new Date('1970/1/1 '+str);
