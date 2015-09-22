@@ -36,7 +36,7 @@
 			<div class="example">
 				<div class="call">
 					<h1>调用方法：</h1>
-					<p>$(selector).countdown(options);</p>
+					<p>$(selector).countdown(options,callback(api));</p>
 				</div>
 				<h2> options参数</h2>
 				<table>
@@ -77,6 +77,21 @@
 							<td>endEach(timestamp)</td>
 							<td>function(){}</td>
 							<td>倒计时结束执行</td>
+						</tr>
+					</tbody>
+				</table>
+				<h2> callback(api)参数</h2>
+				<table>
+					<thead>
+						<tr>
+							<th style="width:200">方法</th>
+							<th>说明</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>reset()</td>
+							<td>重置</td>
 						</tr>
 					</tbody>
 				</table>
