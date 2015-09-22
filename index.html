@@ -34,7 +34,7 @@
 				margin-bottom:15px;
 				background: #0099cc;
 			}
-			.header .hd-box,.footer .ft-box{
+			.header .box,.footer .box{
 				width:1200px;
 				margin:0 auto;
 				line-height:45px;
@@ -85,16 +85,24 @@
 				height:70px;
 				padding-top:20px;
 				background: #0099cc;
+				color:#fff;
 			}
 			.footer a{
 				color:#fff;
+			}
+			.footer .copy{
+				float: left;
+				width:180px;
+			}
+			.footer .info{
+				margin-right: 210px;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="wraper">
 			<div class="header">
-				<div class="hd-box">
+				<div class="box">
 					<h1>我的前端库</h1>
 				</div>
 			</div>
@@ -153,8 +161,9 @@
 				</div>
 			</div>
 			<div class="footer">
-				<div class="ft-box">
-					<p>&copy; <a href="http://passer-by.com" target="_blank">passer-by.com</a></p>
+				<div class="box">
+					<div class="copy">&copy; passer-by.com</div>
+					<div class="info"><a href="http://github.com/mumuy" target="_blank">Github</a></div>
 				</div>
 			</div>
 		</div>
