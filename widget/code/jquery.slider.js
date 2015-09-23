@@ -325,6 +325,7 @@
             }       
             //触摸开始
             function touchStart(e) {
+				_touch_direction = null;
                 _startTime = new Date();
                 _api.stop();
                 _start = e.originalEvent.changedTouches[0];
@@ -391,7 +392,6 @@
             }
             //触碰结束
             function touchEnd(e) {
-                _touch_direction = null;
                 if (options.auto) {
                     _api.start();
                 }
