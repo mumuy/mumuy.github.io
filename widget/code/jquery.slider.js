@@ -444,12 +444,8 @@
             });
             //事件绑定-向前向后导航
             if(options.pointerType === "click"){
-                $prev.on("click",_api.prev).hover(function() {
-                    $prev.toggleClass(options.hoverCls);
-                });
-                $next.on("click",_api.next).hover(function() {
-                    $next.toggleClass(options.hoverCls);
-                });         
+                $prev.on("click",_api.prev);
+                $next.on("click",_api.next);        
             }else{
                 $prev.on({
                     'mouseenter':function(){
