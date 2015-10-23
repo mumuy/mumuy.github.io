@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Ñ°Ö·-×î¶ÌÂ·¾¶(a*Ëã·¨)</title>
+		<meta charset="UTF-8">
+		<title>å¯»å€-æœ€çŸ­è·¯å¾„(a*ç®—æ³•)</title>
 		<style type="text/css">
 			body{
 				font-size:12px;
@@ -55,12 +56,12 @@
 			</div>
 			<div class="panel">
 				<div class="left">
-					<button id="start">Æğµã</button>
-					<button id="end">ÖÕµã</button>
-					<button id="pen">»­±Ê</button>
-					<button id="eraser">ÏğÆ¤</button>
+					<button id="start">èµ·ç‚¹</button>
+					<button id="end">ç»ˆç‚¹</button>
+					<button id="pen">ç”»ç¬”</button>
+					<button id="eraser">æ©¡çš®</button>
 				</div>
-				<div class="right">µ±Ç°²Ù×÷:<input id="type" type="text" value="ÖÕµã" readonly/><button id="find">Ñ°ÕÒ</button></div>
+				<div class="right">å½“å‰æ“ä½œ:<input id="type" type="text" value="ç»ˆç‚¹" readonly/><button id="find">å¯»æ‰¾</button></div>
 			</div>
 		</div>
 		<div class="copy">&copy; <a href="http://www.passer-by.com" target="_blank">passer-by.com</a></div>
@@ -83,7 +84,7 @@
 				var path = "";
 				var isMouseDown = false;
 				var type = "end";
-				var type_text = {"end":"ÖÕµã","start":"Æğµã","pen":"»­±Ê","eraser":"ÏğÆ¤"};
+				var type_text = {"end":"ç»ˆç‚¹","start":"èµ·ç‚¹","pen":"ç”»ç¬”","eraser":"æ©¡çš®"};
 				var scroll = getScroll();
 				for(var x=0;x<width;x++){
 					map[x] = new Array(height);
@@ -190,7 +191,7 @@
 				}   
 				return scrollPos;   
 			}
-			function finder(param){ //»ñÈ¡×î¶ÌÂ·¾¶
+			function finder(param){ //è·å–æœ€çŸ­è·¯å¾„
 				var defaults = {
 					map :[],
 					start:[0,0],
@@ -203,12 +204,12 @@
 				   return target;
 				})(defaults,param);
 				var result = [];
-				if(options.map[options.start[0]][options.start[1]]||options.map[options.end[0]][options.end[1]]){ //µ±Æğµã»òÖÕµãÉèÖÃÔÚÇ½ÉÏ
+				if(options.map[options.start[0]][options.start[1]]||options.map[options.end[0]][options.end[1]]){ //å½“èµ·ç‚¹æˆ–ç»ˆç‚¹è®¾ç½®åœ¨å¢™ä¸Š
 					return [];
 				}
 				var finded = false;
 				var length_x  = options.map.length;
-				var steps = new Array(length_x); //²½ÖèµÄÓ³Éä
+				var steps = new Array(length_x); //æ­¥éª¤çš„æ˜ å°„
 				for(var x =0;x<length_x;x++){
 					var length_y = options.map[x].length;
 					steps[x] = new Array(length_y);
@@ -222,7 +223,7 @@
 					var current = list.pop();
 					var x = current[0],y = current[1];
 					var next = function(x,y){
-						if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!finded){	//µ±Ç°µãÊÇ·ñ¿ÉÒÔ×ß
+						if(typeof steps[x]!= 'undefined'&&typeof steps[x][y] != 'undefined'&&!options.map[x][y]&&!finded){	//å½“å‰ç‚¹æ˜¯å¦å¯ä»¥èµ°
 							if(x==options.end[0]&&y==options.end[1]){
 								steps[x][y] = current;
 								finded = true;
