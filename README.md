@@ -1,8 +1,4 @@
 mumuy.github.io
 ===============
-jquery Plugins
-include:
-jquery.slider
 
-
-BY:passerby.cn
+我的前端库站点
