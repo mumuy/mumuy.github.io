@@ -25,7 +25,10 @@ header{
 .container{
 	margin-left: 320px;
 	padding: 45px 20px 120px;
-}			
+}
+.main{
+	width:80%;
+}		
 footer{
 	position: absolute;
     bottom: 0;
@@ -45,6 +48,9 @@ footer{
 .mod-head p{
 	text-indent: 2em;
 }
+.mod-list ul{
+	overflow: hidden;
+}
 .mod-list li{
 	height: 28px;
 	padding-left: 22px;
@@ -61,4 +67,37 @@ footer{
 	text-align: right;
 	padding:0 30px;
 	color:#999;
+}
+
+::selection {
+    color: white;
+    background-color: #333;
+}
+
+@media screen and (max-width: 800px)  {
+	header{
+		float: none;
+		width: 100%;
+	}
+	.container{
+		margin-left: 0;
+	}
+    .main{
+    	width:100%;
+    }
+    .mod-head{
+		margin-bottom: 20px;
+	}
+    .mod-head h1{
+		font-size:24px;
+	}
+	.mod-head p{
+		text-indent: .5em;
+	}
+    .mod-list li{
+    	float: left;
+    	width: 33.33%;
+		padding-left:0;
+		text-align: center;
+    }
 }
