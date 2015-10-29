@@ -68,6 +68,9 @@ footer{
 	padding:0 30px;
 	color:#999;
 }
+.mod-foot a{
+	color:#999;
+}
 
 ::selection {
     color: white;
