@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" href="/public/img/favicon.png">
 		<link rel="canonical" href="http://passser-by.com/index.html">
 		<link rel="stylesheet" href="public/css/commont.css">
-		<style type="text/css">
+		<style>
 			.mod-content .group{
 				margin-bottom: 18px;
 			}
@@ -37,6 +37,15 @@
 				border-bottom: 1px dotted #666;
 			}
 		</style>
+		<script>
+			(function(){ //IE低版本兼容
+				var e = ['footer','header','section'], 
+				          i= e.length; 
+				while(i--){ 
+				      document.createElement(e[i]);
+				}
+			})();
+		</script>
 	</head>
 	<body>
 		<div class="wrapper">
