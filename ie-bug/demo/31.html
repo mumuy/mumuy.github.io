@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>绝对定位元素消失bug</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.outer{position:relative;}
+			.content{width:600px;}
+			.abs{position:absolute; left:0; top:0; width:600px; height:120px; background:#1f3a87; }
+			.main{float:left; width:300px; height:200px; background:#f3f3f3; }
+			.sub{float:left;width:300px; height:200px; background:#bc2931;}
+			/* fixed */
+			#p1 .content{display:inline}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>绝对定位元素消失bug</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>一个内容区块，其中包含两个浮动的box，外加一个绝对定位的box，设置如下样式时会发生IE6绝对定位元素消失的BUG。</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="content">
+						  <div class="abs">abs</div>
+						  <div class="main">main</div>
+						  <div class="sub">sub</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="content">
+						  <div class="abs">abs</div>
+						  <div class="main">main</div>
+						  <div class="sub">sub</div>
+						</div>
+					</div>
+					<p><span>解决方案：</span>给content加一个display:inline样式</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<div class="content">
+						  <div class="abs">abs</div><div></div>
+						  <div class="main">main</div>
+						  <div class="sub">sub</div>
+						</div>
+					</div>
+					<p><span>解决方案：</span>在main元素之前加一个空的&lt;div&gt;&lt;/div&gt;</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<div class="content">
+						  <div><div class="abs">abs</div></div>
+						  <div class="main">main</div>
+						  <div class="sub">sub</div>
+						</div>
+					</div>
+					<p><span>解决方案：</span>给abs元素再嵌套一个div元素</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

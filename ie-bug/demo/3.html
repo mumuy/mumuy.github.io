@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>绝对定位奇数宽高1px间距bug</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.outer{height:201px; position:relative; border:1px solid #999;}
+			.box{width:100px; height:50px; position:absolute; bottom:0;}
+			/* fixed */
+			#p1 .box{_bottom:-1px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>绝对定位奇数宽高1px间距bug</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>当绝对定位元素的父元素高或宽为奇数时，bottom和right会多出1px</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="box"></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="box"></div>
+					</div>
+					<p><span>解决方案：</span>hack暴力破解_bottom:-1px;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

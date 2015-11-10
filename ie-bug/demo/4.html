@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>外边距叠加</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.block{margin:10px;}
+			.block p{margin:20px;}
+			/* fixed */
+			#p1 .block{padding:1px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>外边距叠加</h3>
+				<p><span>浏览器：</span>*</p>
+				<p><span>描述：</span>外边距叠加的算法</p>
+			</div>
+			<div class="panel">
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="block">
+							<p>本段落margin值为20px</p>
+						</div>
+					</div>
+					<p><span>应用场景：</span>如果元素没有垂直边框或内边框，它的高度就是它包含子元素的顶部和底部边框边缘之间的距离</p>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="block">
+							<p>本段落margin值为20px，padding值为1px</p>
+						</div>
+					</div>
+					<p><span>应用场景：</span>如果元素添加一个垂直边框或内边距，它的高度就是它包含的子元素的顶部和底部外边距边缘之间的距离</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

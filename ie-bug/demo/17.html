@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>列表阶梯bug</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			ul a{width:100px; height:50px; float:left; display:block;}
+			/* fixed */
+			#p1 ul li{float:left;}
+			#p2 ul li{display:inline;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>列表阶梯bug</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>float列表元素不水平对齐：li不设置float，a设置display:block;float:[方向]，li不水平对齐</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<ul class="test">
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+						<ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<ul class="test">
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+						<ul>
+					</div>
+					<p><span>解决方案：</span>给li添加float:[方向]</p>
+				</div>
+				<div class="panel-body" id="p2">
+					<div class="outer">
+						<ul class="test">
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+							<li><a href="#">这里是链接哦</a></li>
+						<ul>
+					</div>
+					<p><span>解决方案：</span>给li添加display:inline;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

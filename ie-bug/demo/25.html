@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>滤镜致链接失效BUG</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.test{width:200px; height:100px; background:url(http://mat1.gtimg.com/www/images/qq2012/alphabg.png); _background:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://mat1.gtimg.com/www/images/qq2012/alphabg.png',sizingMethod='crop');  }
+			/* fixed */
+			#p1 .test a{position:relative;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>滤镜致链接失效BUG</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>IE6下使用DXImageTransform.Microsoft.AlphaImageLoader滤镜（用于PNG32 Alpha透明）后链接不能点击</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="test">
+							<a href="http://www.qq.com/" target="_blank" >这个链接不能点</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="test">
+							<p><a href="http://www.qq.com/" target="_blank" >这个链接能点</a></p>
+						</div>
+					</div>
+					<p><span>解决方案：</span>a标签上加相对定位的属性（position:relative）</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

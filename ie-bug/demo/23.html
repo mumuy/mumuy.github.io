@@ -1,0 +1,51 @@
+﻿<DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>图片垂直居中</title>
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<style type="text/css">
+			.box{width:180px; height:200px; display:table-cell; vertical-align:middle;}
+			/* fixed */
+			#p1 .box{*display:block; *font-size:175px; *font-family:Arial;}
+			#p1 img{vertical-align:middle;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="decs">
+				<a href="../list.html">返回列表>></a>
+				<h3>图片垂直居中</h3>
+				<p><span>浏览器：</span>IE6</p>
+				<p><span>描述：</span>图片无法通过display:table-cell; vertical-align:middle;设置垂直居中</p>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复前：</h3>
+				</div>
+				<div class="panel-body" id="p0">
+					<div class="outer">
+						<div class="box"><img alt="pic" src="../images/test.jpg" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-head">
+					<h3>修复后：</h3>
+				</div>
+				<div class="panel-body" id="p1">
+					<div class="outer">
+						<div class="box"><img alt="pic" src="../images/test.jpg" /></div>
+					</div>
+					<p><span>解决方案：</span>
+						<pre>
+*display: block;
+*font-size: 175px;/*约为高度的0.873，200*0.873 约为175*/
+*font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/
+						</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
