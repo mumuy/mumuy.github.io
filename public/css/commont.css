@@ -85,9 +85,6 @@ footer{
 	.container{
 		margin-left: 0;
 	}
-	.wrapper:after{
-		display: none;
-	}
     .main{
     	width:100%;
     }
