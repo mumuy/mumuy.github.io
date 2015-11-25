@@ -17,17 +17,6 @@ a{
 	min-height: 100%;
 	overflow: hidden;
 }
-.wrapper:after {
-    display: block;
-    width: 100%;
-    content: '';
-    border-top: 1px dashed #999;
-    transform: rotate(-36deg);
-    position: absolute;
-    left: 20%;
-    bottom: 0;
-    z-index: 9999;
-}
 header{
 	float: left;
 	width:300px;
