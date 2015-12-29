@@ -24,7 +24,7 @@ header{
 }
 .container{
 	margin-left: 320px;
-	padding: 45px 20px 120px;
+	padding: 40px 20px 120px;
 }
 .main{
 	width:80%;
@@ -44,7 +44,7 @@ footer{
 }
 .mod-head h1{
 	font-size:48px;
-	font-family:Tahoma, Verdana,"Microsoft Yahei";
+	font-family:Helvetica,Tahoma,Verdana,"Microsoft Yahei";
 }
 .mod-head p{
 	text-indent: 3.75em;
