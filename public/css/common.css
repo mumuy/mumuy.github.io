@@ -20,7 +20,7 @@ a{
 header{
 	float: left;
 	width:300px;
-	padding-top:30px;
+	padding-top:32px;
 }
 .container{
 	margin-left: 320px;
@@ -39,7 +39,7 @@ footer{
 }			
 .mod-head{
 	margin-bottom: 45px;
-	padding:0 20px;
+	padding:0 21px;
 	line-height: 1.2;
 }
 .mod-head h1{
