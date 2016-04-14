@@ -54,6 +54,7 @@ footer{
 	color:#484848;
 }
 .mod-list ul{
+	margin-bottom: 10px;
 	overflow: hidden;
 }
 .mod-list li{
