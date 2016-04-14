@@ -30,7 +30,7 @@ header{
 }
 .main{
 	width:80%;
-	padding: 40px 0 120px;
+	padding: 40px 0 100px;
 }		
 footer{
 	position: absolute;
@@ -84,15 +84,23 @@ footer{
 }
 
 @media screen and (max-width: 800px)  {
+	.wrapper{
+		height: auto;
+		min-height: 100%;
+	}
 	header{
 		float: none;
 		width: 100%;
+	}
+	footer{
+		position: static;
 	}
 	.container{
 		margin-left: 0;
 	}
     .main{
     	width:100%;
+    	padding:15px 0 20px;
     }
     .mod-head{
 		margin-bottom: 20px;
@@ -109,4 +117,10 @@ footer{
 		padding-left:0;
 		text-align: center;
     }
+    .mod-foot{
+		color:#999!important;
+	}
+	.mod-foot a{
+		color:#999!important;
+	}
 }
