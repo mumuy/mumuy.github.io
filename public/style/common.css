@@ -15,7 +15,6 @@ a{
 .wrapper{
 	position: relative;
 	height: 100%;
-	overflow: hidden;
 }
 header{
 	float: left;
@@ -27,6 +26,7 @@ header{
 	height: 100%;
 	margin-left: 300px;
 	padding: 0 30px;
+	overflow: auto;
 }
 .main{
 	width:80%;
