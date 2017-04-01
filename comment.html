@@ -11,18 +11,61 @@
 		<link rel="canonical" href="http://passser-by.com/comment.html">
 		<link rel="stylesheet" href="public/style/common.css">
 		<style>
-			.mod-content{
-				line-height: 20px;
+			.mod-comment{
+				width: 80%;
+				line-height: 22px;
 			}
-			.mod-content section{
-				margin-bottom: 18px;
+			.mod-comment .hd{
+				margin: 7px 0 20px;
+			    border: 1px solid #fbeed5;
+			    padding: 10px 20px;
+			    color: #c09853;
+			    background-color: #fcf8e3;
+			    line-height: 22px;
+			    border-radius: 3px;
 			}
-			.mod-content h3{
-				padding-left: 2px;
-				margin-bottom: 5px;
-				font-size: 16px;
+			.mod-comment .btn{
+				display: inline-block;
+    			padding: 4px 12px;
+    			background-color: #28a745;
+    			color: #fff;
+    			border: 1px solid rgba(27,31,35,0.2);
+    			border-radius: 3px;
+			}
+			.mod-comment .btn:hover{
+				background-color: #269f42;
+			}
+			.mod-comment li{
+				margin-bottom: 12px;
+			}
+			.mod-comment .avatar{
+				float: left;
+			}
+			.mod-comment .content{
+				margin-left: 64px;
+				border: 1px solid #d1d5da;
+				border-radius: 3px;
+			}
+			.mod-comment .c-hd{
+				height: 40px;
+				padding: 0 20px;
+			    background-color: #f6f8fa;
+			    border-bottom: 1px solid #d1d5da;
+			    line-height: 40px;
+			    color: #586069;
+			}
+			.mod-comment .c-hd .name{
+				font-weight: bold;
+				color: #586069;
+			}
+			.mod-comment .c-hd .reply{
+				float: right;
+			}
+			.mod-comment .c-bd{
+				padding: 15px;
 			}
 		</style>
+		<script src="public/script/ajax.js"></script>
 		<script>
 			(function(){ //IE低版本兼容
 				var e = ['footer','header','section'],
@@ -52,21 +95,18 @@
 			</header>
 			<div class="container">
 				<div class="main">
-					<div class="mod-content">
-						<section>
-							<div class="ds-thread" data-thread-key="comment" data-title="评论" data-url="http://passer-by.com/comment.html"></div>
-							<script type="text/javascript">
-							var duoshuoQuery = {short_name:"passerbycom"};
-								(function() {
-									var ds = document.createElement('script');
-									ds.type = 'text/javascript';ds.async = true;
-									ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-									ds.charset = 'UTF-8';
-									(document.getElementsByTagName('head')[0]
-									 || document.getElementsByTagName('body')[0]).appendChild(ds);
-								})();
-							</script>
-						</section>
+					<div class="mod-comment">
+						<div class="hd">
+							<p>在Github上与我留言：</p>
+							<p>
+								<a class="btn" href="https://github.com/mumuy/mumuy.github.io/issues/new" target="_blank">发起留言</a>
+							</p>
+						</div>
+						<div class="bd">
+							<ul id="comment">
+
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -76,6 +116,33 @@
 				</div>
 			</footer>
 		</div>
+		<script>
+			ajax({
+				'url':'https://api.github.com/repos/mumuy/mumuy.github.io/issues',
+				// 'dataType':'text'
+				'success':function(data){
+					if(data.length){
+						var comments = [];
+						for(var i=0;i<data.length;i++){
+							var item = data[i];
+							comments.push('<li>\
+									<div class="avatar">\
+										<a href="'+item.user.url+'" target="_blank"><img src="'+item.user.avatar_url+'" width="44" height="44"/></a>\
+									</div>\
+									<div class="content">\
+										<div class="c-hd">\
+											<a class="reply" href="'+item.html_url+'" target="_blank">查看</a>\
+											<a class="name" href="'+item.user.url+'">'+item.user.login+'</a>\
+											<span class="time">'+item.updated_at.replace(/[TZ]/,' ')+'</span></div>\
+										<div class="c-bd"><p>'+item.body+'</p></div>\
+									</div>\
+							</li>');
+						}
+						document.getElementById('comment').innerHTML = comments.join('');
+					}
+				}
+			});
+		</script>
 		<div style="display: none;">
 			<script src="http://s95.cnzz.com/z_stat.php?id=1258310068&web_id=1258310068"></script>
 		</div>
