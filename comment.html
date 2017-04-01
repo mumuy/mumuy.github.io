@@ -127,12 +127,12 @@
 							var item = data[i];
 							comments.push('<li>\
 									<div class="avatar">\
-										<a href="'+item.user.url+'" target="_blank"><img src="'+item.user.avatar_url+'" width="44" height="44"/></a>\
+										<a href="'+item.user.html_url+'" target="_blank"><img src="'+item.user.avatar_url+'" width="44" height="44"/></a>\
 									</div>\
 									<div class="content">\
 										<div class="c-hd">\
-											<a class="reply" href="'+item.html_url+'" target="_blank">查看</a>\
-											<a class="name" href="'+item.user.url+'">'+item.user.login+'</a>\
+											<a class="reply" href="'+item.html_url+'" target="_blank">查看详情</a>\
+											<a class="name" href="'+item.user.html_url+'">'+item.user.login+'</a>\
 											<span class="time">'+item.updated_at.replace(/[TZ]/,' ')+'</span></div>\
 										<div class="c-bd"><p>'+item.body+'</p></div>\
 									</div>\
