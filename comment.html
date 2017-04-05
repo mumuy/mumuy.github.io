@@ -69,6 +69,10 @@
 			.mod-comment .c-bd{
 				padding: 15px;
 			}
+			.mod-comment .c-bd img{
+				display: block;
+				margin: 0 auto;
+			}
 		</style>
 		<script src="public/script/ajax.js"></script>
 		<script>
@@ -109,7 +113,7 @@
 						</div>
 						<div class="bd">
 							<ul id="comment">
-
+								<li><div class="c-bd"><img src="public/image/loading.gif" width="32" height="32"/></div></li>
 							</ul>
 						</div>
 					</div>
@@ -124,7 +128,6 @@
 		<script>
 			ajax({
 				'url':'https://api.github.com/repos/mumuy/mumuy.github.io/issues',
-				// 'dataType':'text'
 				'success':function(data){
 					if(data.length){
 						var comments = [];
