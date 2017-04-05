@@ -138,7 +138,7 @@
 										<div class="c-hd">\
 											<a class="reply" href="'+item.html_url+'" target="_blank">查看详情</a>\
 											<a class="name" href="'+item.user.html_url+'">'+item.user.login+'</a>\
-											<span class="time">'+item.updated_at.replace(/[TZ]/,' ')+'</span></div>\
+											<span class="time">'+(new Date(item.updated_at).toLocaleString())+'</span></div>\
 										<div class="c-bd"><p>'+item.body+'</p></div>\
 									</div>\
 							</li>');
