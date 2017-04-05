@@ -12,7 +12,8 @@
 		<link rel="stylesheet" href="public/style/common.css">
 		<style>
 			.mod-comment{
-				width: 80%;
+				width: 100%;
+				max-width: 960px;
 				line-height: 22px;
 			}
 			.mod-comment .hd{
@@ -53,6 +54,7 @@
 			    border-bottom: 1px solid #d1d5da;
 			    line-height: 40px;
 			    color: #586069;
+			    overflow: hidden;
 			}
 			.mod-comment .c-hd .name{
 				font-weight: bold;
@@ -60,6 +62,9 @@
 			}
 			.mod-comment .c-hd .reply{
 				float: right;
+			}
+			.mod-comment .time{
+				white-space: nowrap;
 			}
 			.mod-comment .c-bd{
 				padding: 15px;
