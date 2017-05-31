@@ -13,7 +13,10 @@ function createQRImage(opts, callback) {
         gcColor: null, //渐变颜色
         logoimg: null, //logo图片
     };
-    var options = $.extend({}, defaults, opts);
+    var options = {}
+    for(var i in defaults){
+        options[i] = opts[i]||defaults[i];
+    }
     /* 私有属性:过程数据量 */
     var _self = this;//当前对象
     var _canvas = document.createElement('canvas');
