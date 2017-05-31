@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>二维码</title>
+        <script src="qrcode.js"></script>
+        <script src="jquery.js"></script>
+        <script src="createQRImage.js"></script>
+        <style>
+            canvas,img{
+                display: block;
+                width: 320px;
+                height:320px;
+                margin:0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            <canvas id="canvas" width="640" height="640"></canvas>
+        </p>
+        <p>
+            <img id="image" src="" alt="" crossOrigin="anonymous">
+        </p>
+        <script>
+            var logo = new Image();
+            logo.src = 'image/panda.png';
+            logo.onload = function(){
+                var obj = new createQRImage('canvas',{
+                    'text':'http://passer-by.com/',
+                    'width':640,
+                    'margin':20,
+                    'fgColor':'rgb(255, 241, 0)',
+                    'gcColor':'rgb(0, 174, 239)',
+                    'logoimg':logo
+                });
+                document.getElementById('image').src = obj.getBase64();
+            };
+            img.src = src;
+        </script>
+    </body>
+</html>
