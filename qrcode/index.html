@@ -21,14 +21,14 @@
         <script>
             var size = Math.min(window.innerHeight,window.innerWidth);
             var radio = window.devicePixelRatio||1;
-            var obj = new createQRImage({
+            new createQRImage({
                 'text':'http://passer-by.com/',
                 'width': size*radio,
                 'margin': 20,
                 'fgColor':'rgb(255, 241, 0)',
                 'gcColor':'rgb(0, 174, 239)',
                 'logo':'image/panda.png'
-            },function(){
+            },function(api){
                 var $image = document.getElementById('image');
                 $image.src = obj.getBase64();
                 $image.width = size;

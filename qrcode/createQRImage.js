@@ -247,11 +247,11 @@ function createQRImage(opts, getAPI) {
                 _logo = list[0];
                 _logoOptions = initLogoImage();
                 getData();
-                getAPI();
+                getAPI(_self);
             });
         }else{
             getData();
-            getAPI();
+            getAPI(_self);
         }
     };
     init();
