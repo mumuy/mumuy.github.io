@@ -16,9 +16,11 @@
     <body>
         <p>
             <canvas id="canvas" width="640" height="640"></canvas>
+            <span>Canvas演示</span>
         </p>
         <p>
             <img id="image" src="" alt="" crossOrigin="anonymous">
+            <span>图片演示</span>
         </p>
         <script>
             var logo = new Image();
@@ -34,7 +36,6 @@
                 });
                 document.getElementById('image').src = obj.getBase64();
             };
-            img.src = src;
         </script>
     </body>
 </html>
