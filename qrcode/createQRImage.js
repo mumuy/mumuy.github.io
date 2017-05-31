@@ -5,7 +5,6 @@ function createQRImage(opts, getAPI) {
     var defaults = {
         text: 'http://passer-by.com/', //图片内容
         width: 300, //图片宽度
-        margin: 10, //外边距
         bgColor: '#fff', //背景颜色
         fgColor: '#000', //前景颜色
         inptColor: null, //定位点内点颜色
@@ -25,7 +24,6 @@ function createQRImage(opts, getAPI) {
     var _logo = null; //图片
     var _logoOptions = {};//logo相对画布默认尺寸的参数，实际值需要乘放大倍数
     var _gcColor = null; //缓存渐变色
-    var _width = 300;//缓存画布宽度
     /*最终画图算法*/
     this.drawImage = function(callback) {
         callback = callback || function(){};
@@ -37,7 +35,7 @@ function createQRImage(opts, getAPI) {
         context.fillRect(0, 0, options.width, options.width);
         var colors = '';
         var datalen = _data.length;
-        _pxWidth = (options.width - options.margin * 2) / datalen;   //计算像素点宽
+        options.margin = _pxWidth = options.width/(datalen+2);   //计算像素点宽
         var halfwidth = options.width / 2;
         //渐变色
         if (options.gcColor) {
@@ -241,7 +239,6 @@ function createQRImage(opts, getAPI) {
     /* 初始化 */
     var init = function() {
         /* 画布图像初始化 */
-        console.log('logo#',options.logo);
         if(options.logo){
             loadImages([options.logo],function(list){
                 _logo = list[0];
