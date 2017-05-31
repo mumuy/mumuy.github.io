@@ -19,6 +19,7 @@ function createQRImage(opts, getAPI) {
     /* 私有属性:过程数据量 */
     var _self = this;//当前对象
     var _canvas = document.createElement('canvas');
+    document.body.appendChild(_canvas);
     var _data = null;   //二维码数据
     var _pxWidth = 0;//单位点像素宽度
     var _logo = null; //图片
@@ -35,7 +36,7 @@ function createQRImage(opts, getAPI) {
         context.fillRect(0, 0, options.width, options.width);
         var colors = '';
         var datalen = _data.length;
-        options.margin = _pxWidth = options.width/(datalen+2);   //计算像素点宽
+        _pxWidth = (options.width - 2*options.margin)/datalen;   //计算像素点宽
         var halfwidth = options.width / 2;
         //渐变色
         if (options.gcColor) {
@@ -70,7 +71,7 @@ function createQRImage(opts, getAPI) {
         context.restore();
         //logo图片
         if (_logo != null) {
-            var zoom = options.width / defaults.width;
+            var zoom = 1;options.width / defaults.width;
             drawStroke(context, _logo, 3 * zoom, _logoOptions.left * zoom, _logoOptions.top * zoom, _logoOptions.width * zoom, _logoOptions.height * zoom);
         }
         callback();
@@ -111,7 +112,7 @@ function createQRImage(opts, getAPI) {
         qrcode.make();      //生成二维码数据
         _data = qrcode.modules;     //获取数据
         var len = qrcode.getModuleCount();
-        _self.drawImage();
+        options.margin = Math.floor(options.width/(len+2));
     };
     /*判断当前像素点是否存在*/
     var getTrue = function(x, y) {
@@ -191,7 +192,7 @@ function createQRImage(opts, getAPI) {
             var logoimgWidth = _logo.width;
             var logoimgHeight = _logo.height;
             var logoWidth = 0, logoHeight = 0, logox = 0, logoy = 0, maxwidth = 0;
-            var width = defaults.width - defaults.margin * 2;    //初始化logo参数相对于默认画布尺寸
+            var width = options.width - options.margin * 2;    //初始化logo参数相对于默认画布尺寸
             maxwidth = Math.floor(width * 0.3);
             if (logoimgWidth > 0) {
                 if (Math.max(logoimgWidth, logoimgHeight) < maxwidth) {
@@ -207,8 +208,8 @@ function createQRImage(opts, getAPI) {
                         logoWidth = Math.floor(logoimgWidth * (maxwidth / logoimgHeight));
                     }
                 }
-                logox = Math.floor(defaults.width / 2 - logoWidth / 2);
-                logoy = Math.floor(defaults.width / 2 - logoHeight / 2);
+                logox = Math.floor(options.width / 2 - logoWidth / 2);
+                logoy = Math.floor(options.width / 2 - logoHeight / 2);
             }
             return {
                 left: logox,
@@ -242,12 +243,14 @@ function createQRImage(opts, getAPI) {
         if(options.logo){
             loadImages([options.logo],function(list){
                 _logo = list[0];
-                _logoOptions = initLogoImage();
                 getData();
+                _logoOptions = initLogoImage();
+                _self.drawImage();
                 getAPI(_self);
             });
         }else{
             getData();
+            _self.drawImage();
             getAPI(_self);
         }
     };
