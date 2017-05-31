@@ -19,7 +19,7 @@ function createQRImage(opts, getAPI) {
     /* 私有属性:过程数据量 */
     var _self = this;//当前对象
     var _canvas = document.createElement('canvas');
-    document.body.appendChild(_canvas);
+    // document.body.appendChild(_canvas);  //test
     var _data = null;   //二维码数据
     var _pxWidth = 0;//单位点像素宽度
     var _logo = null; //图片
