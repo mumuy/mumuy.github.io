@@ -1,35 +1,40 @@
 <html>
     <head>
         <title>二维码</title>
-        <script src="qrcode.js"></script>
-        <script src="createQRImage.js"></script>
         <style>
-            canvas,img{
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            img{
                 display: block;
                 width: 320px;
-                height:320px;
+                height: 320px;
                 margin:0 auto;
             }
         </style>
     </head>
     <body>
-        <p>
-            <img id="image" src="" alt=""/>
-            <span>图片演示</span>
-        </p>
+        <img id="image" src="" alt="二维码"/>
+        <script src="qrcode.js"></script>
+        <script src="createQRImage.js"></script>
         <script>
-            var logo = new Image();
-            logo.src = 'image/panda.png';
-            logo.onload = function(){
+            var size = Math.min(window.innerHeight,window.innerWidth);
+            var radio = window.devicePixelRatio||1;
+            var $image = document.getElementById('image');
+            var $logo = new Image();
+            $logo.src = 'image/panda.png';
+            $logo.onload = function(){
                 var obj = new createQRImage({
-                    'text':'http://passer-by.com/',
-                    'width':640,
-                    'margin':20,
+                    'width': size*radio,
+                    'margin': 20,
                     'fgColor':'rgb(255, 241, 0)',
                     'gcColor':'rgb(0, 174, 239)',
-                    'logoimg':logo
+                    'logoimg':$logo
                 });
-                document.getElementById('image').src = obj.getBase64();
+                $image.src = obj.getBase64();
+                $image.width = size;
+                $image.height = size;
             };
         </script>
     </body>
