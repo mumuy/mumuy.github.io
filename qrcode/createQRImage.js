@@ -1,6 +1,6 @@
 ﻿//创建二维码图片类
-function createQRImage(opts, callback) {
-    callback = callback ? callback : nullFun;
+function createQRImage(opts, getAPI) {
+    var getAPI = getAPI || function(){};
     /* 默认参数 */
     var defaults = {
         text: 'http://passer-by.com/', //图片内容
@@ -11,7 +11,7 @@ function createQRImage(opts, callback) {
         inptColor: null, //定位点内点颜色
         ptColor: null, //定位点外点颜色
         gcColor: null, //渐变颜色
-        logoimg: null, //logo图片
+        logo: null, //logo图片
     };
     var options = {}
     for(var i in defaults){
@@ -22,13 +22,13 @@ function createQRImage(opts, callback) {
     var _canvas = document.createElement('canvas');
     var _data = null;   //二维码数据
     var _pxWidth = 0;//单位点像素宽度
+    var _logo = null; //图片
     var _logoOptions = {};//logo相对画布默认尺寸的参数，实际值需要乘放大倍数
     var _gcColor = null; //缓存渐变色
     var _width = 300;//缓存画布宽度
-    var _images_model = 0;
     /*最终画图算法*/
     this.drawImage = function(callback) {
-        callback = callback || nullFun;
+        callback = callback || function(){};
         //获取画布对象
         var context = _canvas.getContext("2d");
         _canvas.width = _canvas.height = options.width;
@@ -53,56 +53,14 @@ function createQRImage(opts, callback) {
                 }
                 context.fillStyle = colors;
                 context.strokeStyle = colors;
-                if(isPositionPoint(i, j, datalen)){
-                    if (options.ptColor || options.inptColor) {
-                        colors = setPtColor(i, j, datalen);   //定点颜色
+                if(getTrue(i, j)){
+                    if(isPositionPoint(i, j, datalen)){
+                        if (options.ptColor || options.inptColor) {
+                            colors = setPtColor(i, j, datalen);   //定点颜色
+                        }
+                        context.fillStyle = colors;
+                        context.strokeStyle = colors;
                     }
-                    context.fillStyle = colors;
-                    context.strokeStyle = colors;
-                    if (getTrue(i, j)) {
-                        //绘点
-                        var cx = j * _pxWidth + options.margin;
-                        var cy = i * _pxWidth + options.margin + _pxWidth / 2;
-                        context.beginPath();
-                        context.moveTo(cx, cy);
-                        if ((getTrue(i, j - 1) || getTrue(i - 1, j)) || (getTrue(i - 1, j - 1))) {
-                            drawRightAngle(context, j, i, 0);
-                        } else {
-                            drawRoundBrick(context, j, i, 0);
-                        }
-                        if ((getTrue(i - 1, j) || getTrue(i, j + 1)) || (getTrue(i - 1, j + 1))) {
-                            drawRightAngle(context, j, i, 1);
-                        } else {
-                            drawRoundBrick(context, j, i, 1);
-                        }
-                        if ((getTrue(i + 1, j) || getTrue(i, j + 1)) || (getTrue(i + 1, j + 1))) {
-                            drawRightAngle(context, j, i, 2);
-                        } else {
-                            drawRoundBrick(context, j, i, 2);
-                        }
-                        if ((getTrue(i + 1, j) || getTrue(i, j - 1)) || (getTrue(i + 1, j - 1))) {
-                            drawRightAngle(context, j, i, 3);
-                        } else {
-                            drawRoundBrick(context, j, i, 3);
-                        }
-                        context.closePath();
-                        context.fill();
-                        context.stroke();
-                    } else {
-                        if (getTrue(i - 1, j) && getTrue(i, j - 1)) {
-                            fillRound(context, j, i, 0, colors);
-                        }
-                        if (getTrue(i + 1, j) && getTrue(i, j - 1)) {
-                            fillRound(context, j, i, 3, colors);
-                        }
-                        if (getTrue(i + 1, j) && getTrue(i, j + 1)) {
-                            fillRound(context, j, i, 2, colors);
-                        }
-                        if (getTrue(i - 1, j) && getTrue(i, j + 1)) {
-                            fillRound(context, j, i, 1, colors);
-                        }
-                    }
-                } else if(getTrue(i, j)){
                     context.beginPath();
                     context.rect((j+1)*_pxWidth,(i+1)*_pxWidth,_pxWidth,_pxWidth);
                     context.closePath();
@@ -113,9 +71,9 @@ function createQRImage(opts, callback) {
         }
         context.restore();
         //logo图片
-        if (options.logoimg != null) {
+        if (_logo != null) {
             var zoom = options.width / defaults.width;
-            drawStroke(context, options.logoimg, 3 * zoom, _logoOptions.left * zoom, _logoOptions.top * zoom, _logoOptions.width * zoom, _logoOptions.height * zoom);
+            drawStroke(context, _logo, 3 * zoom, _logoOptions.left * zoom, _logoOptions.top * zoom, _logoOptions.width * zoom, _logoOptions.height * zoom);
         }
         callback();
     };
@@ -124,12 +82,9 @@ function createQRImage(opts, callback) {
         return _canvas.toDataURL();
     };
     /************************  以下为私有方法，外部组件不能调用  ************************/
-    /* 空函数 */
-    var nullFun = function() {
-    };
     /*加载图片*/
     var loadImages = function(image_urls, callback) {
-        callback = callback || nullFun;
+        callback = callback || function(){};
         var images = [];
         function loaded(i) {
             if (i < image_urls.length) {
@@ -151,8 +106,7 @@ function createQRImage(opts, callback) {
         }
     }
     /*获取文字二进制码*/
-    var getData = function(callback) {
-        callback = callback || nullFun;
+    var getData = function() {
         /* 开源库jquery-qrcode，二维码数据计算的核心类 */
         var qrcode = new QRCode(-1, QRErrorCorrectLevel['H']);      //实例化类
         qrcode.addData(utf16to8(options.text));     //设置文字内容及中文转码处理
@@ -160,7 +114,6 @@ function createQRImage(opts, callback) {
         _data = qrcode.modules;     //获取数据
         var len = qrcode.getModuleCount();
         _self.drawImage();
-        callback();
     };
     /*判断当前像素点是否存在*/
     var getTrue = function(x, y) {
@@ -205,109 +158,6 @@ function createQRImage(opts, callback) {
         }
         return status;
     };
-    /* 绘制角 */
-    var drawRightAngle = function(context, x, y, dir) {
-        var cx = 0, cy = 0;
-        switch (dir) {
-            case 0:
-                cx = x * _pxWidth + options.margin;
-                cy = y * _pxWidth + options.margin;
-                context.lineTo(cx, cy);
-                break;
-            case 1:
-                cx = x * _pxWidth + _pxWidth + options.margin;
-                cy = y * _pxWidth + options.margin;
-                context.lineTo(cx, cy);
-                break;
-            case 2:
-                cx = x * _pxWidth + _pxWidth + options.margin;
-                cy = y * _pxWidth + _pxWidth + options.margin;
-                context.lineTo(cx, cy);
-                break;
-            case 3:
-                cx = x * _pxWidth + options.margin;
-                cy = y * _pxWidth + _pxWidth + options.margin;
-                context.lineTo(cx, cy);
-                break;
-            default:
-        }
-    };
-    /* 绘制填补角 */
-    var drawRoundBrick = function(context, x, y, dir) {
-        var cx = 0, cy = 0;
-        switch (dir) {
-            case 0:
-                cx = x * _pxWidth + _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, Math.PI, Math.PI * 1.5, false);
-                cx = x * _pxWidth + _pxWidth / 2 + options.margin;
-                cy = y * _pxWidth + options.margin;
-                context.lineTo(cx, cy);
-                break;
-            case 1:
-                cx = x * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, Math.PI * 1.5, Math.PI * 2, false);
-                break;
-            case 2:
-                cx = x * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, 0, Math.PI / 2, false);
-                break;
-            case 3:
-                cx = x * _pxWidth + _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, Math.PI / 2, Math.PI, false);
-                break;
-            default:
-        }
-    };
-    /* 填充圆 */
-    var fillRound = function(context, x, y, dir, colors) {
-        var cx, cy;
-        var halfwidth = options.width / 2;
-        context.beginPath();
-        if (options.gcColor != null) {//有渐变色
-            colors = _gcColor;
-        }
-        context.fillStyle = colors;
-        context.strokeStyle = colors;
-        switch (dir) {
-            case 0:
-                cx = x * _pxWidth + _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, Math.PI, Math.PI * 1.5, false);
-                cx = x * _pxWidth + options.margin;
-                cy = y * _pxWidth + options.margin;
-                break;
-            case 1:
-                cx = x * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, Math.PI * 1.5, Math.PI * 2, false);
-                cx = x * _pxWidth + _pxWidth + options.margin;
-                cy = y * _pxWidth + options.margin;
-                break;
-            case 2:
-                cx = x * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2, 0, Math.PI / 2, false);
-                cx = x * _pxWidth + _pxWidth + options.margin;
-                cy = y * _pxWidth + _pxWidth + options.margin;
-                break;
-            case 3:
-                cx = x * _pxWidth + _pxWidth/2 + options.margin;
-                cy = y * _pxWidth + _pxWidth - _pxWidth/2 + options.margin;
-                context.arc(cx, cy, _pxWidth/2 , Math.PI / 2, Math.PI, false);
-                cx = x * _pxWidth + options.margin;
-                cy = y * _pxWidth + _pxWidth + options.margin;
-                break;
-            default:
-        }
-        context.lineTo(cx, cy);
-        context.closePath();
-        context.fill();
-        context.stroke();
-    };
     /*设置渐变色*/
     var getGcColor = function(context, colors, halfwidth) {
         var grd = context.createRadialGradient(0, 0, 0, halfwidth, halfwidth, options.width);//反斜线渐变
@@ -339,9 +189,9 @@ function createQRImage(opts, callback) {
     };
     /* 初始化logo图片 */
     var initLogoImage = function() {//初使化图片
-        if (options.logoimg != null) {//有LOGO图片
-            var logoimgWidth = options.logoimg.width;
-            var logoimgHeight = options.logoimg.height;
+        if (_logo != null) {//有LOGO图片
+            var logoimgWidth = _logo.width;
+            var logoimgHeight = _logo.height;
             var logoWidth = 0, logoHeight = 0, logox = 0, logoy = 0, maxwidth = 0;
             var width = defaults.width - defaults.margin * 2;    //初始化logo参数相对于默认画布尺寸
             maxwidth = Math.floor(width * 0.3);
@@ -391,10 +241,18 @@ function createQRImage(opts, callback) {
     /* 初始化 */
     var init = function() {
         /* 画布图像初始化 */
-        if(options.logoimg){
-            _logoOptions = initLogoImage();
+        console.log('logo#',options.logo);
+        if(options.logo){
+            loadImages([options.logo],function(list){
+                _logo = list[0];
+                _logoOptions = initLogoImage();
+                getData();
+                getAPI();
+            });
+        }else{
+            getData();
+            getAPI();
         }
-        getData();
     };
     init();
 }
