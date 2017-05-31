@@ -15,18 +15,14 @@
     </head>
     <body>
         <p>
-            <canvas id="canvas" width="640" height="640"></canvas>
-            <span>Canvas演示</span>
-        </p>
-        <p>
-            <img id="image" src="" alt="" crossOrigin="anonymous">
+            <img id="image" src="" alt=""/>
             <span>图片演示</span>
         </p>
         <script>
             var logo = new Image();
             logo.src = 'image/panda.png';
             logo.onload = function(){
-                var obj = new createQRImage('canvas',{
+                var obj = new createQRImage({
                     'text':'http://passer-by.com/',
                     'width':640,
                     'margin':20,

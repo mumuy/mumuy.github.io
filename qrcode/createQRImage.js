@@ -1,5 +1,5 @@
 ﻿//创建二维码图片类
-function createQRImage(id, opts, callback) {
+function createQRImage(opts, callback) {
     callback = callback ? callback : nullFun;
     /* 默认参数 */
     var defaults = {
@@ -16,7 +16,7 @@ function createQRImage(id, opts, callback) {
     var options = $.extend({}, defaults, opts);
     /* 私有属性:过程数据量 */
     var _self = this;//当前对象
-    var _canvas = document.getElementById(id);
+    var _canvas = document.createElement('canvas');
     var _data = null;   //二维码数据
     var _pxWidth = 0;//单位点像素宽度
     var _logoOptions = {};//logo相对画布默认尺寸的参数，实际值需要乘放大倍数
