@@ -30,7 +30,7 @@
                 'logo':'image/panda.png'
             },function(api){
                 var $image = document.getElementById('image');
-                $image.src = obj.getBase64();
+                $image.src = api.getBase64();
                 $image.width = size;
                 $image.height = size;
             });
