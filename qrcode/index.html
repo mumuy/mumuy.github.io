@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>二维码</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            img{
+                display: block;
+                margin:0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="image" src="" alt="二维码"/>
+        <script src="qrcode.js"></script>
+        <script src="createQRImage.js"></script>
+        <script>
+            var size = Math.min(window.innerHeight,window.innerWidth);
+            var radio = window.devicePixelRatio||1;
+            new createQRImage({
+                'text':'http://passer-by.com/',
+                'width': size*radio,
+                'margin': 20,
+                'fgColor':'rgb(255, 241, 0)',
+                'gcColor':'rgb(0, 174, 239)',
+                'logo':'image/panda.png'
+            },function(api){
+                var $image = document.getElementById('image');
+                $image.src = api.getBase64();
+                $image.width = size;
+                $image.height = size;
+            });
+        </script>
+    </body>
+</html>
