@@ -11,11 +11,17 @@
 		<link rel="canonical" href="http://passser-by.com/index.html">
 		<link rel="stylesheet" href="public/style/common.css">
 		<style>
-			.container-bg{
-				background-image:url("public/image/bg.jpg");
-			}
+			@keyframes fade-in {  
+			    0% {opacity: 0;}
+			    100% {opacity: 1;}
+			}  
+			@-webkit-keyframes fade-in {
+			    0% {opacity: 0;}  
+			    100% {opacity: 1;}  
+			}  
 			.container{
 				min-height: 400px;
+				background-image:url("public/image/bg.jpg");
 				background-position: center center;
 				background-repeat: no-repeat;
 				-webkit-filter: grayscale(100%);
@@ -26,6 +32,8 @@
 				-moz-background-size: cover;
 			    -o-background-size: cover;
 				background-size: cover;
+				animation: fade-in 0.25s ease-in 0.5s;
+			    -webkit-animation:fade-in 0.25s ease-in 0.5s;
 			}
 			.mod-foot{
 				color:#fff;
@@ -110,20 +118,13 @@
 				var date = today.getDate();
 				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
 				var image = new Image();
-				image.src = url;
-				if(image.complete){
-					document.getElementById('view').className = 'container container-bg';
+				image.src = url;		
+				image.onload = function(){
+					document.getElementById('view').style = 'background-image:url("'+url+'");';
+				};
+				image.onerror = function(){
 					document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
-				}else{				
-					image.onload = function(){
-						document.getElementById('view').className = 'container container-bg';
-						document.getElementById('view').style = 'background-image:url("'+url+'");';
-					};
-					image.onerror = function(){
-						document.getElementById('view').className = 'container container-bg';
-						document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
-					};
-				}
+				};
 			})();
 		</script>
 	</body>
