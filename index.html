@@ -13,7 +13,6 @@
 		<style>
 			.container{
 				min-height: 400px;
-				background-image:url("public/image/bg.jpg");
 				background-position:  center center;
 				background-repeat: no-repeat;
 				-webkit-filter: grayscale(100%);
@@ -108,12 +107,13 @@
 				var date = today.getDate();
 				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
 				var image = new Image();
-				image.src = url;			
-				image.onload = function(){
-					document.getElementById('view').style = 'background-image:url("'+url+'");';
-				};
-				image.onerror = function(){
+				image.src = url;
+				var hander = setTimeout(function(){
 					document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
+				},1000);		
+				image.onload = function(){
+					hander&&clearTimeout(hander);
+					document.getElementById('view').style = 'background-image:url("'+url+'");';
 				};
 			})();
 		</script>
