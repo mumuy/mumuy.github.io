@@ -107,13 +107,17 @@
 				var date = today.getDate();
 				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
 				var image = new Image();
-				image.src = url;		
-				image.onload = function(){
-					document.getElementById('view').style = 'background-image:url(\"'+url+'\");';
-				};
-				image.onerror = function(){
-					document.getElementById('view').style = 'background-image:url(\"public/image/bg.jpg\");';
-				};
+				image.src = url;
+				if(navigator.userAgent.indexOf('Mobi')>-1){
+					document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
+				}else{				
+					image.onload = function(){
+						document.getElementById('view').style = 'background-image:url("'+url+'");';
+					};
+					image.onerror = function(){
+						document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
+					};
+				}		
 			})();
 		</script>
 	</body>
