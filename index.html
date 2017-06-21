@@ -85,9 +85,19 @@
 					</ul>
 				</div>
 			</header>
-			<div class="container">
-
-			</div>
+			<script>
+				(function(){
+					var today = new Date();
+					var prefixInteger = function (num, length) {
+					    return (Array(length).join(0) + num).slice(-length);
+					};
+					var year = today.getFullYear();
+					var month = today.getMonth()+1;
+					var date = today.getDate();
+					var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
+					document.write('<div class="container" style="background-image:url(\''+url+'\');"></div>');					
+				})();
+			</script>
 			<footer>
 				<div class="mod-foot">
 					<p>Copyright &copy; 2017 <a href="/">passer-by.com</a></p>
