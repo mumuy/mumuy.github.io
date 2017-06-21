@@ -11,17 +11,13 @@
 		<link rel="canonical" href="http://passser-by.com/index.html">
 		<link rel="stylesheet" href="public/style/common.css">
 		<style>
-			@keyframes fade-in {  
-			    0% {opacity: 0;}
-			    100% {opacity: 1;}
-			}  
-			@-webkit-keyframes fade-in {
-			    0% {opacity: 0;}  
-			    100% {opacity: 1;}  
-			}  
+			@media screen and (max-width: 400px) {
+				.container{
+					background-image:url("public/image/bg.jpg");
+				}
+			}
 			.container{
 				min-height: 400px;
-				background-image:url("public/image/bg.jpg");
 				background-position: center center;
 				background-repeat: no-repeat;
 				-webkit-filter: grayscale(100%);
@@ -32,8 +28,6 @@
 				-moz-background-size: cover;
 			    -o-background-size: cover;
 				background-size: cover;
-				animation: fade-in 0.25s ease-in 0.5s;
-			    -webkit-animation:fade-in 0.25s ease-in 0.5s;
 			}
 			.mod-foot{
 				color:#fff;
