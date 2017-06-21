@@ -13,7 +13,8 @@
 		<style>
 			.container{
 				min-height: 400px;
-				background: url('public/image/bg.jpg') center center no-repeat;
+				background-position:  center center;
+				background-repeat: no-repeat;
 				-webkit-filter: grayscale(100%);
 				-moz-filter: grayscale(100%);
 				-o-filter: grayscale(100%);
@@ -85,19 +86,7 @@
 					</ul>
 				</div>
 			</header>
-			<script>
-				(function(){
-					var today = new Date();
-					var prefixInteger = function (num, length) {
-					    return (Array(length).join(0) + num).slice(-length);
-					};
-					var year = today.getFullYear();
-					var month = today.getMonth()+1;
-					var date = today.getDate();
-					var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
-					document.write('<div class="container" style="background-image:url(\''+url+'\');"></div>');					
-				})();
-			</script>
+			<div id="view" class="container"></div>
 			<footer>
 				<div class="mod-foot">
 					<p>Copyright &copy; 2017 <a href="/">passer-by.com</a></p>
@@ -107,5 +96,25 @@
 		<div style="display: none;">
 			<script src="http://s95.cnzz.com/z_stat.php?id=1258310068&web_id=1258310068"></script>
 		</div>
+		<script>
+			(function(){
+				var today = new Date();
+				var prefixInteger = function (num, length) {
+				    return (Array(length).join(0) + num).slice(-length);
+				};
+				var year = today.getFullYear();
+				var month = today.getMonth()+1;
+				var date = today.getDate();
+				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
+				var image = new Image();
+				image.src = url;
+				image.onload = function(){
+					document.getElementById('view').style = 'background-image:url("'+url+'");';
+				};
+				image.onerror = function(){
+					document.getElementById('view').style = 'background-image:url("public/image/bg.jpg")';
+				};
+			})();
+		</script>
 	</body>
 </html>
