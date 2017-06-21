@@ -110,15 +110,20 @@
 				var date = today.getDate();
 				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
 				var image = new Image();
-				image.src = url;			
-				image.onload = function(){
-					document.getElementById('view').className = 'container container-bg';
-					document.getElementById('view').style = 'background-image:url("'+url+'");';
-				};
-				image.onerror = function(){
+				image.src = url;
+				if(image.complete){
 					document.getElementById('view').className = 'container container-bg';
 					document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
-				};
+				}else{				
+					image.onload = function(){
+						document.getElementById('view').className = 'container container-bg';
+						document.getElementById('view').style = 'background-image:url("'+url+'");';
+					};
+					image.onerror = function(){
+						document.getElementById('view').className = 'container container-bg';
+						document.getElementById('view').style = 'background-image:url("public/image/bg.jpg");';
+					};
+				}
 			})();
 		</script>
 	</body>
