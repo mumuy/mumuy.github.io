@@ -63,6 +63,27 @@
 			.mod-content a:hover{
 				border-bottom: 1px dotted #666;
 			}
+			.mod-qrcode {
+			    position: absolute;
+			    left: 0;
+			    bottom: 25px;
+			    width: 300px;
+			    text-align: center;
+			}
+			.mod-qrcode .qrcode{
+				display: none;
+				position: absolute;
+				left: 52px;
+				bottom: 48px;
+			}
+			.mod-qrcode a:hover .qrcode{
+				display: block;
+			}
+			@media screen and (max-width: 800px){
+				.mod-qrcode{
+					display: none;
+				}
+			}
 		</style>
 		<script type="text/javascript">
 			(function(){ //IE低版本兼容
@@ -89,6 +110,12 @@
 						<li><a href="/comment.html">留言</a></li>
 						<li><a href="/about.html">关于</a></li>
 					</ul>
+				</div>
+				<div class="mod-qrcode">
+					<a href="javascript:;">
+						<img src="public/image/icon-scan.png" width="48">
+						<img class="qrcode" src="public/image/qrcode.bmp" width="195">
+					</a>
 				</div>
 			</header>
 			<div id="view" class="container"></div>
