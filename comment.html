@@ -142,7 +142,7 @@
 											<a class="reply" href="'+item.html_url+'" target="_blank">查看详情</a>\
 											<a class="name" href="'+item.user.html_url+'">'+item.user.login+'</a>\
 											<span class="time">'+(new Date(item.updated_at).toLocaleString())+'</span></div>\
-										<div class="c-bd"><h3>'+item.title+'</h3><p>'+item.body+'</p></div>\
+										<div class="c-bd"><h3>'+(item.title.length<20?item.title:'')+'</h3><p>'+item.body+'</p></div>\
 									</div>\
 							</li>');
 						}
