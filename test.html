@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>title</title>
+    </head>
+    <body>
+        <input id="timepicker" type="datetime-local" value=""/>
+        <script>
+
+            var dateFormat= function(timestamp){
+                var dt = new Date(timestamp*1000);
+                dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset()); // 修正时区偏移
+                console.log(dt.toISOString());
+                var date = dt.toISOString().slice(0, -5);
+                return date;
+            };
+            var format = function(time){
+                return time.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/,'$1/$2/$3 $4:$5:$6');
+            };
+            timestamp = +new Date(format('20170702000000'))/1000;
+            time = dateFormat(timestamp).replace(/:\d{2}$/,'');
+            document.getElementById('timepicker').value = time;
+        </script>
+    </body
+</html>
