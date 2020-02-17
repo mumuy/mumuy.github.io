@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>测试</title>
+	<title>定位接口测试</title>
 </head>
 <body>
-	<span id="test"></span>
+	<span id="test">定位接口测试</span>
 	<script>
 		(function(){
 	        if (navigator.geolocation){
@@ -17,8 +17,8 @@
 	                if(navigator.connection){
 	                    network = navigator.connection.effectiveType;
 	                }
-	                fetch('http://www.local.ipchaxun.com/api/location/?lng='+longitude+'&lat='+latitude+'&network='+network, {
-	                    method:'GET'
+	                fetch('https://api.liatu.cn/ipchaxun/?lng='+longitude+'&lat='+latitude+'&network='+network, {
+                    	method:'GET'
 	                }).then(function(response){
 	                    response.json().then(function(json){
 	                    	document.getElementById('test').innerHTML = JSON.stringify(json);
