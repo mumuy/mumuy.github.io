@@ -429,7 +429,6 @@
 			if(isHide){
 				return false;
 			}
-			alert('#isHide#'+isHide);
 			if(info['device']=='Mobile'||info['device']=='Tablet'){
 				if(['Chrome','Quark','QQBrowser','115Browser'].indexOf(info['browser'])>-1){
 					var $module = document.createElement('div');
@@ -470,7 +469,6 @@
 					}
 					document.addEventListener('visibilitychange', function() {
 						if(isClick){
-							console.log('visibilitychange');
 							hander&&clearTimeout(hander);
 						}
 					});
