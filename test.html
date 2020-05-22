@@ -451,16 +451,16 @@
 								$module.style.display = 'none';
 								if(i==0){
 									isClick = false;
-									addCookie('isHide',true,24);
+									addCookie('isHide',true,24,'/');
 								}else{
 									isClick = true;
 									if(info['browser']=='QQBrowser'){
 										hander = setTimeout(function(){
-											addCookie('isHide',true,24);
+											addCookie('isHide',true,24,'/');
 										},5000);
 									}else{									
 										hander = setTimeout(function(){
-											addCookie('isHide',true,24);
+											addCookie('isHide',true,24,'/');
 										},1000);
 									}
 								}
