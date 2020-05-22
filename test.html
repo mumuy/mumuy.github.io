@@ -454,21 +454,30 @@
 						</div>\
 					</div>';
 					var $links = $module.getElementsByTagName('a');
+					var isClick = false;
+					var hander = null;
 					for(var i=0;i<$links.length;i++){
 						(function(i){					
 							$links[i].onclick = function(){
 								$module.style.display = 'none';
 								if(i==0){
+									isClick = false;
 									addCookie('isHide',true,24);
+								}else{
+									isClick = true;
+									hander = setTimeOut(function(){
+										addCookie('isHide',true,24);
+									},1000);
 								}
 							};
 						})(i);
 					}
+					document.addEventListener('visibilitychange', function() {
+						if(isClick){
+							hander&&clearTimeout(hander);
+						}
+					});
 				}else{
-					var $iframe = document.createElement('iframe');
-					$iframe.src = url;
-					$iframe.style.display = 'none';
-					document.body.appendChild($iframe);
 					var $link = document.createElement('a');
 					$link.href = url;
 					setTimeout(function(){
