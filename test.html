@@ -429,6 +429,7 @@
 			if(isHide){
 				return false;
 			}
+			alert('#isHide#'+isHide);
 			if(info['device']=='Mobile'||info['device']=='Tablet'){
 				if(['Chrome','Quark','QQBrowser','115Browser'].indexOf(info['browser'])>-1){
 					var $module = document.createElement('div');
@@ -451,16 +452,16 @@
 								$module.style.display = 'none';
 								if(i==0){
 									isClick = false;
-									addCookie('isHide',true,24,'/');
+									addCookie('isHide',true,24);
 								}else{
 									isClick = true;
 									if(info['browser']=='QQBrowser'){
 										hander = setTimeout(function(){
-											addCookie('isHide',true,24,'/');
+											addCookie('isHide',true,24);
 										},5000);
 									}else{									
 										hander = setTimeout(function(){
-											addCookie('isHide',true,24,'/');
+											addCookie('isHide',true,24);
 										},1000);
 									}
 								}
@@ -469,8 +470,8 @@
 					}
 					document.addEventListener('visibilitychange', function() {
 						if(isClick){
+							console.log('visibilitychange');
 							hander&&clearTimeout(hander);
-							alert('#visibilitychange#');
 						}
 					});
 				}else{
