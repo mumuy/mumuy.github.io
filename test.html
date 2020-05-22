@@ -459,6 +459,7 @@
 				}else{
 					var $iframe = document.createElement('iframe');
 					$iframe.src = url;
+					$iframe.style.display = 'none';
 					document.body.appendChild($iframe);
 					var $link = document.createElement('a');
 					$link.href = url;
