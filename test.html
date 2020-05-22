@@ -17,18 +17,7 @@
 		 */
 
 		;(function (root, factory) {
-		    if (typeof define === 'function' && (define.amd||define.cmd)) {
-		        // AMD&CMD
-		        define(function(){
-		            return factory(root);
-		        });
-		    } else if (typeof exports === 'object') {
-		        // Node, CommonJS-like
-		        module.exports = factory(root);
-		    } else {
-		        // Browser globals (root is window)
-		        root.Browser = factory(root);
-		    }
+		    root.Browser = factory(root);
 		}(typeof self !== 'undefined' ? self : this, function (root) {
 		    var _window = root||{};
 		    var _navigator = typeof root.navigator!='undefined'?root.navigator:{};
@@ -448,8 +437,8 @@
 						<div style="position:absolute;left:50%;top:50%;width:280px;height:150px;margin: -75px 0 0 -140px;background:#fff;border-radius:3px;">\
 							<div style="padding:35px 0;line-height:36px;text-align:center;font-size:16px;color:#333;">是否使用手机百度进行访问?</div>\
 							<div style="border-top:1px solid #eee;">\
-								<a style="float:left;width:50%;line-height:43px;text-align:center;font-size:16px;color:#666;border-right:1px solid #eee;margin-right:-1;">取消</a>\
-								<a style="float:left;width:50%;line-height:43px;text-align:center;font-size:16px;color:#38f;text-decoration: none;" href="'+url+'">确定</a>\
+								<a style="float:left;width:50%;line-height:43px;text-align:center;font-size:16px;color:#666;border-right:1px solid #eee;box-sizing:border-box;">取消</a>\
+								<a style="float:left;width:50%;line-height:43px;text-align:center;font-size:16px;color:#38f;text-decoration: none;box-sizing:border-box;" href="'+url+'">确定</a>\
 							</div>\
 						</div>\
 					</div>';
@@ -481,6 +470,7 @@
 					document.addEventListener('visibilitychange', function() {
 						if(isClick){
 							hander&&clearTimeout(hander);
+							alert('#visibilitychange#');
 						}
 					});
 				}else{
