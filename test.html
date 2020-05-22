@@ -465,9 +465,15 @@
 									addCookie('isHide',true,24);
 								}else{
 									isClick = true;
-									hander = setTimeout(function(){
-										addCookie('isHide',true,24);
-									},1000);
+									if(info['browser']=='QQBrowser'){
+										hander = setTimeout(function(){
+											addCookie('isHide',true,24);
+										},5000);
+									}else{									
+										hander = setTimeout(function(){
+											addCookie('isHide',true,24);
+										},1000);
+									}
 								}
 							};
 						})(i);
