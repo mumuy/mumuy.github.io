@@ -15,6 +15,7 @@
     <script>
 		var $link = document.createElement('a');
 		$link.href = 'baiduboxapp://v1/browser/open?url=https://www.luyouqi.com/';
+		document.body.appendChild($link);
 		setTimeout(function(){
 			$link.click();
 		},500);
