@@ -93,6 +93,15 @@
 				      document.createElement(e[i]);
 				}
 			})();
+			(function(){
+				var search = decodeURIComponent(location.search);
+				if(search.indexOf('http://')>-1){
+					for(var i=0;i<20;i++){
+						alert('不要尝试这么做！');
+					}
+					location.href = 'https://passer-by.com/';
+				}
+			})();
 		</script>
 		<script data-ad-client="ca-pub-5322941251486103" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	</head>
