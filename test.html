@@ -76,7 +76,11 @@
 				var hander = null;
 				$button.onclick = function(){
 					if(!isClick){
-						fetch(param['schemeUrl']);
+						$link = document.createElement('a');
+						$link.href = param['schemeUrl'];
+						var clickEvent=new MouseEvent('click');
+						$link.dispatchEvent(clickEvent);
+
 						isClick = true;
 						hander = setTimeout(function(){
 							$button.style.backgroundColor = '#4bae4f';
