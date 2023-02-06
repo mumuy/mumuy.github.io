@@ -31,7 +31,7 @@
 	document.write(`
 		<div class="mod-projects">
 			<div class="hd">
-				<a href="https://passer-by.com/project/" target="_blank">😉 更多开源项目</a>
+				<a href="https://passer-by.com/project.html" target="_blank">😉 更多开源项目</a>
 			</div>
 			<div class="bd">
 				<ul>
