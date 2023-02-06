@@ -74,7 +74,6 @@
 				margin: 0 auto;
 			}
 		</style>
-		<script src="public/script/ajax.js"></script>
 		<script>
 			(function(){ //IE低版本兼容
 				var e = ['footer','header','section'],
@@ -126,37 +125,34 @@
 			</footer>
 		</div>
 		<script>
-			ajax({
-				'url':'https://api.github.com/repos/mumuy/mumuy.github.io/issues',
-				'success':function(data){
-					if(data.length){
-						var comments = [];
-						for(var i=0;i<data.length;i++){
-							var item = data[i];
-							comments.push('<li>\
-									<div class="avatar">\
-										<a href="'+item.user.html_url+'" target="_blank"><img src="'+item.user.avatar_url+'" width="44" height="44"/></a>\
-									</div>\
-									<div class="content">\
-										<div class="c-hd">\
-											<a class="reply" href="'+item.html_url+'" target="_blank">查看详情</a>\
-											<a class="name" href="'+item.user.html_url+'">'+item.user.login+'</a>\
-											<span class="time">'+(new Date(item.updated_at).toLocaleString())+'</span></div>\
-										<div class="c-bd"><h3>'+(item.title.length<20?item.title:'')+'</h3><p>'+item.body+'</p></div>\
-									</div>\
-							</li>');
-						}
-						document.getElementById('comment').innerHTML = comments.join('');
+			fetch('https://api.github.com/repos/mumuy/mumuy.github.io/issues').then((response) => response.json()).then(data => {
+				if(data.length){
+					var comments = [];
+					for(var i=0;i<data.length;i++){
+						var item = data[i];
+						comments.push('<li>\
+								<div class="avatar">\
+									<a href="'+item.user.html_url+'" target="_blank"><img src="'+item.user.avatar_url+'" width="44" height="44"/></a>\
+								</div>\
+								<div class="content">\
+									<div class="c-hd">\
+										<a class="reply" href="'+item.html_url+'" target="_blank">查看详情</a>\
+										<a class="name" href="'+item.user.html_url+'">'+item.user.login+'</a>\
+										<span class="time">'+(new Date(item.updated_at).toLocaleString())+'</span></div>\
+									<div class="c-bd"><h3>'+(item.title.length<20?item.title:'')+'</h3><p>'+item.body+'</p></div>\
+								</div>\
+						</li>');
 					}
+					document.getElementById('comment').innerHTML = comments.join('');
 				}
-			});
+		  	});
 		</script>
 		<script>
 		    var _hmt = _hmt || [];
 		    (function() {
 		      var hm = document.createElement("script");
 		      hm.src = "https://hm.baidu.com/hm.js?b86879c9cc57dd112fe1f7dd75206b82";
-		      var s = document.getElementsByTagName("script")[0]; 
+		      var s = document.getElementsByTagName("script")[0];
 		      s.parentNode.insertBefore(hm, s);
 		    })();
 	    </script>
