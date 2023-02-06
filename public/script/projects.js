@@ -49,7 +49,7 @@
 			.mod-projects{max-width:960px;margin:0 auto;padding: 30px 0 45px;text-align:center;}
 			.mod-projects a{text-decoration:none;color:#333;}
 			.mod-projects .hd{line-height:40px;font-size:18px;font-weight:bold;}
-			.mod-projects ul{overflow:hidden;}
+			.mod-projects ul{overflow:hidden;list-style: none;}
 			.mod-projects li{float:left;width:25%;}
 			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: #f8f8f8;}
 			.mod-projects li a:hover{background: #e9f4ff}
