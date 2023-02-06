@@ -1,5 +1,8 @@
 (function(){
 	var list = [{
+		'url':'https://passer-by.com/relationship/',
+		'name':'亲戚关系计算器'
+	},{
 		'url':'https://jquerywidget.com/',
 		'name':'jQuery插件库'
 	},{
@@ -23,9 +26,6 @@
 	},{
 		'url':'https://passer-by.com/hiddenCode/',
 		'name':'hiddenCode脚本加密'
-	},{
-		'url':'https://passer-by.com/chinese-transverter/',
-		'name':'中文简体繁体转换器'
 	}];
 	var url = location['hostname']+location['pathname'];
 	document.write(`
