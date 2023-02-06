@@ -47,7 +47,7 @@
 		</div>
 		<style type="text/css">
 			.mod-projects{max-width:960px;margin:0 auto;padding: 30px 0 45px;text-align:center;}
-			.mod-projects a{text-decoration:none;}
+			.mod-projects a{text-decoration:none;color:#333;}
 			.mod-projects .hd{line-height:40px;font-size:18px;font-weight:bold;}
 			.mod-projects ul{overflow:hidden;}
 			.mod-projects li{float:left;width:25%;}
