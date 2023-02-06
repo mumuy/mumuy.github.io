@@ -9,8 +9,8 @@
 		'url':'https://passer-by.com/pacman/',
 		'name':'吃豆人游戏'
 	},{
-		'url':'https://passer-by.com/data_post/',
-		'name':'邮政编码数据'
+		'url':'https://passer-by.com/data_location/',
+		'name':'行政区划数据'
 	},{
 		'url':'https://passer-by.com/calendar/',
 		'name':'万年历'
