@@ -6,9 +6,6 @@
 		'url':'https://passer-by.com/pacman/',
 		'name':'吃豆人游戏'
 	},{
-		'url':'https://passer-by.com/data_location/',
-		'name':'行政区划数据'
-	},{
 		'url':'https://passer-by.com/data_post/',
 		'name':'邮政编码数据'
 	},{
@@ -26,6 +23,9 @@
 	},{
 		'url':'https://passer-by.com/hiddenCode/',
 		'name':'hiddenCode脚本加密'
+	},{
+		'url':'https://passer-by.com/chinese-transverter/',
+		'name':'中文简体繁体转换器'
 	}];
 	var url = location['hostname']+location['pathname'];
 	document.write(`
@@ -53,6 +53,9 @@
 			.mod-projects li{float:left;width:25%;}
 			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: #f8f8f8;}
 			.mod-projects li a:hover{background: #e9f4ff}
+			@media screen and (max-width: 800px){
+				.mod-projects li{width:50%;}
+			}
 		</style>
 	`);
 })();
