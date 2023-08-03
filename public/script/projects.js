@@ -51,7 +51,7 @@
 			.mod-projects .hd{line-height:40px;font-size:18px;font-weight:bold;}
 			.mod-projects ul{overflow:hidden;list-style: none;margin:0;padding:0;}
 			.mod-projects li{float:left;width:25%;}
-			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: #f8f8f8;color:#6e7781;}
+			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: rgba(0,0,0,0.04);color:#6e7781;}
 			.mod-projects li a:hover{background: #e9f4ff}
 			@media screen and (max-width: 800px){
 				.mod-projects li{width:50%;}
