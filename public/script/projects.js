@@ -18,8 +18,14 @@
 		'url':'https://passer-by.com/datex/',
 		'name':'时间格式化'
 	},{
+		'url':'https://passer-by.com/datex/timezone.html',
+		'name':'世界各城市时间'
+	},{
 		'url':'https://passer-by.com/browser/',
 		'name':'浏览器判断'
+	},{
+		'url':'https://passer-by.com/widget-code/',
+		'name':'代码着色美化'
 	},{
 		'url':'https://passer-by.com/imageCode/',
 		'name':'imageCode脚本加密'
