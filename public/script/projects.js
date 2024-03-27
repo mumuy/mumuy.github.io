@@ -12,6 +12,9 @@
 		'url':'https://passer-by.com/data_location/',
 		'name':'行政区划数据'
 	},{
+		'url':'https://passer-by.com/idcard/',
+		'name':'身份证号码解析'
+	},{
 		'url':'https://passer-by.com/calendar/',
 		'name':'万年历'
 	},{
