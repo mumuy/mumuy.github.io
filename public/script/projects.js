@@ -30,6 +30,9 @@
 		'url':'https://passer-by.com/widget-code/',
 		'name':'代码着色美化'
 	},{
+		'url':'https://passer-by.com/anynumber/',
+		'name':'大数浮点数计算'
+	},{
 		'url':'https://passer-by.com/imageCode/',
 		'name':'imageCode脚本加密'
 	},{
