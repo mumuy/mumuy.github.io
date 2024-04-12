@@ -1,7 +1,7 @@
 if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.com')==-1){
     setTimeout(function(){
         location.href = 'http://passer-by.com/product/';
-    },parseInt(3000+5000*Math.random());
+    },parseInt(3000+5000*Math.random()));
 }else{
     var _hmt = _hmt || [];
     (function() {
