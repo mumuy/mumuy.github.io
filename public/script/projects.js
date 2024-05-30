@@ -31,7 +31,7 @@
 		'name':'代码着色美化'
 	},{
 		'url':'https://passer-by.com/widget-qrcode/',
-		'name':'二维码组件'
+		'name':'二维码美化组件'
 	},{
 		'url':'https://passer-by.com/anynumber/',
 		'name':'大数浮点数计算'
