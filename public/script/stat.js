@@ -1,6 +1,6 @@
 if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.com')==-1){
     setTimeout(function(){
-        location.href = 'http://passer-by.com/product/';
+        location.href = 'https://passer-by.com/project.html';
     },parseInt(3000+5000*Math.random()));
 }else{
     var _hmt = _hmt || [];
