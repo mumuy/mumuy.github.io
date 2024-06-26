@@ -68,15 +68,14 @@
             </div>
         </div>
 		<style type="text/css">
-			.mod-projects{max-width:960px;margin:0 auto 20px;padding: 30px 0 45px;text-align:center;font-size:14px;}
+			.mod-projects{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;font-size:14px;}
 			.mod-projects a{text-decoration:none;color:#6e7781;}
 			.mod-projects .hd{line-height:40px;font-size:18px;font-weight:bold;}
 			.mod-projects ul{overflow:hidden;list-style: none;margin:0;padding:0;}
 			.mod-projects li{float:left;width:25%;}
 			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: rgba(0,0,0,0.03);color:#6e7781;}
 			.mod-projects li a:hover{background: #e9f4ff}
-            .mod-spread{max-width:960px;margin:0 auto 20px;}
-            .mod-spread .bd{text-align:center;}
+            .mod-spread{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;}
             .mod-spread .bd img{max-width:100%;height: auto;}
 			@media screen and (max-width: 800px){
 				.mod-projects li{width:50%;}
