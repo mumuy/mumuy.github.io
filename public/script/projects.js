@@ -66,6 +66,7 @@
                     <img src="https://passer-by.com/public/image/spread/tencent.png" alt="腾讯云"/>
                 </a>
             </div>
+            <iframe src="https://cloud.tencent.com/act/cps/redirect?redirect=2446&amp;cps_key=6c796675181"></iframe>
         </div>
 		<style type="text/css">
 			.mod-projects{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;font-size:14px;}
@@ -77,6 +78,7 @@
 			.mod-projects li a:hover{background: #e9f4ff}
             .mod-spread{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;}
             .mod-spread .bd img{max-width:100%;height: auto;}
+            .mod-spread iframe{position: absolute;top: 0;left:-100%;width: 100px;height:100px;border: none;}
 			@media screen and (max-width: 800px){
 				.mod-projects li{width:50%;}
 			}
