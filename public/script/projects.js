@@ -75,6 +75,7 @@
 			.mod-projects li{float:left;width:25%;}
 			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: rgba(0,0,0,0.03);color:#6e7781;}
 			.mod-projects li a:hover{background: #e9f4ff}
+            .mod-spread{max-width:960px;margin:0 auto 20px;}
             .mod-spread .bd{text-align:center;}
             .mod-spread .bd img{max-width:100%;height: auto;}
 			@media screen and (max-width: 800px){
