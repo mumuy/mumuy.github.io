@@ -88,6 +88,9 @@ footer{
 		height: auto;
 		min-height: 100%;
 	}
+	.container{
+		padding: 0 10px;
+	}
 	header{
 		float: none;
 		width: 100%;
