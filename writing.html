@@ -10,7 +10,7 @@
 		<link rel="shortcut icon" href="/public/image/favicon.png">
 		<link rel="canonical" href="http://passser-by.com/writing.html">
 		<link rel="stylesheet" href="public/style/common.css">
-		<style>
+		<style type="text/css">
 			.mod-content section{
 				margin-bottom: 18px;
 			}
@@ -19,15 +19,33 @@
 				margin-bottom: 5px;
 				font-size: 16px;
 			}
+			.mod-content h3 .subtitle{
+				color: #999;
+			}
 			.mod-content ul{
 				overflow: hidden;
 			}
 			.mod-content li{
 				float: left;
 				width: 50%;
-				height: 20px;
 				line-height: 20px;
 				overflow: hidden;
+			}
+			.mod-content .item{
+				height: 40px;
+				padding: 6px 10px;
+				background: #f8f8f8;
+				margin: 0 2px 4px;
+				border-radius: 5px;
+				line-height: 20px;
+			}
+			.mod-content .J_link:hover{
+				background: #f5f5f5;
+				cursor: pointer;
+			}
+			.mod-content p.summary{
+				font-size: 13px;
+				color: #999;
 			}
 			.mod-content a{
 				padding:0 2px;
@@ -37,6 +55,21 @@
 			}
 			.mod-content a:hover{
 				border-bottom: 1px dotted #666;
+			}
+			@media screen and (max-width: 800px){
+				.mod-content li{
+					float: none;
+					width: auto;
+				}
+				.mod-content .item{
+					margin: 0 1px 2px;
+				}
+				.mod-content p.summary{
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					font-size: 12px;
+					overflow: hidden;
+				}
 			}
 		</style>
 		<script>
@@ -72,13 +105,23 @@
 						<section>
 							<h3>笔记</h3>
 							<ul>
-								<li><a href="/front-end-note/" target="_blank">Web前端</a></li>
+								<li>
+									<div class="J_link item">
+										<p class="title"><a href="/front-end-note/" target="_blank">Web前端</a></p>
+										<p class="summary">分享常用的前端代码段</p>
+									</div>
+								</li>
 							</ul>
 						</section>
 						<section>
 							<h3>查询文档</h3>
 							<ul>
-								<li><a href="http://passer-by.com/api/" target="_blank">常用API</a></li>
+								<li>
+									<div class="J_link item">
+										<p class="title"><a href="/api/" target="_blank">常用API</a></p>
+										<p class="summary">分享常用的公共API</p>
+									</div>
+								</li>
 							</ul>
 						</section>
 					</div>
