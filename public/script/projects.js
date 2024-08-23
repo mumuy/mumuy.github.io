@@ -36,6 +36,9 @@
 		'url':'https://passer-by.com/anynumber/',
 		'name':'大数浮点数计算'
 	},{
+		'url':'https://passer-by.com/ajax/',
+		'name':'异步请求库'
+	},{
 		'url':'https://passer-by.com/imageCode/',
 		'name':'imageCode脚本加密'
 	},{
