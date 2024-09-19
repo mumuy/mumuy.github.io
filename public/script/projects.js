@@ -66,13 +66,6 @@
 				</ul>
 			</div>
 		</div>
-        <div class="mod-spread">
-            <div class="bd">
-                <a href="https://cloud.tencent.com/act/cps/redirect?redirect=2446&cps_key=6c796675181" target="_blank" title="【腾讯云】云服务器、云数据库、COS、CDN、短信等云产品特惠热卖中">
-                    <img src="https://passer-by.com/public/image/spread/tencent.png" alt="腾讯云"/>
-                </a>
-            </div>
-        </div>
 		<style type="text/css">
 			.mod-projects{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;font-size:14px;}
 			.mod-projects a{text-decoration:none;color:#6e7781;}
@@ -81,8 +74,8 @@
 			.mod-projects li{float:left;width:25%;}
 			.mod-projects li a{display:block;margin: 0 1px 2px;line-height:36px;background: rgba(0,0,0,0.03);color:#6e7781;}
 			.mod-projects li a:hover{background: #e9f4ff}
-            .mod-spread{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;}
-            .mod-spread .bd img{max-width:100%;height: auto;}
+			.mod-spread{max-width:960px;margin:0 auto 20px;padding: 30px 0;text-align:center;}
+			.mod-spread .bd img{max-width:100%;height: auto;}
 			@media screen and (max-width: 800px){
 				.mod-projects li{width:50%;}
 			}
