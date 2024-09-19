@@ -9,6 +9,9 @@
 		'url':'https://passer-by.com/pacman/',
 		'name':'吃豆人游戏'
 	},{
+		'url':'https://passer-by.com/gobang/',
+		'name':'五子棋人机对战'
+	},{
 		'url':'https://passer-by.com/data_location/',
 		'name':'行政区划数据'
 	},{
