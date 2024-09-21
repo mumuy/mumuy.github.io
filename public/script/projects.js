@@ -57,9 +57,7 @@
 			<div class="bd">
 				<ul>
 					`+(function(){
-						return list.filter(function(item){
-							return item['url'].indexOf(url)==-1;
-						}).map(function(item){
+						return list.map(function(item){
 							return `<li><a href="${item['url']}" target="_blank">${item['name']}</a></li>`;
 						}).join('');
 					})()+`
