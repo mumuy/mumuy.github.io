@@ -36,6 +36,9 @@
 		'url':'https://passer-by.com/widget-qrcode/',
 		'name':'二维码美化组件'
 	},{
+		'url':'https://passer-by.com/livestorage/',
+		'name':'响应式数据本地存储'
+	},{
 		'url':'https://passer-by.com/anynumber/',
 		'name':'大数浮点数计算'
 	},{
