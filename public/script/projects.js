@@ -30,11 +30,14 @@
 		'url':'https://passer-by.com/browser/',
 		'name':'浏览器判断'
 	},{
-		'url':'https://passer-by.com/widget-code/',
-		'name':'代码着色美化'
-	},{
 		'url':'https://passer-by.com/widget-qrcode/',
 		'name':'二维码美化组件'
+	},{
+		'url':'https://passer-by.com/widget-code/',
+		'name':'代码着色美化组件'
+	},{
+		'url':'https://passer-by.com/widget-region/',
+		'name':'行政区划选择组件'
 	},{
 		'url':'https://passer-by.com/livestorage/',
 		'name':'响应式数据本地存储'
