@@ -1,0 +1,91 @@
+.mod-word{
+    margin-bottom: 25px;
+}
+.mod-word blockquote{
+    padding: 15px 20px;
+    background-color: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.02);
+    border-radius: 8px;
+    border-top-right-radius: 21px;
+    border-bottom-left-radius: 21px;
+    line-height: 26px;
+    color: #333;
+}
+
+.mod-panel{
+    margin-bottom: 25px;
+    background: #fff;
+    border: 1px solid #f0f0f088;
+    border-radius: 8px;
+    box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.02);
+}
+.mod-panel .hd{
+    position: relative;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f0f0f088;
+    line-height: 24px;
+}
+.mod-panel .hd .title{
+    font-size: 18px;
+    font-weight: bold;  
+}
+.mod-panel .hd::after{
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: #2095f2;
+    margin-top: -12px;
+    border-radius: 3px;
+}
+.mod-panel .bd{
+    padding: 20px;
+}
+.mod-panel .bd p{
+    margin-bottom: 10px;
+    line-height: 26px;
+    text-indent: 2em;
+}
+.mod-panel .bd svg{
+    opacity: 0.5;
+}
+.mod-panel .bd svg:hover{
+    opacity: 0.6;
+}
+.mod-panel .field-wrapper{
+    display: flex;
+    padding: 5px 0;
+    line-height: 26px;
+}
+.mod-panel .field-title{
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+}
+.mod-panel .field-content{
+    flex: 1;
+    min-width: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .mod-word blockquote{
+        padding: 10px 15px;
+        border-radius: 8px;
+        line-height: 24px;
+    }
+
+    .mod-panel{
+        margin-bottom: 15px;
+    }
+    .mod-panel .bd p{
+        line-height: 24px;
+    }
+    .mod-panel .field-wrapper{
+        line-height: 24px;
+    }
+    .mod-panel .field-title{
+        width: 80px;
+    }
+}

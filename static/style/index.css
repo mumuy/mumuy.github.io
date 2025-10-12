@@ -1,0 +1,556 @@
+
+
+.module{
+    margin: 210px 0;
+}
+.module:last-child{
+    margin-bottom: 25px;
+}
+
+.mod-person{
+    margin-bottom: 210px;
+}
+.mod-person .bd{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 100px 0 150px;
+}
+.mod-person .avatar{
+    position: relative;
+    margin: 0 80px;
+    text-align: center;
+}
+.mod-person .avatar img{
+    display: block;
+    border: 5px solid rgba(0,0,0,0.05);
+    border-radius: 16%;
+    backdrop-filter: blur(8px);
+}
+.mod-person .avatar .location{
+    position: absolute;
+    right: 10px;
+    bottom: -10px;
+    display: inline-block;
+    padding: 0 15px 0 30px;
+    background: #006494 url('../image/index/icon-location.png') 10px center/16px 16px no-repeat;
+    border-radius: 6px;
+    line-height: 32px;
+    color: #fff;
+}
+.mod-person .summary{
+    padding: 10px 0;
+    text-align: right;
+}
+.mod-person .summary h3{
+    margin-bottom: 6px;
+    line-height: 48px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #1f2937;
+}
+.mod-person .summary p{
+    line-height: 32px;
+    font-size: 18px;
+    color: #1f2937cc;
+}
+.mod-person .summary .hi{
+    position: relative;
+    top: -15px;
+    left: -15px;
+    display: inline-block;
+    font-size: 44px;
+    color: #1f293748;
+    transform: rotate(-36deg);
+}
+.mod-person .summary .job{
+    color: #0969da;
+}
+.mod-person .operation{
+    margin-top: 20px;
+}
+.mod-person .operation .btn{
+    display: inline-block;
+    min-width: 90px;
+    height: 48px;
+    margin: 0 3px;
+    padding: 0 20px;
+    background: #e0e6ec;
+    border-radius: 8px;
+    line-height: 48px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.mod-person .operation .btn:hover{
+    background: #d8dee5;
+}
+.mod-person .operation .btn-blue{
+    background: #006494;
+    color: #fff;
+}
+.mod-person .operation .btn-blue:hover{
+    background: #015c89;
+}
+
+.mod-about .bd{
+    display: flex;
+    padding: 50px 0;
+}
+.mod-about .picture-container{
+    position: relative;
+    top: -50px;
+}
+.mod-about .picture-container .picture{
+    position: relative;
+    z-index: 5;
+}
+.mod-about .picture-container .picture img{
+    border-radius: 12px;
+}
+.mod-about .picture-container .slogan{
+    position: absolute;
+    left: -48px;
+    top: 93%;
+    z-index: 9;
+    transform: rotate(-90deg);
+    transform-origin:  0 0;
+    font-size: 48px;
+    font-weight: bold;
+    color: #e0ebfd;
+}
+.mod-about .picture-container .slogan span:nth-child(2){
+    color: #e0e8ee;
+}
+.mod-about .summary-container{
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    top: 50px;
+    background: #f6f8fa;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: -240px 0 #f6f8fa;
+}
+.mod-about .summary-container .comment{
+    position: absolute;
+    right: 0;
+    top: -80px;
+    z-index: 9;
+    width: 100%;
+    line-height: 40px;
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+.mod-about .summary-container .detail{
+    margin-bottom: 30px;
+}
+.mod-about .summary-container .detail p{
+    text-indent: 2em;
+    line-height: 26px;
+    color: #1f2937cc;
+}
+.mod-about .summary-container .group{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    margin-left: 20px;
+}
+.mod-about .summary-container .item p{
+    line-height: 26px;
+    white-space: nowrap;
+    font-size: 16px;
+}
+.mod-about .summary-container .item p.name{
+    font-weight: bold;
+}
+.mod-about .summary-container .item p.value{
+    color: #888;
+}
+
+.mod-github .bd{
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(0deg, #ecf5fa 0%, #f3f9ff  38.1%, #f9fbfd 100%);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+}
+.mod-github .summary-container{
+    flex: 1;
+    min-width: 0;
+}
+.mod-github .summary-container p.title{
+    margin-bottom: 24px;
+    line-height: 36px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.mod-github .summary-container p.subtitle{
+    margin-bottom: 24px;
+    line-height: 26px;
+    font-size: 16px;
+    color: #888;
+}
+.mod-github .summary-container p.buttons{
+    margin-top: 36px;
+}
+.mod-github .summary-container .btn {
+    position: relative;
+    display: inline-block;
+    min-width: 80px;
+    height: 38px;
+    margin: 0 3px;
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    line-height: 36px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+    transition: color .2s, opacity .2s;
+    font-family: Tahoma, Arial, Helvetica, "Microsoft YaHei";
+    outline: none;
+    -webkit-appearance: none;
+}
+.mod-github .summary-container .btn svg,.mod-github .summary-container .btn span{
+    vertical-align: middle;
+}
+.mod-github .summary-container .btn-blue{
+    background: #006494;
+    color: #fff;
+}
+.mod-github .picture-container{
+    position: relative;
+}
+.mod-github .picture-container .cat{
+    position: absolute;
+    top: 185px;
+    right: 10px;
+    z-index: 9;
+}
+
+.mod-project .hd{
+    padding-top: 30px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+.mod-project .hd .title{
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #006494;
+}
+.mod-project .hd .title a{
+    color: #006494;
+}
+.mod-project .hd .subtitle{
+    position: relative;
+    line-height: 26px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e8e8e8;
+}
+.mod-project .list{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+}
+.mod-project .item{
+    position: relative;
+    padding: 25px 25px 175px;
+    background: linear-gradient(0deg, #ecf5fa 0%, #f3f9ff 38.1%, #f9fbfd 100%);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.12s ease-in;
+}
+.mod-project .item .rank{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 9;
+}
+.mod-project .item .c-hd{
+    text-align: center;
+}
+.mod-project .item .title{
+    line-height: 34px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.mod-project .item .subtitle{
+    line-height: 26px;
+    font-size: 16px;
+    color: #888;
+}
+.mod-project .item .cover{
+    position: absolute;
+    left: 0;
+    bottom: -24px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.12s ease-in;
+}
+.mod-project .item .cover .btn{
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    width: 100px;
+    height: 32px;
+    margin-left: -50px;
+    background: #006494;
+    border-radius: 16px;
+    line-height: 32px;
+    font-size: 15px;
+    color: #fff;
+    box-shadow: 1px 2px 8px rgba(0,0,0,0.05);
+}
+.mod-project .item .cover img{
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    border: 3px solid #ffffff;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 1px 3px 12px rgba(0,0,0,0.05);
+}
+.mod-project .item:hover{
+    background: linear-gradient(0deg, #ecf5faaa 0%, #f3f9ffaa 38.1%, #f9fbfdaa 100%);
+}
+.mod-project .item:hover .cover{
+    bottom: -4px;
+}
+.mod-project .ft{
+    text-align: center;
+}
+.mod-project .ft .btn {
+    display: inline-block;
+    min-width: 136px;
+    height: 54px;
+    margin: 0 3px;
+    padding: 0 20px;
+    background: #e0e6ec;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.08);
+    line-height: 54px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.mod-project .ft .btn::after{
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    content:'';
+    margin-left: 6px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg);
+}
+.mod-project .ft .btn-blue{
+    background: #006494;
+    color: #fff;
+}
+.mod-project .ft .btn-blue:hover {
+    background: #015c89;
+}
+
+@media screen and (max-width: 800px)  {
+    .module{
+        margin: 60px 0;
+    }
+
+    .mod-person{
+        margin-bottom: 60px;
+    }
+    .mod-person .bd{
+        flex-direction: column;
+        padding: 30px 0;
+    }
+    .mod-person .avatar{
+        width: 120px;
+        margin: 0 auto 15px;
+    }
+    .mod-person .avatar img{
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+    .mod-person .avatar .location{
+        left: 10px;
+        right: 10px;
+        padding: 0 12px 0 24px;
+        background-position: 6px center;
+    }
+    .mod-person .summary{
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .mod-person .summary h3{
+        line-height: 30px;
+        font-size: 20px;
+    }
+    .mod-person .summary .hi{
+        left: -10px;
+        top: -10px;
+        font-size: 24px;
+    }
+    .mod-person .summary p{
+        line-height: 24px;
+        font-size: 16px;
+    }
+    .mod-person .operation .btn{
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+
+    .mod-about .bd{
+        flex-direction: column;
+        gap: 60px;
+    }
+    .mod-about .picture-container{
+        top: 0;
+    }
+    .mod-about .picture-container .slogan{
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: rotate(0);
+        font-size: 32px;
+    }
+    .mod-about .picture-container .picture img{
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .mod-about .summary-container{
+        top: 0;
+        padding: 12px;
+        box-shadow: none;
+    }
+    .mod-about .summary-container .comment{
+        top: -60px;
+        line-height: 30px;
+        font-size: 20px;
+    }
+    .mod-about .summary-container .detail{
+        margin-bottom: 25px;
+    }
+    .mod-about .summary-container .detail p{
+        line-height: 22px;
+        font-size: 15px;
+    }
+    .mod-about .summary-container .group{
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-left: 0;
+    }
+    .mod-about .summary-container .item p{
+        line-height: 24px;
+        font-size: 15px;
+    }
+
+    .mod-github .bd{
+        flex-direction: column;
+        padding: 12px;
+        margin-bottom: 120px;
+    }
+    .mod-github .summary-container{
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    .mod-github .summary-container p.title{
+        margin-bottom: 15px;
+        line-height: 28px;
+        font-size: 18px;
+    }
+    .mod-github .summary-container p.subtitle{
+        margin-bottom: 15px;
+        line-height: 22px;
+        font-size: 15px;
+    }
+    .mod-github .summary-container p.buttons{
+        margin-top: 25px;
+    }
+    .mod-github .summary-container .btn{
+        height: 36px;
+        padding: 0 15px;
+        line-height: 34px;
+        font-size: 15px;
+    }
+    .mod-github .picture-container{
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    .mod-github .picture-container img{
+        max-width: 100%;
+        height: auto;
+    }
+    .mod-github .picture-container .cat{
+        top: auto;
+        bottom: -120px;
+        width: 84px;
+    }
+
+    .mod-project .hd{
+        padding-top: 15px;
+        margin-bottom: 25px;
+    }
+    .mod-project .hd .title{
+        line-height: 32px;
+        font-size: 28px;
+    }
+    .mod-project .hd .subtitle{
+        line-height: 24px;
+        font-size: 18px;
+    }
+    .mod-project .list{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .mod-project .item{
+        padding:  12px 12px 180px;
+        border-radius: 8px;
+    }
+    .mod-project .item .rank img{
+        width: 36px;
+        height: 36px;
+    }
+    .mod-project .item .title{
+        line-height: 32px;
+        font-size: 20px;
+    }
+    .mod-project .item .subtitle{
+        line-height: 24px;
+        font-size: 16px;
+    }
+    .mod-project .item .cover{
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+    .mod-project .item .cover img{
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        box-sizing: border-box;
+    }
+    .mod-project .ft .btn{
+        min-width: 124px;
+        height: 48px;
+        line-height: 48px;
+        font-size: 16px;
+    }
+    .mod-project .ft .btn::after{
+        top: 0;
+        width: 8px;
+        height: 8px;
+    }
+}

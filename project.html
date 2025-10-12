@@ -1,466 +1,412 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<title>项目 - 路人甲</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-		<meta name="description" content="web开发组件化">
-		<meta name="keywords" content="web前端开发,前端组件,组件库,jQuery插件">
-		<meta name="author" content="木木阳,mumuy" />
-		<link rel="shortcut icon" href="/public/image/favicon.png">
-		<link rel="canonical" href="https://passser-by.com/product.html">
-		<link rel="stylesheet" href="public/style/common.css">
-		<style type="text/css">
-			.mod-content section{
-				margin-bottom: 18px;
-			}
-			.mod-content h3{
-				padding-left: 2px;
-				margin-bottom: 5px;
-				font-size: 16px;
-			}
-			.mod-content h3 .subtitle{
-				color: #999;
-			}
-			.mod-content ul{
-				overflow: hidden;
-			}
-			.mod-content li{
-				float: left;
-				width: 50%;
-				line-height: 20px;
-				overflow: hidden;
-			}
-			.mod-content .item{
-				height: 40px;
-				padding: 6px 10px;
-				background: #f8f8f8;
-				margin: 0 2px 4px;
-				border-radius: 5px;
-				line-height: 20px;
-			}
-			.mod-content .J_link:hover{
-				background: #f5f5f5;
-				cursor: pointer;
-			}
-			.mod-content p.summary{
-				font-size: 13px;
-				color: #999;
-			}
-			.mod-content a{
-				padding:0 2px;
-			}
-			.mod-content a.hot{
-				color: #cc0000;
-			}
-			.mod-content a:hover{
-				border-bottom: 1px dotted #666;
-			}
-			@media screen and (max-width: 800px){
-				.mod-content li{
-					float: none;
-					width: auto;
-				}
-				.mod-content .item{
-					margin: 0 1px 2px;
-				}
-				.mod-content p.summary{
-					text-overflow: ellipsis;
-					white-space: nowrap;
-					font-size: 12px;
-					overflow: hidden;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div class="wrapper">
-			<header>
-				<div class="mod-head">
-					<h1><a href="/">PASSER-BY</a></h1>
-					<p>一只程序猿的禅意生活</p>
-				</div>
-				<div class="mod-list">
-					<ul>
-						<li class="active"><a href="/project.html">项目</a></li>
-						<li><a href="/writing.html">文字</a></li>
-						<li><a href="/photograph.html">摄影</a></li>
-						<li><a href="/comment.html">留言</a></li>
-						<li><a href="/about.html">关于</a></li>
-					</ul>
-				</div>
-			</header>
-			<div class="container">
-				<div class="main">
-					<div class="mod-content">
-						<section>
-							<h3>算法</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title">
-											<a class="hot" href="/relationship/" target="_blank">中国亲戚关系计算器</a>
-											<span>/</span>
-											<a href="/relationship/vue/" target="_blank">移动版</a>
-										</p>
-										<p class="summary">弘扬中国传统文化，有趣的教育工具</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/finder/" target="_blank">最短寻址</a></p>
-										<p class="summary">迷宫自动寻址，游戏常用算法</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/calc24/" target="_blank">24点计算</a></p>
-										<p class="summary">儿时智力问答常见挑战</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/chinese-transverter/" target="_blank">中文简体繁体转换器</a></p>
-										<p class="summary">两岸三地文字转换工具</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>网页组件 <span class="subtitle">Web Component</span></h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/calendar/" target="_blank">万年历</a></p>
-										<p class="summary">方便查询农历和公历生日及节假日</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/widget-code/" target="_blank">代码着色美化</a></p>
-										<p class="summary">让你的代码更性感</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/widget-qrcode/" target="_blank">二维码美化组件</a></p>
-										<p class="summary">二维码图片实时根据内容变化</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/widget-region/" target="_blank">行政区划选择组件</a></p>
-										<p class="summary">中国省市区三级行政区划选</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>工具库</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title">
-											<a href="/datex/" target="_blank">datex时间格式化</a>
-											<span>/</span>
-											<a href="/datex/timezone.html" target="_blank">世界时间</a>
-										</p>
-										<p class="summary">时间格式快速转换工具</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/browser/" target="_blank">浏览器及设备判断</a></p>
-										<p class="summary">识别用户浏览器信息</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/idcard/" target="_blank">中国身份证号码解析</a></p>
-										<p class="summary">居民身份证、外国人永久居留身份证号码解析</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/livestorage/" target="_blank">响应式数据本地存储</a></p>
-										<p class="summary">监听变量变化，实时同步到本地存储中</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/anynumber/" target="_blank">大数浮点数计算</a></p>
-										<p class="summary">提供大数浮点数计算及数值格式化工具</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/ajax/" target="_blank">异步请求库</a></p>
-										<p class="summary">简易的原生异步请求库</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>游戏</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/pacman/" target="_blank">吃豆游戏</a></p>
-										<p class="summary">经典游戏HTML5复刻，智能围堵算法</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/gobang/" target="_blank">五子棋人机对战</a></p>
-										<p class="summary">玩家和电脑进行五子棋对战游戏</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/blackjack/" target="_blank">21点纸牌</a></p>
-										<p class="summary">经典纸牌游戏</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>jQuery组件库</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title">
-											<a href="//jquerywidget.com/jquery-slider/" target="_blank">轮播</a>
-											<span>/</span>
-											<a href="//jquerywidget.com/jquery-slider/subject.html" target="_blank">全屏滚动</a>
-										</p>
-										<p class="summary">幻灯片、全屏轮播、跑马灯等应用</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-tabs/" target="_blank">标签页</a></p>
-										<p class="summary">网页中用于内容切换</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-scrollbar/" target="_blank">滚动条</a></p>
-										<p class="summary">自定义滚动条</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-select/" target="_blank">下拉框</a></p>
-										<p class="summary">自定义select样式</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-range/" target="_blank">滑动条</a></p>
-										<p class="summary">自定义进度滑动条</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-dialog/" target="_blank">对话框</a></p>
-										<p class="summary">自定义模式对话框</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-countdown/" target="_blank">倒计时</a></p>
-										<p class="summary">抢购秒杀等活动倒计时应用</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-imagezoom/" target="_blank">图片聚焦</a></p>
-										<p class="summary">统一展示不规则尺寸图片</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-magiczoom/" target="_blank">图片放大镜</a></p>
-										<p class="summary">产品图片细节放大镜展示</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-headroom/" target="_blank">浮动菜单</a></p>
-										<p class="summary">网页滚动时菜单浮动驻留效果</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title">
-											<a href="//jquerywidget.com/jquery-calendar/" target="_blank">日历</a>
-											/<a href="//jquerywidget.com/jquery-calendar/slider.html" target="_blank">滑动日历(基于轮播)</a>
-										</p>
-										<p class="summary">简易的无限范围日期选择</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-popup/" target="_blank">弹出层</a></p>
-										<p class="summary">详情展示指定弹出位置</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-suggestion/" target="_blank">搜索建议</a></p>
-										<p class="summary">输入过程中实时显示最佳匹配内容</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-citys/" target="_blank">城市三级联动</a></p>
-										<p class="summary">用户所属地理位置选择</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-tablesort/" target="_blank">表格排序</a></p>
-										<p class="summary">单元格的合并及拆分</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-inputFormat/" target="_blank">格式化输入框</a></p>
-										<p class="summary">指定输入框输入的格式</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-accordion/" target="_blank">手风琴</a></p>
-										<p class="summary">内容折叠展开</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-colorpicker/" target="_blank">颜色选择器</a></p>
-										<p class="summary">用户快速选择颜色值</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/jquery-emoticons/" target="_blank">聊天表情</a></p>
-										<p class="summary">评论框发送聊天表情</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>Zepto组件库</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com/zepto-slider/" target="_blank">轮播</a></p>
-										<p class="summary">移动端幻灯片</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>站点</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//jquerywidget.com" target="_blank">jQuery组件库官网</a></p>
-										<p class="summary">集合常用Web交互插件</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="http://passerby.cn" target="_blank">随机导航网</a></p>
-										<p class="summary">上网冲浪随机网址推荐</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="//airplant.net" target="_blank">空凤网</a></p>
-										<p class="summary">空气凤梨爱好者网址推荐</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>数据</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/data_location/" target="_blank">中国行政区划数据</a></p>
-										<p class="summary">省、市、县区行政区划代码数据</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-						<section>
-							<h3>其他</h3>
-							<ul>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/imageCode/" target="_blank">imageCode脚本加密</a></p>
-										<p class="summary">将代码转化成图片加密</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/hiddenCode/" target="_blank">hiddenCode脚本加密</a></p>
-										<p class="summary">将代码隐藏起来不易察觉</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/html5player/" target="_blank">媒体播放器</a></p>
-										<p class="summary">简易的MP3播放器</p>
-									</div>
-								</li>
-								<li>
-									<div class="J_link item">
-										<p class="title"><a href="/fancy-icon/" target="_blank">纯CSS图标</a></p>
-										<p class="summary">用CSS实现图标</p>
-									</div>
-								</li>
-							</ul>
-						</section>
-					</div>
-				</div>
-			</div>
-			<footer>
-				<div class="mod-foot">
-					<p>Copyright &copy; 2016 - 2025 <a href="/">passer-by.com</a></p>
-				</div>
-			</footer>
-		</div>
-		<script type="text/javascript">
-			document.addEventListener('click',function(e) {
-				console.log('[e]',e);
-				let $tag = e.target;
-				while ($tag.tagName!='A'&&$tag.tagName!='BODY'&&!$tag.classList.contains('J_link')) {
-					$tag = $tag.parentNode;
-				}
-				if($tag.tagName!='A'&&$tag.classList.contains('J_link')){
-					let url = $tag.getAttribute('data-url');
-		            let target = $tag.getAttribute('data-target');
-		            if(url){
-		                if (target !== '_blank') {
-		                    window.open(url);
-		                } else {
-		                    location.href = url;
-		                }
-		            }else{
-		                let $link = $tag.querySelector('a');
-		                target = $link.getAttribute('target');
-		                url = $link.getAttribute('href')||'/';
-		                if (target == '_blank') {
-		                    window.open(url);
-		                } else {
-		                    location.href = url;
-		                }
-		            }
-				}
-		    });
-		</script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="description" content="web开发组件化">
+        <meta name="keywords" content="web前端开发,前端组件,组件库,jQuery插件">
+        <meta name="author" content="木木阳,mumuy" />
+        <title>我的项目 - 路人甲</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="canonical" href="http://passser-by.com/product.html">
+        <link rel="stylesheet" href="./static/style/common.css">
+        <link rel="stylesheet" href="./static/style/project.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="mod-head">
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="logo">
+                                <a href="/"><img src="./static/image/public/logo.png" width="240" height="80" alt="过路人"/></a>
+                            </div>
+                            <nav>
+                                <li class="active"><a href="/project.html">项目</a></li>
+                                <li><a href="/writing.html">文字</a></li>
+                                <li><a href="/photograph.html">摄影</a></li>
+                                <li><a href="/comment.html">留言</a></li>
+                                <li><a href="/about.html">关于我</a></li>
+                            </nav>
+                            <div class="operation">
+                                <a class="btn" href="https://github.com/mumuy/" rel="nofollow" target="_blank" title="Github">
+                                    <svg aria-hidden="true" class="octicon" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24" height="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                    <span>Github</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-bg">
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.4)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.6)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
+                        </g>
+                    </svg>
+                </div>
+            </header>
+            <div class="container">
+                <div class="inner">
+                    <div class="mod-project">
+                        <div class="hd">
+                            <h3 class="title">我的项目</h3>
+                            <p class="subtitle">My Projects</p>
+                        </div>
+                        <div class="bd">
+                            <section>
+                                <h3>算法</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="rank">
+                                            <img src="./static/image/index/icon-top1.png" loading="lazy" width="48" height="48">
+                                        </div>
+                                        <div class="c-hd">
+                                            <h4 class="title">亲戚计算器</h4>
+                                            <p class="subtitle">弘扬中国传统文化，有趣的教育工具</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/relationship/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/relationship.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>网页组件</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">中华万年历</h4>
+                                            <p class="subtitle">方便查询农历和公历生日及节假日</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/calander/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/calander.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">代码着色美化</h4>
+                                            <p class="subtitle">让你的代码更性感</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/widget-code/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/widget-code.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">二维码美化组件</h4>
+                                            <p class="subtitle">二维码图片实时根据内容变化</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/widget-qrcode/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/widget-qrcode.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">行政区划选择组件</h4>
+                                            <p class="subtitle">中国省市区三级行政区划选</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/widget-region/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/widget-region.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>工具库</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">时间格式化</h4>
+                                            <p class="subtitle">时间格式快速转换工具</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/datex/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/datex.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">浏览器及设备判断</h4>
+                                            <p class="subtitle">识别用户浏览器信息</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/browser/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/browser.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">中国身份证号码解析</h4>
+                                            <p class="subtitle">居民身份证、五星卡号码解析</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/idcard/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/idcard.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">响应式数据本地存储</h4>
+                                            <p class="subtitle">监听变量，实时同步到本地存储中</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/livestorage/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/livestorage.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">大数浮点数计算</h4>
+                                            <p class="subtitle">大数浮点数计算及数值格式化工具</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/anynumber/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/anynumber.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">异步请求库</h4>
+                                            <p class="subtitle">简易的原生异步请求库</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/ajax/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/ajax.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>游戏</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">吃豆人游戏</h4>
+                                            <p class="subtitle">经典游戏HTML5复刻，智能围堵算法</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/pacman/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/pacman.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">五子棋对战</h4>
+                                            <p class="subtitle">玩家和电脑进行五子棋对战游戏</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/gobang/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/gobang.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">21点纸牌</h4>
+                                            <p class="subtitle">经典纸牌游戏</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/blackjack/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/blackjack.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>站点</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">我的jQuery插件库</h4>
+                                            <p class="subtitle">集合常用Web交互插件</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="//jquerywidget.com" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/widget.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">Browser Is</h4>
+                                            <p class="subtitle">检测当前浏览器设备信息</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="https://browseris.com" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/browseris_com.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">几点钟</h4>
+                                            <p class="subtitle">全球各大城市实时时间及时差计算</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="https://jidianzhong.com" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/jidianzhong_com.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">随机网址导航</h4>
+                                            <p class="subtitle">上网冲浪随机抵达一个推荐网址</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="https://passerby.cn" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/passerby_cn.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">空凤网</h4>
+                                            <p class="subtitle">空气凤梨爱好者网址推荐</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="https://airplant.net" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/airplant_net.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>数据</h3>
+                                <div class="list">
+                                    <div class="J_link item">
+                                        <div class="c-hd">
+                                            <h4 class="title">中国行政区划数据</h4>
+                                            <p class="subtitle">省、市、县区行政区划代码数据</p>
+                                        </div>
+                                        <div class="c-bd">
+                                            <div class="cover">
+                                                <a class="btn" href="/data_location/" target="_blank">查看项目</a>
+                                                <img src="./static/image/index/project/data_location.png" loading="lazy" width="320" height="160">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3>其他</h3>
+                                <ul>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/imageCode/" target="_blank">imageCode脚本加密</a></p>
+                                            <p class="subtitle">将代码转化成图片加密</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/hiddenCode/" target="_blank">hiddenCode脚本加密</a></p>
+                                            <p class="subtitle">将代码隐藏起来不易察觉</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/html5player/" target="_blank">媒体播放器</a></p>
+                                            <p class="subtitle">简易的MP3播放器</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/fancy-icon/" target="_blank">纯CSS图标</a></p>
+                                            <p class="subtitle">用CSS实现图标</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/finder/" target="_blank">最短寻址</a></p>
+                                            <p class="subtitle">迷宫自动寻址，游戏常用算法</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/calc24/" target="_blank">24点计算</a></p>
+                                            <p class="subtitle">儿时智力问答常见挑战</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="J_link project">
+                                            <p class="title"><a href="/chinese-transverter/" target="_blank">中文简体繁体转换器</a></p>
+                                            <p class="subtitle">两岸三地文字转换工具</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="mod-fixedbar">
+                    <div class="bd">
+                        <ul>
+                            <li>
+                                <a class="gotop" href="javascript:;" rel="nofollow">
+                                    <img src="./static/image/public/icon-gotop.png" width="24" height="24" alt="回到顶部">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod-foot">
+                    <div class="bd">
+                        <p>
+                            <span>Copyright &copy; 2025</span>
+                            <a href="/">路人甲</a>
+                            <span>版权所有</span>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="./static/script/common.js"></script>
+        <script type="text/javascript" src="./static/script/stat.js"></script>
+    </body>
 </html>

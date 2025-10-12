@@ -1,165 +1,270 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<title>路人甲 · Passer-by</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-		<meta name="description" content="路人甲个人网站,展示前端开发作品,致力于web开发组件化,Keep It Simple,Stupid">
-		<meta name="keywords" content="web前端开发,前端组件,组件库,jQuery插件,JavaScript">
-		<meta name="author" content="木木阳,mumuy,passerby" />
-		<link rel="shortcut icon" href="/public/image/favicon.png">
-		<link rel="canonical" href="http://passser-by.com/index.html">
-		<link rel="stylesheet" href="public/style/common.css">
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5322941251486103"
-     crossorigin="anonymous"></script>
-		<style>
-			@media screen and (max-width: 400px) {
-				.container{
-					background-image:url("public/image/bg.jpg");
-				}
-			}
-			.container{
-				min-height: 400px;
-				background-position: center center;
-				background-repeat: no-repeat;
-				-webkit-filter: grayscale(100%);
-				-moz-filter: grayscale(100%);
-				-o-filter: grayscale(100%);
-				filter: grayscale(100%);
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-			    -o-background-size: cover;
-				background-size: cover;
-			}
-			.mod-foot{
-				color:#fff;
-			}
-			.mod-foot a{
-				color:#fff;
-			}
-
-			.mod-content section{
-				margin-bottom: 18px;
-			}
-			.mod-content h3{
-				padding-left: 2px;
-				margin-bottom: 5px;
-				font-size: 16px;
-			}
-			.mod-content ul{
-				overflow: hidden;
-			}
-			.mod-content li{
-				float: left;
-				width: 50%;
-				height: 20px;
-				line-height: 20px;
-				overflow: hidden;
-			}
-			.mod-content a{
-				padding:0 2px;
-			}
-			.mod-content a.hot{
-				color: #cc0000;
-			}
-			.mod-content a:hover{
-				border-bottom: 1px dotted #666;
-			}
-			.mod-qrcode {
-			    position: absolute;
-			    left: 0;
-			    bottom: 25px;
-			    width: 300px;
-			    text-align: center;
-			}
-			.mod-qrcode .qrcode{
-				display: none;
-				position: absolute;
-				left: 52px;
-				bottom: 48px;
-			}
-			.mod-qrcode a:hover .qrcode{
-				display: block;
-			}
-			@media screen and (max-width: 800px){
-				.mod-qrcode{
-					display: none;
-				}
-			}
-		</style>
-		<script type="text/javascript">
-			(function(){ //IE低版本兼容
-				var e = ['footer','header','section'],
-				          i= e.length;
-				while(i--){
-				      document.createElement(e[i]);
-				}
-			})();
-			(function(){
-				var search = decodeURIComponent(location.search);
-				if(search.indexOf('http://')>-1){
-					for(var i=0;i<20;i++){
-						alert('不要尝试这么做！');
-					}
-					location.href = 'https://passer-by.com/';
-				}
-			})();
-		</script>
-		<script data-ad-client="ca-pub-5322941251486103" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	</head>
-	<body>
-		<div class="wrapper">
-			<header>
-				<div class="mod-head">
-					<h1><a href="/">PASSER-BY</a></h1>
-					<p>一只程序猿的禅意生活</p>
-				</div>
-				<div class="mod-list">
-					<ul>
-						<li><a href="/project.html">项目</a></li>
-						<li><a href="/writing.html">文字</a></li>
-						<li><a href="/photograph.html">摄影</a></li>
-						<li><a href="/comment.html">留言</a></li>
-						<li><a href="/about.html">关于</a></li>
-					</ul>
-				</div>
-				<div class="mod-qrcode">
-					<a href="javascript:;">
-						<img src="public/image/icon-scan.png" width="48">
-						<img class="qrcode" src="public/image/qrcode.bmp" width="195">
-					</a>
-				</div>
-			</header>
-			<div id="view" class="container"></div>
-			<footer>
-				<div class="mod-foot">
-					<p>
-						Copyright &copy; 2016 - 2025 <a href="/">passer-by.com</a>
-						<a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">闽ICP备18014328号-2</a>
-					</p>
-				</div>
-			</footer>
-		</div>
-		<script type="text/javascript">
-			(function(){
-				var today = new Date();
-				var prefixInteger = function (num, length) {
-				    return (Array(length).join(0) + num).slice(-length);
-				};
-				var year = today.getFullYear();
-				var month = today.getMonth()+1;
-				var date = today.getDate();
-				var url = 'http://cn.bing.com/iod/1366/1024/'+prefixInteger(year,4)+prefixInteger(month,2)+prefixInteger(date,2)+'1600';
-				var image = new Image();
-				image.src = url;
-				image.onload = function(){
-					document.getElementById('view').setAttribute('style','background-image:url("'+url+'");');
-				};
-				image.onerror = function(){
-					document.getElementById('view').setAttribute('style','background-image:url(public/image/bg.jpg);');
-				};
-			})();
-		</script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <meta name="description" content="路人甲个人网站,展示前端开发作品,致力于web开发组件化,Keep It Simple,Stupid">
+        <meta name="keywords" content="Web前端开发,Github开源,开源项目,前端组件,组件库,jQuery插件,JavaScript">
+        <meta name="author" content="木木阳,mumuy,passerby" />
+        <title>路人甲 · Passer-by</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="canonical" href="http://passser-by.com/">
+        <link rel="stylesheet" href="./static/style/common.css">
+        <link rel="stylesheet" href="./static/style/index.css">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5322941251486103" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            (function(){
+                var search = decodeURIComponent(location.search);
+                if(search.indexOf('http://')>-1){
+                    for(var i=0;i<20;i++){
+                        alert('不要尝试这么做！');
+                    }
+                    location.href = 'https://passer-by.com/';
+                }
+            })();
+        </script>
+        <script data-ad-client="ca-pub-5322941251486103" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="mod-head">
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="logo">
+                                <a href="/"><img src="./static/image/public/logo.png" width="240" height="80" alt="过路人"/></a>
+                            </div>
+                            <nav>
+                                <li><a href="/project.html">项目</a></li>
+                                <li><a href="/writing.html">文字</a></li>
+                                <li><a href="/photograph.html">摄影</a></li>
+                                <li><a href="/comment.html">留言</a></li>
+                                <li><a href="/about.html">关于我</a></li>
+                            </nav>
+                            <div class="operation">
+                                <a class="btn" href="https://github.com/mumuy/" rel="nofollow" target="_blank" title="Github">
+                                    <svg aria-hidden="true" class="octicon" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24" height="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                    <span>Github</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-bg">
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.4)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.6)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
+                        </g>
+                    </svg>
+                </div>
+            </header>
+            <div class="container">
+                <div class="mod-person">
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="avatar">
+                                <img src="./static/image/index/avatar.jpg" loading="lazy" width="200" height="200" alt="头像">
+                                <span class="location">福建·厦门</span>
+                            </div>
+                            <div class="summary">
+                                <h3><span class="hi">嗨!</span>我是一名<span class="job">Web前端开发工程师</span></h3>
+                                <p>平日喜欢鼓捣各种有意思的东西<br/>热衷于开源项目开发与分享自己的想法</p>
+                                <div class="operation">
+                                    <a class="btn" href="/about.html" target="_blank">联系我</a>
+                                    <a class="btn btn-blue" href="/project.html" target="_blank">我的项目</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module mod-about">
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="picture-container">
+                                <div class="slogan">
+                                    <span>ABOUT</span>
+                                    <span>ME</span>
+                                </div>
+                                <div class="picture">
+                                    <img src="./static/image/index/me.jpg" loading="lazy" width="360" height="270" alt="我">
+                                </div>
+                            </div>
+                            <div class="summary-container">
+                                <div class="comment">
+                                    <p>人生若是一场修行</p>
+                                    <p>代码即为我写下的注释</p>
+                                </div>
+                                <div class="detail">
+                                    <p>从事Web前端开发10余年，专注于算法实现及网页组件开发。追求优雅及高效的解决方案，热衷于分享自己的开源作品，期待能从开源社区中汲取能量。</p>
+                                    <p>兴趣爱好比较丰富，喜欢探索有趣的东西！毕竟生活远比代码的世界更精彩~</p>
+                                </div>
+                                <div class="group">
+                                    <div class="item">
+                                        <p class="name">教育背景</p>
+                                        <p class="value">通信工程本科</p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="name">工作经历</p>
+                                        <p class="value">厦门某科技公司</p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="name">技术栈</p>
+                                        <p class="value">HTML5, CSS3, JavaScript, jQuery, Vue</p>
+                                    </div>
+                                    <div class="item">
+                                        <p class="name">兴趣爱好</p>
+                                        <p class="value">集邮, 钱币收藏, 绿植, 文玩</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module mod-github">
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="summary-container">
+                                <p class="title">用代码记录每一个迸发的灵感<br>开源项目就是我想法的演练场</p>
+                                <p class="subtitle">期待更多人看到自己的作品，也希望可以收到改进的建议<br>如果你对我的项目感兴趣可以关注或收藏哦！</p>
+                                <p class="buttons">
+                                    <a class="btn" href="https://github.com/mumuy/" rel="nofollow" target="_blank" title="Github">
+                                        <svg aria-hidden="true" class="octicon" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24" height="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                        <span>Github</span>
+                                    </a>
+                                    <a class="btn btn-blue" href="https://github.com/mumuy/mumuy.github.io/issues/new">给我留言</a>
+                                </p>
+                            </div>
+                            <div class="picture-container">
+                                <img src="https://camo.githubusercontent.com/cac9469f389651f2906ae41341ad4c359d833caa420d187d1b61c8c6bb052be6/68747470733a2f2f6769746875622d726561646d652d73746174732e76657263656c2e6170702f6170693f757365726e616d653d6d756d75792673686f775f69636f6e733d7472756526636f756e745f707269766174653d66616c7365267468656d653d7675652d6461726b266c6f63616c653d636e"/>
+                                <img class="cat" src="./static/image/index/cat.png" width="126"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module mod-project">
+                    <div class="inner">
+                        <div class="hd">
+                            <h3 class="title"><a href="/project.html" target="_blank">我的项目</a></h3>
+                            <p class="subtitle">My Projects</p>
+                        </div>
+                        <div class="bd">
+                            <div class="list">
+                                <div class="J_link item">
+                                    <div class="rank">
+                                        <img src="./static/image/index/icon-top1.png" loading="lazy" width="48" height="48">
+                                    </div>
+                                    <div class="c-hd">
+                                        <h4 class="title">亲戚计算器</h4>
+                                        <p class="subtitle">弘扬中国传统文化，有趣的教育工具</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/relationship/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/relationship.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="J_link item">
+                                    <div class="c-hd">
+                                        <h4 class="title">吃豆人游戏</h4>
+                                        <p class="subtitle">经典游戏HTML5复刻，智能围堵算法</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/pacman/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/pacman.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="J_link item">
+                                    <div class="c-hd">
+                                        <h4 class="title">五子棋对战</h4>
+                                        <p class="subtitle">玩家和电脑进行五子棋对战游戏</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/gobang/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/gobang.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="J_link item">
+                                    <div class="c-hd">
+                                        <h4 class="title">中华万年历</h4>
+                                        <p class="subtitle">方便查询农历和公历生日及节假日</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/calander/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/calander.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="J_link item">
+                                    <div class="c-hd">
+                                        <h4 class="title">中国行政区划数据</h4>
+                                        <p class="subtitle">省、市、县区行政区划代码数据</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/data_location/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/data_location.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="J_link item">
+                                    <div class="c-hd">
+                                        <h4 class="title">二维码美化组件</h4>
+                                        <p class="subtitle">二维码图片实时根据内容变化</p>
+                                    </div>
+                                    <div class="c-bd">
+                                        <div class="cover">
+                                            <a class="btn" href="/widget-qrcode/" target="_blank">查看项目</a>
+                                            <img src="./static/image/index/project/widget-qrcode.png" loading="lazy" width="320" height="160">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ft">
+                            <a class="btn btn-blue" href="/project.html" target="_blank">查看更多项目</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="mod-fixedbar">
+                    <div class="bd">
+                        <ul>
+                            <li>
+                                <a class="gotop" href="javascript:;" rel="nofollow">
+                                    <img src="./static/image/public/icon-gotop.png" width="24" height="24" alt="回到顶部">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod-foot">
+                    <div class="bd">
+                        <p>
+                            <span>Copyright &copy; 2025</span>
+                            <a href="/">路人甲</a>
+                            <span>版权所有</span>
+                        </p>
+                        <p>
+                            <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">闽ICP备18014328号-2</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="./static/script/common.js"></script>
+        <script type="text/javascript" src="./static/script/stat.js"></script>
+    </body>
 </html>

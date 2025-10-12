@@ -1,0 +1,201 @@
+.mod-project .hd{
+    padding-top: 30px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+.mod-project .hd .title{
+    line-height: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #006494;
+}
+.mod-project .hd .title a{
+    color: #006494;
+}
+.mod-project .hd .subtitle{
+    position: relative;
+    line-height: 26px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e8e8e8;
+}
+.mod-project section{
+    margin-bottom: 30px;
+}
+.mod-project section h3{
+    position: relative;
+    margin: 10px 0;
+    padding-left: 20px;
+    line-height: 24px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.mod-project section h3::before{
+    position: absolute;
+    left: 1px;
+    top: 0;
+    content:'';
+    width: 5px;
+    height: 100%;
+    background: #006494;
+    border-radius: 3px;
+}
+.mod-project .list{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+}
+.mod-project .item{
+    position: relative;
+    padding: 25px 25px 175px;
+    background: linear-gradient(0deg, #ecf5fa 0%, #f3f9ff 38.1%, #f9fbfd 100%);
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.12s ease-in;
+}
+.mod-project .item .rank{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 9;
+}
+.mod-project .item .c-hd{
+    text-align: center;
+}
+.mod-project .item .title{
+    line-height: 34px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.mod-project .item .subtitle{
+    line-height: 26px;
+    font-size: 16px;
+    color: #888;
+}
+.mod-project .item .cover{
+    position: absolute;
+    left: 0;
+    bottom: -24px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.12s ease-in;
+}
+.mod-project .item .cover .btn{
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    width: 100px;
+    height: 32px;
+    margin-left: -50px;
+    background: #006494;
+    border-radius: 16px;
+    line-height: 32px;
+    font-size: 15px;
+    color: #fff;
+    box-shadow: 1px 2px 8px rgba(0,0,0,0.05);
+}
+.mod-project .item .cover img{
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    border: 3px solid #ffffff;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 1px 3px 12px rgba(0,0,0,0.05);
+}
+.mod-project .item:hover{
+    background: linear-gradient(0deg, #ecf5faaa 0%, #f3f9ffaa 38.1%, #f9fbfdaa 100%);
+}
+.mod-project .item:hover .cover{
+    bottom: -4px;
+}
+.mod-project ul{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+.mod-project .project{
+    position: relative;
+    padding: 15px 20px;
+    background: #f9fbfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.12s ease-in;
+}
+.mod-project .project .title{
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.mod-project .project .subtitle{
+    line-height: 26px;
+    font-size: 16px;
+    color: #888;
+}
+
+@media screen and (max-width: 800px){
+    .mod-project .hd{
+        padding-top: 15px;
+        margin-bottom: 25px;
+    }
+    .mod-project .hd .title{
+        line-height: 32px;
+        font-size: 28px;
+    }
+    .mod-project .hd .subtitle{
+        line-height: 24px;
+        font-size: 18px;
+    }
+    .mod-project section h3{
+        line-height: 30px;
+        font-size: 20px;
+    }
+    .mod-project .list{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .mod-project .item{
+        padding:  12px 12px 180px;
+        border-radius: 8px;
+    }
+    .mod-project .item .rank img{
+        width: 36px;
+        height: 36px;
+    }
+    .mod-project .item .title{
+        line-height: 32px;
+        font-size: 20px;
+    }
+    .mod-project .item .subtitle{
+        line-height: 24px;
+        font-size: 16px;
+    }
+    .mod-project .item .cover{
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+    .mod-project .item .cover img{
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        box-sizing: border-box;
+    }
+    .mod-project ul{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .mod-project .project{
+        padding:  8px 12px;
+        border-radius: 8px;
+    }
+    .mod-project .project .title{
+        line-height: 26px;
+        font-size: 16px;
+    }
+    .mod-project .project .subtitle{
+        line-height: 24px;
+        font-size: 15px;
+    }
+}
