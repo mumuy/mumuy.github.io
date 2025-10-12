@@ -48,7 +48,7 @@
 }
 .mod-project .item{
     position: relative;
-    padding: 25px 25px 175px;
+    padding: 25px 25px 165px;
     background: linear-gradient(0deg, #ecf5fa 0%, #f3f9ff 38.1%, #f9fbfd 100%);
     border: 1px solid #e8e8e8;
     border-radius: 12px;
@@ -157,7 +157,7 @@
         gap: 12px;
     }
     .mod-project .item{
-        padding:  12px 12px 180px;
+        padding:  12px 12px 165px;
         border-radius: 8px;
     }
     .mod-project .item .rank img{
