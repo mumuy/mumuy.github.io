@@ -21,7 +21,7 @@ img{
     min-height: 100%;
 }
 header{
-    height: 80px;
+    height: 64px;
     margin-bottom: 20px;
 }
 footer{
@@ -53,15 +53,18 @@ footer{
     gap: 20px;
 }
 .mod-head .logo{
-    line-height: 80px;
+    line-height: 64px;
 }
 .mod-head .logo a{
+    display: block;
+}
+.mod-head .logo img{
     display: block;
 }
 .mod-head nav{
     flex: 1;
     min-width: 0;
-    line-height: 80px;
+    line-height: 64px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -81,7 +84,7 @@ footer{
 .mod-head nav li.active a::after{
     position: absolute;
     left: 50%;
-    bottom: 15px;
+    bottom: 10px;
     content:'';
     width: 16px;
     height: 5px;
@@ -91,7 +94,7 @@ footer{
 }
 .mod-head .operation{
     height: 40px;
-    padding: 20px 0;
+    padding: 12px 0;
     line-height: 40px;
 }
 .mod-head .btn {
