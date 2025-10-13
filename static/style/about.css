@@ -8,8 +8,15 @@
     border-radius: 8px;
     border-top-right-radius: 21px;
     border-bottom-left-radius: 21px;
+}
+.mod-word blockquote p{
+    margin-bottom: 10px;
     line-height: 26px;
+    text-indent: 2em;
     color: #333;
+}
+.mod-word blockquote p.from{
+    text-align: right;
 }
 
 .mod-panel{
