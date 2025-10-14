@@ -7,10 +7,10 @@
     line-height: 40px;
     font-size: 30px;
     font-weight: bold;
-    color: #006494;
+    color: var(--primary-color);
 }
 .mod-photo .hd .title a{
-    color: #006494;
+    color: var(--primary-color);
 }
 .mod-photo .hd .subtitle{
     position: relative;

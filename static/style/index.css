@@ -32,7 +32,7 @@
     bottom: -10px;
     display: inline-block;
     padding: 0 15px 0 30px;
-    background: #006494 url('../image/index/icon-location.png') 10px center/16px 16px no-repeat;
+    background: var(--primary-color) url('../image/index/icon-location.png') 10px center/16px 16px no-repeat;
     border-radius: 6px;
     line-height: 32px;
     color: #fff;
@@ -91,11 +91,11 @@
     background: #d8dee5;
 }
 .mod-person .operation .btn-blue{
-    background: #006494;
+    background: var(--primary-color);
     color: #fff;
 }
 .mod-person .operation .btn-blue:hover{
-    background: #015c89;
+    background: var(--primary-hover-color);
 }
 
 .mod-about .bd{
@@ -227,7 +227,7 @@
     vertical-align: middle;
 }
 .mod-github .summary-container .btn-blue{
-    background: #006494;
+    background: var(--primary-color);
     color: #fff;
 }
 .mod-github .picture-container{
@@ -249,10 +249,10 @@
     line-height: 40px;
     font-size: 30px;
     font-weight: bold;
-    color: #006494;
+    color: var(--primary-color);
 }
 .mod-project .hd .title a{
-    color: #006494;
+    color: var(--primary-color);
 }
 .mod-project .hd .subtitle{
     position: relative;
@@ -289,6 +289,7 @@
     line-height: 34px;
     font-size: 22px;
     font-weight: bold;
+    color: #141b24;
 }
 .mod-project .item .subtitle{
     line-height: 26px;
@@ -310,7 +311,7 @@
     width: 100px;
     height: 32px;
     margin-left: -50px;
-    background: #006494;
+    background: var(--primary-color);
     border-radius: 16px;
     line-height: 32px;
     font-size: 15px;
@@ -361,11 +362,11 @@
     transform: rotate(-45deg);
 }
 .mod-project .ft .btn-blue{
-    background: #006494;
+    background: var(--primary-color);
     color: #fff;
 }
 .mod-project .ft .btn-blue:hover {
-    background: #015c89;
+    background: var(--primary-hover-color);
 }
 
 @media screen and (max-width: 800px)  {

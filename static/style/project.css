@@ -7,10 +7,10 @@
     line-height: 40px;
     font-size: 30px;
     font-weight: bold;
-    color: #006494;
+    color: var(--primary-color);
 }
 .mod-project .hd .title a{
-    color: #006494;
+    color: var(--primary-hover-color);
 }
 .mod-project .hd .subtitle{
     position: relative;
@@ -37,7 +37,7 @@
     content:'';
     width: 5px;
     height: 100%;
-    background: #006494;
+    background: var(--primary-color);
     border-radius: 3px;
 }
 .mod-project .list{
@@ -89,7 +89,7 @@
     width: 100px;
     height: 32px;
     margin-left: -50px;
-    background: #006494;
+    background: var(--primary-color);
     border-radius: 16px;
     line-height: 32px;
     font-size: 15px;

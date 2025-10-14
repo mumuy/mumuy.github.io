@@ -1,4 +1,4 @@
-const $scrollContainer = document.querySelector('.scroll-container')||document.documentElement;
+const $scrollContainer = document.documentElement;
 
 // 头部滚动
 (function(){
