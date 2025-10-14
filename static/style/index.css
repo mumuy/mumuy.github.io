@@ -45,19 +45,19 @@
     line-height: 48px;
     font-size: 32px;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--title-color);
 }
 .mod-person .summary h4{
     margin-bottom: 4px;
     line-height: 44px;
     font-size: 28px;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--title-color);
 }
 .mod-person .summary p{
     line-height: 32px;
     font-size: 18px;
-    color: #1f2937cc;
+    color: var(--text-dark-color);
 }
 .mod-person .summary .hi{
     position: relative;
@@ -69,7 +69,7 @@
     transform: rotate(-36deg);
 }
 .mod-person .summary .job{
-    color: #0969da;
+    color: var(--secondary-color);
 }
 .mod-person .operation{
     margin-top: 20px;
@@ -155,7 +155,7 @@
 .mod-about .summary-container .detail p{
     text-indent: 2em;
     line-height: 26px;
-    color: #1f2937cc;
+    color: var(--text-dark-color);
 }
 .mod-about .summary-container .group{
     display: grid;
@@ -170,9 +170,10 @@
 }
 .mod-about .summary-container .item p.name{
     font-weight: bold;
+    color: var(--title-color);
 }
 .mod-about .summary-container .item p.value{
-    color: #888;
+    color: var(--text-color);
 }
 
 .mod-github .bd{
@@ -192,12 +193,13 @@
     line-height: 36px;
     font-size: 24px;
     font-weight: bold;
+    color: var(--title-color);
 }
 .mod-github .summary-container p.subtitle{
     margin-bottom: 24px;
     line-height: 26px;
     font-size: 16px;
-    color: #888;
+    color: var(--text-color);
 }
 .mod-github .summary-container p.buttons{
     margin-top: 36px;
@@ -289,12 +291,12 @@
     line-height: 34px;
     font-size: 22px;
     font-weight: bold;
-    color: #141b24;
+    color: var(--title-color);
 }
 .mod-project .item .subtitle{
     line-height: 26px;
     font-size: 16px;
-    color: #888;
+    color: var(--text-color);
 }
 .mod-project .item .cover{
     position: absolute;
