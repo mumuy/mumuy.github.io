@@ -74,6 +74,7 @@
 			.mod-projects{max-width:1000px;margin:0 auto 20px;padding: 30px 0;text-align:center;font-size:15px;}
 			.mod-projects a{text-decoration:none;color:#6e7781;}
 			.mod-projects .hd{line-height:40px;font-size:20px;font-weight:bold;color:#141b24;}
+			.mod-projects .hd a{color:#141b24;}
 			.mod-projects ul{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;list-style: none;margin:0;padding:0;}
 			.mod-projects li a{display:block;line-height:40px;background: rgba(0,0,0,0.03);border-radius:5px;color:#6e7781;}
 			.mod-projects li a:hover{background: #f6f8fa}
