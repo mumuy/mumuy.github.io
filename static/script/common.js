@@ -5,7 +5,7 @@ const $scrollContainer = document.documentElement;
     const $header = document.querySelector('.mod-head');
     window.addEventListener('scroll',function(){
         let scrollTop = $scrollContainer.scrollTop;
-        let ratio = Math.min(scrollTop/1000,1);
+        let ratio = Math.min(scrollTop/600,1);
         $header.style.background = 'rgba(255,255,255,'+(ratio*0.8)+')';
         $header.style.boxShadow = '1px 2px 8px rgba(0,0,0,'+(ratio*0.06)+')';
     });
