@@ -22,14 +22,14 @@
 .mod-panel{
     margin-bottom: 25px;
     background: #fff;
-    border: 1px solid #f0f0f088;
+    border: 1px solid #f0f0f099;
     border-radius: 8px;
     box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.02);
 }
 .mod-panel .hd{
     position: relative;
     padding: 10px 20px;
-    border-bottom: 1px solid #f0f0f088;
+    border-bottom: 1px solid #f0f0f099;
     line-height: 24px;
 }
 .mod-panel .hd .title{
