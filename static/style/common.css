@@ -255,16 +255,9 @@ footer{
     background-size: cover;
 }
 .mod-bg-world{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 600px;
-    width: 100%;
-    z-index: -1;
-    background: url(../image/word_map.png) center 10px no-repeat, url('../image/public/bg.svg') center top repeat-x;
-    background-size: cover;
+    background: url(../image/public/) center 10px no-repeat, url('../image/public/bg.svg') center top / cover repeat-x;
 }
-.mod-bg .waves {
+.mod-bg .waves,.waves{
     position: absolute;
     width: 100%;
     bottom: 0;
