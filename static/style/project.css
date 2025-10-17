@@ -130,11 +130,12 @@
     line-height: 28px;
     font-size: 18px;
     font-weight: bold;
+    color: var(--title-color);
 }
 .mod-project .project .subtitle{
     line-height: 26px;
     font-size: 16px;
-    color: #888;
+    color: var(--text-color);
 }
 
 @media screen and (max-width: 800px){
