@@ -132,6 +132,9 @@
     font-weight: bold;
     color: var(--title-color);
 }
+.mod-project .project .title a{
+    color: var(--title-color);
+}
 .mod-project .project .subtitle{
     line-height: 26px;
     font-size: 16px;
