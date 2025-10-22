@@ -502,6 +502,9 @@ footer{
     .mod-bg{
         height: 550px;
     }
+    .mod-bg-world{
+        background: url(../image/public/word_map.png) center center / contain no-repeat, url('../image/public/bg.svg') center top / cover repeat-x;
+    }
     .mod-foot .bd{
         line-height: 20px;
         font-size: 14px;
