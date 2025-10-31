@@ -11,7 +11,7 @@ if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.co
     $script.async = true;
     $script.crossOrigin = "anonymous";
     const $head = document.head || document.getElementsByTagName('head')[0];
-    if ($head&&$body) {
+    if ($head) {
         $head.appendChild($script);
         document.write(`
             <ins class="adsbygoogle"
