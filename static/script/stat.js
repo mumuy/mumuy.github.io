@@ -13,7 +13,9 @@ if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.co
     const $head = document.head || document.getElementsByTagName('head')[0];
     if ($head) {
         $head.appendChild($script);
-        document.write(`
+        const $inner = document.createElement('div');
+        $inner.className = 'inner';
+        $inner.innerHTML = `
             <ins class="adsbygoogle"
                 style="display:block"
                 data-ad-client="ca-pub-5322941251486103"
@@ -21,7 +23,7 @@ if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.co
                 data-ad-format="auto"
                 data-full-width-responsive="true">
             </ins>
-        `);
+        `;
         (adsbygoogle = window.adsbygoogle || []).push({});
     }
 }
