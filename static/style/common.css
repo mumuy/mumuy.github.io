@@ -31,14 +31,8 @@ header{
     height: 64px;
     margin-bottom: 20px;
 }
-footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    z-index: 99;
-}
 .container{
-    padding-bottom: 160px;
+    padding-bottom: 84px;
 }
 .inner{
     max-width: 1000px;
