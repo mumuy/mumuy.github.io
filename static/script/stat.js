@@ -15,6 +15,7 @@ if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.co
         $head.appendChild($script);
         const $inner = document.createElement('div');
         $inner.className = 'inner';
+        document.querySelector('.container').appendChild($inner);
         $inner.innerHTML = `
             <ins class="adsbygoogle"
                 style="display:block"
