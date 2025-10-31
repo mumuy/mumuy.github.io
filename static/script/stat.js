@@ -11,7 +11,17 @@ if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.co
     $script.async = true;
     $script.crossOrigin = "anonymous";
     const $head = document.head || document.getElementsByTagName('head')[0];
-    if ($head) {
+    if ($head&&$body) {
         $head.appendChild($script);
+        document.write(`
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-5322941251486103"
+                data-ad-slot="5046709200"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
+        `);
+        (adsbygoogle = window.adsbygoogle || []).push({});
     }
 }
