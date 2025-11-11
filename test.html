@@ -19,15 +19,24 @@
                 <button id="output">测试</button>
             </div>
             <div class="input-wrapper">
+                <input type="datetime-local" name="date" value="2025-02-01"/>
+                <button id="output2">测试</button>
+            </div>
+            <div class="input-wrapper">
                 <input type="text" name="value" value="2025-02-01T00:00:00.000"/>
                 <button id="input">输入</button>
             </div>
         </div>
         <script type="text/javascript">
             const $datetime = document.querySelector('input[name="datetime"]');
+            const $date = document.querySelector('input[name="date"]');
             const $value = document.querySelector('input[name="value"]');
             document.getElementById('output').onclick = function(){
                 const value = $datetime.value;
+                alert(value);
+            };
+            document.getElementById('output2').onclick = function(){
+                const value = $date.value;
                 alert(value);
             };
             document.getElementById('input').onclick = function(){
