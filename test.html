@@ -1,22 +1,37 @@
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <title>测试</title>
         <style>
             .wrapper{
                 padding: 25px;
             }
+            .input-wrapper{
+                margin-bottom: 20px;
+            }
         </style>
     </head>
     <body>
         <div class="wrapper">
-            <input type="datetime-local" name="datetime" value="2025-01-01 00:00:00" step="1"/>
-            <button id="test">测试</button>
+            <div class="input-wrapper">
+                <input type="datetime-local" name="datetime" value="2025-02-01T00:00:00.000" step="1"/>
+                <button id="output">测试</button>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" name="value" value="2025-02-01T00:00:00.000"/>
+                <button id="input">输入</button>
+            </div>
         </div>
         <script type="text/javascript">
             const $datetime = document.querySelector('input[name="datetime"]');
-            document.getElementById('test').onclick = function(){
+            const $value = document.querySelector('input[name="value"]');
+            document.getElementById('output').onclick = function(){
                 const value = $datetime.value;
                 alert(value);
+            };
+            document.getElementById('input').onclick = function(){
+                $datetime.value = $value.value;
             };
         </script>
     </body>
