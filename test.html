@@ -37,7 +37,7 @@
             };
             document.getElementById('output2').onclick = function(){
                 const value = $date.value;
-                alert(value);
+                alert(value+','+(new Date(value).getTime()));
             };
             document.getElementById('input').onclick = function(){
                 $datetime.value = $value.value;
