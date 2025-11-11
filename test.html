@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>测试</title>
+        <style>
+            .wrapper{
+                padding: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <input type="datetime-local" name="datetime" value="2025-01-01 00:00:00" step="1"/>
+            <button id="test">测试</button>
+        </div>
+        <script type="text/javascript">
+            const $datetime = document.querySelector('input[name="datetime"]');
+            document.getElementById('test').onclick = function(){
+                const value = $datetime.value;
+                alert(value);
+            };
+        </script>
+    </body>
+</html>
