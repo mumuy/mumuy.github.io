@@ -7,7 +7,7 @@
             "namespace": "android_app",
             "package_name": "com.passerby.relationship",
             "sha256_cert_fingerprints": [
-                "6F:20:42:BA:47:51:3C:C4:52:94:DD:35:41:0C:ED:AC:68:71:30:0F:D3:7B:16:B2:74:B6:ED:63:2B:9A:DD:A1" // 提取的 SHA256 指纹
+                "6F:20:42:BA:47:51:3C:C4:52:94:DD:35:41:0C:ED:AC:68:71:30:0F:D3:7B:16:B2:74:B6:ED:63:2B:9A:DD:A1"
             ]
         }
     }
