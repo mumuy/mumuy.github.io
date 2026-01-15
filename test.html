@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        navigator.userAgentData.getHighEntropyValues(["platformVersion"]).then(function(t){
-            alert(JSON.stringify(t));
-        });
-    </script>
+    <title>测试</title>
+    
 </head>
 <body>
-    <p>测试</p>
+    <p id="test">测试</p>
+    <script type="text/javascript">
+        navigator.userAgentData.getHighEntropyValues(["platformVersion"]).then(function(t){
+            document.getElementsById('test').innerHTML = JSON.stringify(t);
+        });
+    </script>
 </body>
 </html>
