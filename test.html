@@ -1,17 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>测试</title>
-    
+    <title>新开窗口拦截测试</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .wrapper{
+            padding: 20px 0;
+        }
+        .inner{
+            padding: 10px 0;
+            text-align: center;
+        }
+        button{
+            height: 36px;
+            padding: 0 30px;
+            line-height: 36px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <p id="test">测试</p>
-    <script type="text/javascript">
-        navigator.userAgentData.getHighEntropyValues(["platformVersion"]).then(function(t){
-            document.getElementById('test').innerHTML = JSON.stringify(t);
-        });
-    </script>
+    <div class="wrapper">
+        <div class="inner">
+            <button id="test1">新开窗口拦截测试（无延迟）</button>
+        </div>
+        <script type="text/javascript">
+            function holdWindow1(action = function(){}){
+                const newWindow =window.open('','_blank');
+                newWindow.document.write('<div style="padding:20px;line-height:30px;text-align:center;">加载中...</div>');
+                const open = function(url){
+                    if(newWindow &&!newWindow.closed){
+                        newWindow.location.href= url;
+                    }else{
+                        window.location.href = url;
+                    }
+                };
+                try{
+                    action(open);
+                }catch(e){
+                    newWindow.close();
+                }
+            }
+            document.getElementById('test1').onclick = function(){
+                holdWindow1(function(open){
+                    setTimeout(function(){
+                        open('https://www.baidu.com');
+                    },1500);
+                });
+            };
+        </script>
+
+        <div class="inner">
+            <button id="test">新开窗口拦截测试（有延迟）</button>
+        </div>
+        <script type="text/javascript">
+            function holdWindow(action = function(){}){
+                const newWindow =window.open('','_blank');
+                newWindow.document.write('<div style="padding:20px;line-height:30px;text-align:center;">加载中...</div>');
+                const open = function(url){
+                    if(newWindow &&!newWindow.closed){
+                        newWindow.location.href= url;
+                    }else{
+                        window.location.href = url;
+                    }
+                };
+                setTimeout(()=>{
+                    try{
+                        action(open);
+                    }catch(e){
+                        newWindow.close();
+                    }
+                },0);
+            }
+            document.getElementById('test').onclick = function(){
+                holdWindow(function(open){
+                    setTimeout(function(){
+                        open('https://www.baidu.com');
+                    },1500);
+                });
+            };
+        </script>
+    </div>
 </body>
 </html>
