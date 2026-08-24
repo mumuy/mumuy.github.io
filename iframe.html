@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iframe浮动图标测试</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                overflow: hidden;
+            }
+            iframe{
+                width: 100%;
+                height: 100vh;
+            }
+            .mod-fixed{
+                position: fixed;
+                z-index: 999;
+                width: 40px;
+                height: 40px;
+                background: rgba(0,0,0,0.8);
+                border-radius: 6px;
+                line-height: 40px;
+                text-align: center;
+            }
+            .mod-fixed .icon{
+                font-size: 0;
+            }
+            .mod-fixed svg{
+                width: 32px;
+                height: 32px;
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="mod-panel">
+                <div class="bd">
+                    <iframe src="https://baidu.com" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div id="fixed" class="mod-fixed">
+                <div class="bd">
+                    <div class="icon">
+                        <svg t="1787534169616" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6593" width="64" height="64"><path d="M403.2 780.8V619.2h-160c-89.6 0-161.6 72-161.6 161.6s72 161.6 161.6 161.6 160-72 160-161.6z m81.6 0c0 134.4-108.8 243.2-243.2 243.2S0 915.2 0 780.8s108.8-243.2 243.2-243.2h243.2c-1.6 0-1.6 243.2-1.6 243.2z m134.4 0V619.2h161.6c89.6 0 161.6 72 161.6 161.6s-72 161.6-161.6 161.6-161.6-72-161.6-161.6z m-81.6 0c0 134.4 108.8 243.2 243.2 243.2S1024 915.2 1024 780.8s-108.8-243.2-243.2-243.2H537.6v243.2z m-134.4-537.6v161.6h-160c-89.6 0-161.6-72-161.6-161.6S153.6 81.6 243.2 81.6s160 72 160 161.6z m81.6 0C484.8 108.8 376 0 243.2 0 108.8 1.6 0 108.8 0 243.2s108.8 243.2 243.2 243.2h243.2c-1.6 0-1.6-243.2-1.6-243.2z m134.4 0v161.6h161.6c89.6 0 161.6-72 161.6-161.6S870.4 81.6 780.8 81.6 619.2 153.6 619.2 243.2z m-81.6 0C537.6 108.8 646.4 0 780.8 0c134.4 1.6 241.6 108.8 241.6 243.2s-108.8 243.2-243.2 243.2H537.6v-81.6-161.6z" fill="#ffffff" p-id="6594"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            const $fixed = document.getElementById('fixed');
+            if(Math.random()>0.5){
+                $fixed.style.left = '5px';
+            }else{
+                $fixed.style.right = '5px';
+            }
+            if(Math.random()>0.5){
+                $fixed.style.top = '5px';
+            }else{
+                $fixed.style.bottom = '5px';
+            }
+        </script>
+    </body>
+</html>
