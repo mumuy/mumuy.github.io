@@ -37,7 +37,10 @@
 		'name':'代码着色美化组件'
 	},{
 		'url':'https://passer-by.com/widget-region/',
-		'name':'行政区划选择组件'
+		'name':'行政区划选择器'
+	},{
+		'url':'https://passer-by.com/widget-datetime/',
+		'name':'日期时间选择器'
 	},{
 		'url':'https://passer-by.com/livestorage/',
 		'name':'响应式数据本地存储'
