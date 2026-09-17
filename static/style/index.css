@@ -374,6 +374,22 @@
     background: var(--primary-hover-color);
 }
 
+.mod-text .text{
+    line-height: 160px;
+    text-align: center;
+    font-size: 160px;
+    background: linear-gradient(90deg, #f0f0f0, #fafafa);
+    background-clip: text;
+    color: transparent; 
+    font-family: fantasy;
+}
+.mod-text img,.mod-text span{
+    vertical-align: middle;
+}
+.mod-text img{
+    opacity: 0.07;
+}
+
 @media screen and (max-width: 800px)  {
     .module{
         margin: 60px 0;
