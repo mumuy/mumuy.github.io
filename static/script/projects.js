@@ -36,6 +36,9 @@
 		'url':'https://passer-by.com/widget-code/',
 		'name':'代码着色美化组件'
 	},{
+		'url':'https://passer-by.com/widget-markdown/',
+		'name':'Markdown实时渲染'
+	},{
 		'url':'https://passer-by.com/widget-region/',
 		'name':'行政区划选择器'
 	},{
