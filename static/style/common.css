@@ -337,9 +337,21 @@ header{
     font-size: 15px;
     color: #999;
 }
+.mod-foot .bd p{
+    margin-bottom: 12px;
+}
 .mod-foot .bd a,.mod-foot .bd span{
     margin: 0 8px;
     color: #999;
+}
+.mod-foot .bd .link{
+    display: inline-block;
+    padding: 0 15px;
+    margin: 0 6px;
+    background: #f6f8fa;
+    border-radius: 5px;
+    line-height: 32px;
+    color: #666;
 }
 
 ::selection {
