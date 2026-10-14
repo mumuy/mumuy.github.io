@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>富文本编辑器演示</title>
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #fafafa;
+            }
+            .wrapper {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 40px 0;
+            }
+            .module widget-editor {
+                margin-bottom: 10px;
+                box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.02);
+            }
+            .module p{
+                line-height: 24px;
+                font-size: 14px;
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="module">
+                <div class="bd">
+                    <widget-editor id="editor-custom" alignment="left,right,center" custom="heading,alignment,bold,italic,underline,strikethrough,superscript,subscript,color,link,divider,blockquote,orderedList,unorderedList,table,format,formatPainter,code,image,video">
+                        <h1>富文本编辑器</h1>
+                        <p>一个标签实现富文本编辑，支持常用的文字排版功能。</p>
+                        <h2>文字格式</h2>
+                        <p>选中文字，可以设置<strong>加粗</strong>、<em>斜体</em>、<u>下划线</u>、<s>删除线</s>、<span style="color:#2095f2;">文字颜色</span>、字体和文字大小，也可以通过格式刷复制样式。</p>
+                        <p>使用上标书写 x<sup>2</sup>，使用下标书写 H<sub>2</sub>O。通过 language 属性可切换简体中文、繁体中文和英语界面。</p>
+                        <blockquote><p>选中段落后点击块引用，为文章添加引用内容。</p></blockquote>
+                        <h3>编辑功能</h3>
+                        <ul>
+                            <li>支持 H1 至 H6 标题、块引用和段落对齐</li>
+                            <li>支持有序列表、无序列表、链接和图片、视频、音频、附件插入</li>
+                            <li>支持表格选格插入、行列增删、单元格合并与拆分</li>
+                            <li>支持分割线和多种编程语言的代码块高亮</li>
+                        </ul>
+                        <h3>使用方法</h3>
+                        <ol>
+                            <li>在编辑区输入内容</li>
+                            <li>选中文字，通过工具栏设置格式</li>
+                            <li>点击源码查看并编辑 HTML</li>
+                        </ol>
+                        <p>更多内容请查看<a href="https://google.com/" target="_blank" rel="noopener noreferrer">项目源码</a>。</p>
+                        <h3>表格示例</h3>
+                        <p>点击单元格可增加或删除行列，拖动或按住 Shift 选择连续单元格后，可合并与拆分单元格。</p>
+                        <table>
+                            <thead><tr><th scope="col">事项</th><th scope="col">负责人</th><th scope="col">进度</th></tr></thead>
+                            <tbody>
+                                <tr><td>编辑文案</td><td>张三</td><td>已完成</td></tr>
+                                <tr><td>调整排版</td><td>李四</td><td>进行中</td></tr>
+                                <tr><td>检查内容</td><td>王五</td><td>待开始</td></tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h3>代码示例</h3>
+                        <pre><code data-language="javascript">const editor = document.querySelector('widget-editor');
+console.log(editor.value);</code></pre>
+                        <p>在代码块中输入内容，并通过浮动菜单切换编程语言。</p>
+                        <iframe src="https://www.youtube.com/embed/2Q__mZbUA_A?list=RD2Q__mZbUA_A" frameborder="0" allowfullscreen="" title="【酒館民謠】｜民謠酒館知我意 再聽已是曲中人｜溫柔女聲煙嗓演唱 |原創抒情民謠歌曲🎧｜舒緩療愈系歌單 ✨ #讀書音樂  #放鬆音樂 #疗愈歌曲 #民謠吉他 #華語流行歌曲#熱門歌曲 #民謠#民謠小酒館" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="width: 100%; height: auto; max-width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                    </widget-editor>
+                    <p>文件在本地读取用于演示，不会上传到服务器。</p>
+                </div>
+            </div>
+        </div>
+        <script src="./widget-editor.min.js"></script>
+        <script type="text/javascript">
+            let $editor = document.querySelector('widget-editor');
+
+            // 演示页作为外部调用方处理文件，正式使用时替换成自己的上传服务。
+            $editor.addEventListener('upload',function(event){
+                let {file,type,onUploadComplete,onUploadError,onProgress} = event.detail;
+
+                let reader = new FileReader();
+                reader.onprogress = function(event){
+                    if(event.lengthComputable){
+                        onProgress(event.loaded/event.total*100);
+                    }
+                };
+                reader.onload = function(){
+                    let source = String(reader.result);
+                    if(type==='attachment'){
+                        source = source.replace(/^data:[^,]*;base64,/, 'data:application/octet-stream;base64,');
+                    }else if(type==='audio'&&file.type==='audio/x-wav'){
+                        source = source.replace(/^data:[^,]*;base64,/, 'data:audio/wav;base64,');
+                    }
+                    onUploadComplete(source);
+                };
+                reader.onerror = ()=>onUploadError('文件读取失败，请重试');
+                reader.onabort = ()=>onUploadError('文件读取已取消');
+                reader.readAsDataURL(file);
+            });
+        </script>
+    </body>
+</html>
