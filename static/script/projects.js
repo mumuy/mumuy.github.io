@@ -31,10 +31,13 @@
 		'name':'浏览器判断'
 	},{
 		'url':'https://passer-by.com/widget-qrcode/',
-		'name':'二维码美化组件'
+		'name':'二维码美化'
+	},{
+		'url':'https://passer-by.com/widget-editor/',
+		'name':'富文本编辑器'
 	},{
 		'url':'https://passer-by.com/widget-code/',
-		'name':'代码着色美化组件'
+		'name':'代码着色美化'
 	},{
 		'url':'https://passer-by.com/widget-markdown/',
 		'name':'Markdown实时渲染'
@@ -56,9 +59,9 @@
 	},{
 		'url':'https://passer-by.com/imageCode/',
 		'name':'imageCode脚本加密'
-	},{
-		'url':'https://passer-by.com/hiddenCode/',
-		'name':'hiddenCode脚本加密'
+	// },{
+	// 	'url':'https://passer-by.com/hiddenCode/',
+	// 	'name':'hiddenCode脚本加密'
 	}];
 	let url = location['hostname']+location['pathname'];
 	document.write(`
