@@ -56,6 +56,21 @@
     overflow: hidden;
     transition: all 0.12s ease-in;
 }
+.mod-project .item .tag{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    padding: 0 8px;
+    margin: 0 5px;
+    background: #d6eaff;
+    line-height: 26px;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #69c;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.03);
+}
 .mod-project .item .rank{
     position: absolute;
     right: 15px;
